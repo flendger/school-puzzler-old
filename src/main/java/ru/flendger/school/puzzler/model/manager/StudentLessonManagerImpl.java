@@ -5,32 +5,29 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.flendger.school.puzzler.model.dto.LessonDto;
 import ru.flendger.school.puzzler.model.dto.LessonRowDto;
-import ru.flendger.school.puzzler.model.entity.Lesson;
-import ru.flendger.school.puzzler.model.entity.Subject;
+import ru.flendger.school.puzzler.model.service.LessonService;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class StudentLessonManagerImpl implements StudentLessonManager {
     private final ModelMapper modelMapper;
+    private final LessonService lessonService;
 
     @Override
     public List<LessonRowDto> getLessons() {
-        Lesson lesson = new Lesson();
-        lesson.setId(1L);
-        lesson.setName("lesson name");
-        lesson.setTitle("lesson title");
-
-        Subject subject = new Subject();
-        subject.setName("subject name");
-        lesson.setSubject(subject);
-
-        return List.of(modelMapper.map(lesson, LessonRowDto.class));
+        return lessonService.findAll()
+                .stream()
+                .map(lesson -> modelMapper.map(lesson, LessonRowDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public LessonDto getLesson(Long id) {
-        return null;
+    public Optional<LessonDto> getLesson(Long id) {
+        return lessonService.findById(id)
+                .map(lesson -> modelMapper.map(lesson, LessonDto.class));
     }
 }
