@@ -7,21 +7,25 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import ru.flendger.school.puzzler.model.config.ModelMapperConfig;
+import ru.flendger.school.puzzler.model.dto.HeaderDto;
 import ru.flendger.school.puzzler.model.dto.LessonDto;
 import ru.flendger.school.puzzler.model.dto.LessonRowDto;
 import ru.flendger.school.puzzler.model.entity.Lesson;
 import ru.flendger.school.puzzler.model.entity.Subject;
+import ru.flendger.school.puzzler.model.entity.TaskColumn;
+import ru.flendger.school.puzzler.model.entity.TaskStructure;
 import ru.flendger.school.puzzler.model.service.LessonService;
 
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = {
-        ModelMapper.class,
+        ModelMapperConfig.class,
         StudentLessonManagerImpl.class})
+//@SpringBootTest
 class StudentLessonManagerTest {
     @Autowired
     private StudentLessonManager studentLessonManager;
@@ -60,6 +64,16 @@ class StudentLessonManagerTest {
         subject.setName("subject name");
         lesson.setSubject(subject);
 
+        TaskStructure taskStructure = new TaskStructure();
+        lesson.setTaskStructure(taskStructure);
+
+        TaskColumn taskColumn = new TaskColumn();
+        taskColumn.setId(1L);
+        taskColumn.setOrder(1);
+        taskColumn.setName("column 1");
+
+        taskStructure.setTaskColumns(List.of(taskColumn));
+
         return lesson;
     }
 
@@ -86,5 +100,12 @@ class StudentLessonManagerTest {
         assertEquals(1L, lessonDto.getId());
         assertEquals("lesson name", lessonDto.getName());
         assertEquals("lesson title", lessonDto.getTitle());
+
+        List<HeaderDto> taskStructureTaskColumns = lessonDto.getHeaders();
+        assertNotNull(taskStructureTaskColumns);
+        assertFalse(taskStructureTaskColumns.isEmpty());
+
+        HeaderDto headerDto = taskStructureTaskColumns.get(0);
+        assertEquals("column 1", headerDto.getName());
     }
 }

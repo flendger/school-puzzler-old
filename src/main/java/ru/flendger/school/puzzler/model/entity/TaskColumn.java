@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class TaskColumn extends BaseEntity{
     private TaskStructure taskStructure;
-    private String name;
     private int order;
+    private String name;
 }

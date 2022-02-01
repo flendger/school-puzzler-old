@@ -15,6 +15,6 @@ public class LessonDto {
     private Long id;
     private String name;
     private String title;
-//    private TaskStructure taskStructure;
+    private List<HeaderDto> headers;
 //    private List<Task> tasks;
 }
