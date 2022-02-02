@@ -7,10 +7,9 @@ import java.util.List;
 
 @Getter
 @Setter
-public class LessonDto {
-    private Long id;
+public class TaskRowDto {
+    private Long taskId;
     private String name;
     private String title;
-    private List<HeaderDto> headers;
-    private List<TaskRowDto> tasks;
+    private List<TaskValueDto> values;
 }
