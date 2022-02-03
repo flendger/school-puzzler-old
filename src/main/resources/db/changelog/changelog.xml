@@ -5,4 +5,134 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
 
+    <changeSet id="1643909584352-1" author="kiru_e">
+        <createTable tableName="subjects">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="timestamp"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643909997624-1" author="kiru_e">
+        <createTable tableName="task_structures">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="timestamp"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643910157609-1" author="kiru_e">
+        <createTable tableName="task_columns">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_structure_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="task_structure_id" referencedTableName="task_structures" referencedColumnNames="id"/>
+            </column>
+            <column name="col_order" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="timestamp"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643911113623-1" author="kiru_e">
+        <createIndex tableName="task_columns" indexName="task_structure_idx">
+            <column name="task_structure_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1643911350054-1" author="kiru_e">
+        <createTable tableName="lessons">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)" defaultValue=""/>
+            <column name="subject_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="subject_id" referencedTableName="subjects" referencedColumnNames="id"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="timestamp"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643911774404-1" author="kiru_e">
+        <createIndex tableName="lessons" indexName="lesson_subject_idx">
+            <column name="subject_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1643911906575-1" author="kiru_e">
+        <createTable tableName="tasks">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)" defaultValue=""/>
+            <column name="task_structure_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="task_structure_id" referencedTableName="task_structures" referencedColumnNames="id"/>
+            </column>
+            <column name="task_column_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="task_column_id" referencedTableName="task_columns" referencedColumnNames="id"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="timestamp"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643912103230-1" author="kiru_e">
+        <createIndex tableName="tasks" indexName="tasks_task_structure_idx">
+            <column name="task_structure_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1643912188370-1" author="kiru_e">
+        <createIndex tableName="tasks" indexName="tasks_task_column_idx">
+            <column name="task_column_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1643912334292-1" author="kiru_e">
+        <createTable tableName="task_values">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="task_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="task_id" referencedTableName="tasks" referencedColumnNames="id"/>
+            </column>
+            <column name="task_column_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="task_column_id" referencedTableName="task_columns" referencedColumnNames="id"/>
+            </column>
+            <column name="value1" type="varchar(255)" defaultValue=""/>
+            <column name="value2" type="varchar(255)" defaultValue=""/>
+            <column name="value3" type="varchar(255)" defaultValue=""/>
+            <column name="value_type" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="accesable" type="boolean" defaultValue="false"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="timestamp"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="updated_at" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643912645288-1" author="kiru_e">
+        <createIndex tableName="task_values" indexName="task_values_task_idx">
+            <column name="task_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1643912771498-1" author="kiru_e">
+        <createIndex tableName="task_values" indexName="task_values_column_idx">
+            <column name="task_column_id"/>
+        </createIndex>
+    </changeSet>
+
 </databaseChangeLog>
