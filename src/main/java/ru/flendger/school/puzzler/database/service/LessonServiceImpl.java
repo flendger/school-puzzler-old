@@ -1,26 +1,18 @@
 package ru.flendger.school.puzzler.database.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.flendger.school.puzzler.database.repositories.LessonRepository;
 import ru.flendger.school.puzzler.model.entity.Lesson;
 import ru.flendger.school.puzzler.model.service.LessonService;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
-public class LessonServiceImpl implements LessonService {
-    @Override
-    public Optional<Lesson> findById(Long id) {
-        return Optional.empty();
-    }
+@RequiredArgsConstructor
+public class LessonServiceImpl extends AbstractCrudService<Lesson, Long, LessonRepository> implements LessonService {
+    private final LessonRepository lessonRepository;
 
     @Override
-    public List<Lesson> findAll() {
-        return null;
-    }
-
-    @Override
-    public void save(Lesson entity) {
-
+    LessonRepository getRepository() {
+        return lessonRepository;
     }
 }
