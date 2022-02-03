@@ -134,5 +134,37 @@
             <column name="task_column_id"/>
         </createIndex>
     </changeSet>
+    <changeSet id="1643913348178-1" author="kiru_e">
+        <addColumn tableName="lessons">
+            <column name="task_structure_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="task_structure_id" referencedTableName="task_structures" referencedColumnNames="id"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1643914165761-1" author="kiru_e">
+        <createIndex tableName="lessons" indexName="lessons_task_structure_idx">
+            <column name="task_structure_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1643914314131-1" author="kiru_e">
+        <createTable tableName="lessons_tasks">
+            <column name="lesson_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="lesson_id" referencedTableName="lessons" referencedColumnNames="id"/>
+            </column>
+            <column name="task_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="task_id" referencedTableName="tasks" referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1643914707096-1" author="kiru_e">
+        <createIndex tableName="lessons_tasks" indexName="lessons_tasks_lesson_idx">
+            <column name="lesson_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1643914758008-1" author="kiru_e">
+        <createIndex tableName="lessons_tasks" indexName="lessons_tasks_task_idx">
+            <column name="task_id"/>
+        </createIndex>
+    </changeSet>
 
 </databaseChangeLog>
