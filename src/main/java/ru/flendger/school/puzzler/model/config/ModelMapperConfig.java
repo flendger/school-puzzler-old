@@ -15,9 +15,13 @@ public class ModelMapperConfig {
         org.modelmapper.config.Configuration mapperConfiguration = modelMapper.getConfiguration();
         mapperConfiguration.setSkipNullEnabled(true);
 
-        TypeMap<Lesson, LessonDto> typeMap = modelMapper.createTypeMap(Lesson.class, LessonDto.class);
-        typeMap.addMapping(lesson -> lesson.getTaskStructure().getTaskColumns(), LessonDto::setHeaders);
+        addTaskStructureToHeaderDtoMap(modelMapper);
 
         return modelMapper;
+    }
+
+    private void addTaskStructureToHeaderDtoMap(ModelMapper modelMapper) {
+        TypeMap<Lesson, LessonDto> typeMap = modelMapper.createTypeMap(Lesson.class, LessonDto.class);
+        typeMap.addMapping(lesson -> lesson.getTaskStructure().getTaskColumns(), LessonDto::setHeaders);
     }
 }

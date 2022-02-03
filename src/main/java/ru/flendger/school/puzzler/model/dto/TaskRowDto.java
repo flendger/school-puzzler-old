@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 @Setter
 public class TaskRowDto {
-    private Long taskId;
+    private Long id;
     private String name;
     private String title;
     private List<TaskValueDto> values;

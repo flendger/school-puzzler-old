@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.flendger.school.puzzler.model.config.ModelMapperConfig;
-import ru.flendger.school.puzzler.model.dto.HeaderDto;
-import ru.flendger.school.puzzler.model.dto.LessonDto;
-import ru.flendger.school.puzzler.model.dto.LessonRowDto;
+import ru.flendger.school.puzzler.model.dto.*;
 import ru.flendger.school.puzzler.model.entity.*;
 import ru.flendger.school.puzzler.model.enums.TaskValueType;
 import ru.flendger.school.puzzler.model.service.LessonService;
@@ -78,6 +76,7 @@ class StudentLessonManagerTest {
         Task task = createTask();
         task.setTaskStructure(taskStructure);
         task.setTaskColumn(taskColumn1);
+        lesson.setTasks(List.of(task));
 
         TaskValue taskValue = createTaskValue();
         taskValue.setTaskColumn(taskColumn2);
@@ -112,7 +111,7 @@ class StudentLessonManagerTest {
         taskColumn.setId(columnId);
         taskColumn.setOrder(order);
         taskColumn.setName(COLUMN_PREFIX + order);
-        
+
         return taskColumn;
     }
 
@@ -170,6 +169,22 @@ class StudentLessonManagerTest {
         assertEquals("column_1", headerDto2.getName());
         assertEquals(1, headerDto2.getOrder());
 
-        // TODO: 02.02.2022 add task and task values check
+        List<TaskRowDto> tasks = lessonDto.getTasks();
+        assertEquals(1, tasks.size());
+
+        TaskRowDto taskRowDto = tasks.get(0);
+        assertEquals(6L, taskRowDto.getId());
+        assertEquals(TASK_NAME, taskRowDto.getName());
+        assertEquals(TASK_TITLE, taskRowDto.getTitle());
+
+        List<TaskValueDto> values = taskRowDto.getValues();
+        assertEquals(1, values.size());
+
+        TaskValueDto taskValueDto = values.get(0);
+        assertEquals(7L, taskValueDto.getId());
+        assertEquals(VALUE_1, taskValueDto.getValue1());
+        assertEquals(VALUE_2, taskValueDto.getValue2());
+        assertEquals(VALUE_3, taskValueDto.getValue3());
+        assertEquals("NUMBER", taskValueDto.getValueType());
     }
 }
