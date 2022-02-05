@@ -3,6 +3,7 @@ package ru.flendger.school.puzzler.model.manager;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.flendger.school.puzzler.model.dto.LessonDto;
 import ru.flendger.school.puzzler.model.dto.LessonRowDto;
 import ru.flendger.school.puzzler.model.service.LessonService;
@@ -26,6 +27,7 @@ public class StudentLessonManagerImpl implements StudentLessonManager {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<LessonDto> getLesson(Long id) {
         return lessonService.findById(id)
                 .map(lesson -> modelMapper.map(lesson, LessonDto.class));
