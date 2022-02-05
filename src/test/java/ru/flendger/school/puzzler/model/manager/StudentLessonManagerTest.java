@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.flendger.school.puzzler.model.config.ModelMapperConfig;
+import ru.flendger.school.puzzler.model.config.ModelMapperFactory;
 import ru.flendger.school.puzzler.model.dto.*;
 import ru.flendger.school.puzzler.model.entity.*;
 import ru.flendger.school.puzzler.model.enums.TaskValueType;
@@ -19,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = {
         ModelMapperConfig.class,
+        ModelMapperFactory.class,
         StudentLessonManagerImpl.class})
 class StudentLessonManagerTest {
     private final static String LESSON_NAME = "lesson_name";
@@ -71,23 +73,26 @@ class StudentLessonManagerTest {
 
         TaskColumn taskColumn1 = createTaskColumn(4L, 0);
         TaskColumn taskColumn2 = createTaskColumn(5L, 1);
-        taskStructure.setTaskColumns(List.of(taskColumn1, taskColumn2));
+        TaskColumn taskColumn3 = createTaskColumn(8L, 2);
+        taskStructure.setTaskColumns(List.of(taskColumn1, taskColumn2, taskColumn3));
 
         Task task = createTask();
         task.setTaskStructure(taskStructure);
         task.setTaskColumn(taskColumn1);
         lesson.setTasks(List.of(task));
 
-        TaskValue taskValue = createTaskValue();
-        taskValue.setTaskColumn(taskColumn2);
-        task.setTaskValues(List.of(taskValue));
+        TaskValue taskValue1 = createTaskValue(7L);
+        taskValue1.setTaskColumn(taskColumn2);
+        TaskValue taskValue2 = createTaskValue(9L);
+        taskValue2.setTaskColumn(taskColumn3);
+        task.setTaskValues(List.of(taskValue2, taskValue1)); //inverse order
 
         return lesson;
     }
 
-    private TaskValue createTaskValue() {
+    private TaskValue createTaskValue(Long taskValueId) {
         TaskValue taskValue = new TaskValue();
-        taskValue.setId(7L);
+        taskValue.setId(taskValueId);
         taskValue.setValue1(VALUE_1);
         taskValue.setValue2(VALUE_2);
         taskValue.setValue3(VALUE_3);
@@ -157,7 +162,7 @@ class StudentLessonManagerTest {
 
         List<HeaderDto> taskStructureTaskColumns = lessonDto.getHeaders();
         assertNotNull(taskStructureTaskColumns);
-        assertEquals(2, taskStructureTaskColumns.size());
+        assertEquals(3, taskStructureTaskColumns.size());
 
         HeaderDto headerDto1 = taskStructureTaskColumns.get(0);
         assertEquals(4L, headerDto1.getId());
@@ -178,13 +183,20 @@ class StudentLessonManagerTest {
         assertEquals(TASK_TITLE, taskRowDto.getTitle());
 
         List<TaskValueDto> values = taskRowDto.getValues();
-        assertEquals(1, values.size());
+        assertEquals(2, values.size());
 
-        TaskValueDto taskValueDto = values.get(0);
-        assertEquals(7L, taskValueDto.getId());
-        assertEquals(VALUE_1, taskValueDto.getValue1());
-        assertEquals(VALUE_2, taskValueDto.getValue2());
-        assertEquals(VALUE_3, taskValueDto.getValue3());
-        assertEquals("NUMBER", taskValueDto.getValueType());
+        TaskValueDto taskValueDto1 = values.get(0);
+        assertEquals(7L, taskValueDto1.getId());
+        assertEquals(VALUE_1, taskValueDto1.getValue1());
+        assertEquals(VALUE_2, taskValueDto1.getValue2());
+        assertEquals(VALUE_3, taskValueDto1.getValue3());
+        assertEquals("NUMBER", taskValueDto1.getValueType());
+
+        TaskValueDto taskValueDto2 = values.get(1);
+        assertEquals(8L, taskValueDto2.getId());
+        assertEquals(VALUE_1, taskValueDto2.getValue1());
+        assertEquals(VALUE_2, taskValueDto2.getValue2());
+        assertEquals(VALUE_3, taskValueDto2.getValue3());
+        assertEquals("NUMBER", taskValueDto2.getValueType());
     }
 }
