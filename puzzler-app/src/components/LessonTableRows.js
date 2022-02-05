@@ -6,7 +6,7 @@ export class LessonTableRows extends Component {
     render() {
         const lessonRows = this.props.lessonRows;
         const tableRows = lessonRows.map((lessonRow) =>
-            <LessonRow lessonRow={lessonRow}/>
+            <LessonRow key={lessonRow.id} lessonRow={lessonRow}/>
         );
 
         return <>

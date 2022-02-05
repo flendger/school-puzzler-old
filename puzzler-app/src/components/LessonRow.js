@@ -5,7 +5,7 @@ export class LessonRow extends Component {
         const lessonRow = this.props.lessonRow;
 
         return <>
-            <tr key={lessonRow.id}>
+            <tr>
                 <th>{lessonRow.id}</th>
                 <td><a href="/" className="text-light">{lessonRow.subjectName}</a></td>
                 <td><a href="/" className="text-light">{lessonRow.name}</a></td>

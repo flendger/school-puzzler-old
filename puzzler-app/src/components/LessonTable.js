@@ -1,6 +1,7 @@
 import {Component} from "react";
 import {LessonTableHeader} from "./LessonTableHeader";
 import {LessonTableRows} from "./LessonTableRows";
+import axios from "axios";
 
 export class LessonTable extends Component {
     constructor(props, context) {
@@ -8,13 +9,36 @@ export class LessonTable extends Component {
 
         this.state = {
             lessonRows: [
-                {
-                    id: 1,
-                    name: "Урок 1",
-                    title: "Заголовок урока 1",
-                    subjectName: "Химия"
-                }]
+                // {
+                //     id: 1,
+                //     name: "Урок 1",
+                //     title: "Заголовок урока 1",
+                //     subjectName: "Химия"
+                // }
+                ]
         };
+
+        this.updateState = this.updateState.bind(this);
+    }
+
+    componentDidMount() {
+        this.getLessonsFromServer();
+    }
+
+    getLessonsFromServer() {
+        axios.get('/api/v1/lesson')
+            .then(response => {
+                this.updateState(response.data);
+            })
+            .catch(error => {
+                alert(error);
+            })
+    }
+
+    updateState(data) {
+        this.setState({
+            lessonRows: data
+        })
     }
 
     render() {
