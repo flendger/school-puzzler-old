@@ -1,5 +1,7 @@
 package ru.flendger.school.puzzler.model.config;
 
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.modelmapper.config.Configuration;
@@ -8,7 +10,10 @@ import ru.flendger.school.puzzler.model.dto.LessonDto;
 import ru.flendger.school.puzzler.model.entity.Lesson;
 
 @Component
+@RequiredArgsConstructor
 public class ModelMapperFactory {
+    private final Converter<Lesson, LessonDto> lessonToLessonDtoPostConverter;
+
     public ModelMapper create() {
         ModelMapper modelMapper = new ModelMapper();
 
@@ -16,12 +21,15 @@ public class ModelMapperFactory {
         mapperConfiguration.setSkipNullEnabled(true);
 
         addTaskStructureToHeaderDtoMap(modelMapper);
-// TODO: 03.02.2022 values must be in the same order as header columns
+
         return modelMapper;
     }
 
     private void addTaskStructureToHeaderDtoMap(ModelMapper modelMapper) {
         TypeMap<Lesson, LessonDto> typeMap = modelMapper.createTypeMap(Lesson.class, LessonDto.class);
+
         typeMap.addMapping(lesson -> lesson.getTaskStructure().getTaskColumns(), LessonDto::setHeaders);
+
+        typeMap.setPostConverter(lessonToLessonDtoPostConverter);
     }
 }

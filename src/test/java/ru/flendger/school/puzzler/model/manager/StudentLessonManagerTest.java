@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.flendger.school.puzzler.model.config.ModelMapperConfig;
 import ru.flendger.school.puzzler.model.config.ModelMapperFactory;
+import ru.flendger.school.puzzler.model.config.converter.LessonToLessonDtoPostConverter;
 import ru.flendger.school.puzzler.model.dto.*;
 import ru.flendger.school.puzzler.model.entity.*;
 import ru.flendger.school.puzzler.model.enums.TaskValueType;
@@ -21,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = {
         ModelMapperConfig.class,
         ModelMapperFactory.class,
+        LessonToLessonDtoPostConverter.class,
         StudentLessonManagerImpl.class})
 class StudentLessonManagerTest {
     private final static String LESSON_NAME = "lesson_name";
@@ -187,13 +189,15 @@ class StudentLessonManagerTest {
 
         TaskValueDto taskValueDto1 = values.get(0);
         assertEquals(7L, taskValueDto1.getId());
+        assertEquals(1, taskValueDto1.getColumnOrder());
         assertEquals(VALUE_1, taskValueDto1.getValue1());
         assertEquals(VALUE_2, taskValueDto1.getValue2());
         assertEquals(VALUE_3, taskValueDto1.getValue3());
         assertEquals("NUMBER", taskValueDto1.getValueType());
 
         TaskValueDto taskValueDto2 = values.get(1);
-        assertEquals(8L, taskValueDto2.getId());
+        assertEquals(9L, taskValueDto2.getId());
+        assertEquals(2, taskValueDto2.getColumnOrder());
         assertEquals(VALUE_1, taskValueDto2.getValue1());
         assertEquals(VALUE_2, taskValueDto2.getValue2());
         assertEquals(VALUE_3, taskValueDto2.getValue3());

@@ -12,5 +12,6 @@ public class TaskValueDto {
     private String value3;
     private boolean accesable;
     private Long columnId;
+    private int columnOrder;
     private String valueType;
 }
