@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.model.config;
+package ru.flendger.school.puzzler.model.config.factory;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.Converter;

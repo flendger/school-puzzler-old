@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.flendger.school.puzzler.model.config.ModelMapperConfig;
-import ru.flendger.school.puzzler.model.config.ModelMapperFactory;
+import ru.flendger.school.puzzler.model.config.factory.ModelMapperFactory;
 import ru.flendger.school.puzzler.model.config.converter.LessonToLessonDtoPostConverter;
 import ru.flendger.school.puzzler.model.dto.*;
 import ru.flendger.school.puzzler.model.entity.*;
