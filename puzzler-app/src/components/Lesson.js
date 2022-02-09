@@ -14,7 +14,7 @@ export function Lesson() {
                 title: "Заголовок урока 1",
                 subjectName: "Химия"
             });
-            // axios.get('/api/v1/lesson/' + id)
+            // axios.get('/api/v1/lessons/' + id)
             //     .then(response => {
             //         console.log(response.data);
             //         setLesson(response.data);

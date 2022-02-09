@@ -26,7 +26,7 @@ export class LessonTable extends Component {
     }
 
     getLessonsFromServer() {
-        axios.get('/api/v1/lesson')
+        axios.get('/api/v1/lessons')
             .then(response => {
                 this.updateState(response.data);
             })
