@@ -1,7 +1,31 @@
-import {Component} from "react";
+import {useParams} from "react-router";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
-export class Lesson extends Component {
-    render() {
-        return <h1>Lesson page</h1>;
-    }
+export function Lesson() {
+    const params = useParams();
+    const [lesson, setLesson] = useState({});
+
+    useEffect(() => {
+        function getLesson(id) {
+            setLesson({
+                id: 1,
+                name: "Урок 1",
+                title: "Заголовок урока 1",
+                subjectName: "Химия"
+            });
+            // axios.get('/api/v1/lesson/' + id)
+            //     .then(response => {
+            //         console.log(response.data);
+            //         setLesson(response.data);
+            //     })
+            //     .catch(error => {
+            //         alert(error);
+            //     })
+        }
+
+        getLesson(params.id);
+    }, [params.id]);
+
+    return <h1>Lesson {lesson.name}</h1>;
 }
