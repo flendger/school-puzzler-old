@@ -1,11 +1,10 @@
 import {Component} from "react";
-import {LessonTable} from "./LessonTable";
+import {Outlet} from "react-router-dom";
 
 export default class Main extends Component {
     render() {
-       return <div className="container">
-           <h1 className="text-center">Список уроков</h1>
-           <LessonTable/>
-       </div>;
+        return<div className="container">
+            <Outlet />
+        </div>;
     }
 }

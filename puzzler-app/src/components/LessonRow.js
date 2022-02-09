@@ -1,4 +1,5 @@
 import {Component} from "react";
+import {Link} from "react-router-dom";
 
 export class LessonRow extends Component {
     render() {
@@ -7,9 +8,15 @@ export class LessonRow extends Component {
         return <>
             <tr>
                 <th>{lessonRow.id}</th>
-                <td><a href="/" className="text-light">{lessonRow.subjectName}</a></td>
-                <td><a href="/" className="text-light">{lessonRow.name}</a></td>
-                <td><a href="/" className="text-light">{lessonRow.title}</a></td>
+                <td>
+                    <Link to={`lesson/${lessonRow.id}`} className="text-light" key={lessonRow.id}>{lessonRow.subjectName}</Link>
+                </td>
+                <td>
+                    <Link to={`lesson/${lessonRow.id}`} className="text-light" key={lessonRow.id}>{lessonRow.name}</Link>
+                </td>
+                <td>
+                    <Link to={`lesson/${lessonRow.id}`} className="text-light" key={lessonRow.id}>{lessonRow.title}</Link>
+                </td>
             </tr>
         </>;
     }

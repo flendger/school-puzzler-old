@@ -48,6 +48,7 @@ export class LessonTable extends Component {
         );
 
         return <>
+            <h1 className="text-center">Список уроков</h1>
             <table className="table table-dark">
                 <LessonTableHeader/>
                 <tbody>
