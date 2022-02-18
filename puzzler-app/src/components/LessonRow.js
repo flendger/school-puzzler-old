@@ -1,23 +1,31 @@
-import {Component} from "react";
-import {Link} from "react-router-dom";
+import {LessonTaskValueCell} from "./LessonTaskValueCell";
+import {LessonTaskComplexValueCell} from "./LessonTaskComplexValueCell";
+import {LessonTaskValueCellReadOnly} from "./LessonTaskValueCellReadOnly";
+import {LessonTaskComplexValueCellReadOnly} from "./LessonTaskComplexValueCellReadOnly";
 
-export class LessonRow extends Component {
-    render() {
-        const lessonRow = this.props.lessonRow;
+export function LessonRow(props) {
+    const task = props.task;
+    const taskValues = task.values;
+    const valueCells = taskValues.map((taskValue) => {
+            if (taskValue.valueType === 'NUMBER') {
+                if (taskValue.accesable) {
+                    return <LessonTaskValueCell key={taskValue.id} taskValue={taskValue}/>
+                } else {
+                    return <LessonTaskValueCellReadOnly key={taskValue.id} taskValue={taskValue}/>
+                }
+            } else {
+                if (taskValue.accesable) {
+                    return <LessonTaskComplexValueCell key={taskValue.id} taskValue={taskValue}/>
+                } else {
+                    return <LessonTaskComplexValueCellReadOnly key={taskValue.id} taskValue={taskValue}/>
+                }
+            }
+        }
+    );
 
-        return <>
-            <tr>
-                <th>{lessonRow.id}</th>
-                <td>
-                    <Link to={`lesson/${lessonRow.id}`} className="text-light" key={lessonRow.id}>{lessonRow.subjectName}</Link>
-                </td>
-                <td>
-                    <Link to={`lesson/${lessonRow.id}`} className="text-light" key={lessonRow.id}>{lessonRow.name}</Link>
-                </td>
-                <td>
-                    <Link to={`lesson/${lessonRow.id}`} className="text-light" key={lessonRow.id}>{lessonRow.title}</Link>
-                </td>
-            </tr>
-        </>;
-    }
+    return <tr key={task.id}>
+        <th scope="row" className="text-center">{task.id}</th>
+        <td className="text-center">{task.title}</td>
+        <>{valueCells}</>
+    </tr>;
 }

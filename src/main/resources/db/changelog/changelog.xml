@@ -166,5 +166,4 @@
             <column name="task_id"/>
         </createIndex>
     </changeSet>
-
 </databaseChangeLog>
