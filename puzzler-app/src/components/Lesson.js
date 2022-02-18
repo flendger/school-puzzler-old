@@ -31,7 +31,7 @@ export function Lesson() {
                                 "value1": "111",
                                 "value2": "10",
                                 "value3": "5",
-                                "accesable": false,
+                                "accesable": true,
                                 "columnId": 2,
                                 "columnOrder": 1,
                                 "valueType": "NUMBER"
@@ -41,7 +41,7 @@ export function Lesson() {
                                 "value1": "222",
                                 "value2": "10",
                                 "value3": "4",
-                                "accesable": false,
+                                "accesable": true,
                                 "columnId": 3,
                                 "columnOrder": 2,
                                 "valueType": "NUMBER"
@@ -61,7 +61,7 @@ export function Lesson() {
                                 "value1": "444",
                                 "value2": "10",
                                 "value3": "4",
-                                "accesable": false,
+                                "accesable": true,
                                 "columnId": 3,
                                 "columnOrder": 2,
                                 "valueType": "NUMBER"
@@ -99,7 +99,7 @@ export function Lesson() {
                                 "value1": "222",
                                 "value2": "10",
                                 "value3": "4",
-                                "accesable": false,
+                                "accesable": true,
                                 "columnId": 3,
                                 "columnOrder": 2,
                                 "valueType": "NUMBER"
@@ -109,7 +109,7 @@ export function Lesson() {
                                 "value1": "333",
                                 "value2": "10",
                                 "value3": "4",
-                                "accesable": false,
+                                "accesable": true,
                                 "columnId": 3,
                                 "columnOrder": 2,
                                 "valueType": "NUMBER"
@@ -119,7 +119,7 @@ export function Lesson() {
                                 "value1": "444",
                                 "value2": "10",
                                 "value3": "4",
-                                "accesable": false,
+                                "accesable": true,
                                 "columnId": 3,
                                 "columnOrder": 2,
                                 "valueType": "NUMBER"

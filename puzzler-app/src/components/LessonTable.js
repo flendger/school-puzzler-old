@@ -4,11 +4,10 @@ import {LessonRow} from "./LessonRow";
 export function LessonTable(props) {
     const lesson = props.lessonData;
     const tasks = lesson.tasks;
-    const tableRows = tasks ?
-        tasks.map(
+    const tableRows =
+        tasks?.map(
             (task) =>
-                <LessonRow key={task.id} task={task}/>)
-        : [];
+                <LessonRow key={task.id} task={task}/>);
 
     return <table className="table table-dark table-sm">
         <LessonTableHeader lessonHeaders={lesson.headers}/>
