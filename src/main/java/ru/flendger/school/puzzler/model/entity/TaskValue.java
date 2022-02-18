@@ -32,5 +32,6 @@ public class TaskValue extends BaseEntity{
     private TaskColumn taskColumn;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "value_type")
     private TaskValueType valueType;
 }
