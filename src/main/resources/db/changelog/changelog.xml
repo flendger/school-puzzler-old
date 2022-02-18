@@ -166,4 +166,9 @@
             <column name="task_id"/>
         </createIndex>
     </changeSet>
+    <changeSet id="1645212502166-1" author="kiru_e">
+        <addColumn tableName="task_columns">
+            <column name="value_type" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

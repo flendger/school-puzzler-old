@@ -9,4 +9,5 @@ public class HeaderDto {
     private Long id;
     private int order;
     private String name;
+    private String valueType;
 }

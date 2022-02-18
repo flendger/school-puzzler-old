@@ -6,11 +6,11 @@ export function LessonTableHeader(props) {
     const headers = props.lessonHeaders;
     const lessonHeaderCells =
         headers?.map((headerCell) => {
-            if (headerCell.type === 'TASK') {
+            if (headerCell.valueType === 'TASK') {
                 return <LessonTaskHeaderCell key={headerCell.id} header={headerCell}/>;
-            } else if (headerCell.type === 'NUMBER') {
+            } else if (headerCell.valueType === 'NUMBER') {
                 return <LessonHeaderCell key={headerCell.id} header={headerCell}/>
-            } else if (headerCell.type === 'COMPLEX_NUMBER') {
+            } else if (headerCell.valueType === 'COMPLEX_NUMBER') {
                 return <LessonComplexHeaderCell key={headerCell.id} header={headerCell}/>
             } else {
                 return "";

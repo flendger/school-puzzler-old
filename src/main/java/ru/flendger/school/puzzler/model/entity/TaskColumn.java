@@ -2,6 +2,7 @@ package ru.flendger.school.puzzler.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import ru.flendger.school.puzzler.model.enums.TaskValueType;
 
 import javax.persistence.*;
 
@@ -19,4 +20,8 @@ public class TaskColumn extends BaseEntity{
 
     @Column(name = "name")
     private String name;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "value_type")
+    private TaskValueType valueType;
 }

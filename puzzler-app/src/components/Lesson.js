@@ -1,6 +1,7 @@
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
 import {LessonTable} from "./LessonTable";
+import axios from "axios";
 
 export function Lesson() {
     const params = useParams();
@@ -13,12 +14,12 @@ export function Lesson() {
                 "name": "Урок 1",
                 "title": "Заголовок урока 1",
                 "headers": [
-                    {"id": 1, "order": 0, "name": "Задание", "type": "TASK"},
-                    {"id": 2, "order": 1, "name": "М (г/моль)", "type": "NUMBER"},
-                    {"id": 3, "order": 2, "name": "n (моль)", "type": "NUMBER"},
-                    {"id": 4, "order": 3, "name": "m (г)", "type": "NUMBER"},
-                    {"id": 5, "order": 4, "name": "V (л)", "type": "NUMBER"},
-                    {"id": 6, "order": 5, "name": "N (молекулы)", "type": "COMPLEX_NUMBER"}
+                    {"id": 1, "order": 0, "name": "Задание", "valueType": "TASK"},
+                    {"id": 2, "order": 1, "name": "М (г/моль)", "valueType": "NUMBER"},
+                    {"id": 3, "order": 2, "name": "n (моль)", "valueType": "NUMBER"},
+                    {"id": 4, "order": 3, "name": "m (г)", "valueType": "NUMBER"},
+                    {"id": 5, "order": 4, "name": "V (л)", "valueType": "NUMBER"},
+                    {"id": 6, "order": 5, "name": "N (молекулы)", "valueType": "COMPLEX_NUMBER"}
                 ],
                 "tasks": [
                     {
