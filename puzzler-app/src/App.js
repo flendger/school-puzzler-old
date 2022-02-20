@@ -5,7 +5,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {LessonsTable} from "./components/lesson_list/LessonsTable";
 import {Lesson} from "./components/lesson/Lesson";
 import {AdminMain} from "./components/admin/AdminMain";
-import {AdminClasses} from "./components/admin/AdminClasses";
+import {AdminClasses} from "./components/admin/classes/AdminClasses";
 
 function App() {
     return (
