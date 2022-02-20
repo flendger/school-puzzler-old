@@ -2,8 +2,8 @@ import './App.css';
 import './puzzler.css';
 import Main from "./components/Main";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {LessonsTable} from "./components/LessonsTable";
-import {Lesson} from "./components/Lesson";
+import {LessonsTable} from "./components/lesson_list/LessonsTable";
+import {Lesson} from "./components/lesson/Lesson";
 import {AdminMain} from "./components/admin/AdminMain";
 
 function App() {
