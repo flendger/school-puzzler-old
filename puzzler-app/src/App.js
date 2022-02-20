@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {LessonsTable} from "./components/lesson_list/LessonsTable";
 import {Lesson} from "./components/lesson/Lesson";
 import {AdminMain} from "./components/admin/AdminMain";
+import {AdminClasses} from "./components/admin/AdminClasses";
 
 function App() {
     return (
@@ -14,7 +15,9 @@ function App() {
                     <Route path={"/"} element={<LessonsTable/>}/>
                     <Route path={"lesson/:id"} element={<Lesson/>}/>
                     <Route path="*" element={<h1>No page there</h1>}/>
-                    <Route path={"/admin"} element={<AdminMain/>}/>
+                    <Route path={"admin"} element={<AdminMain/>}>
+                        <Route path={"classes"} element={<AdminClasses/>}/>
+                    </Route>
                 </Route>
             </Routes>
         </BrowserRouter>
