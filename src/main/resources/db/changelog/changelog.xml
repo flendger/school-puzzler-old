@@ -181,4 +181,22 @@
             <column name="NAME" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
+    <changeSet id="1645374064724-1" author="kiru_e">
+        <createTable tableName="students">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_students"/>
+            </column>
+            <column name="created_at" type="timestamp"/>
+            <column name="updated_at" type="timestamp"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="class_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="class_id" baseTableName="students" constraintName="FK_STUDENTS_ON_CLASS" referencedColumnNames="id" referencedTableName="school_classes"/>
+        <createIndex tableName="students" indexName="students_class_idx">
+            <column name="class_id"/>
+        </createIndex>
+    </changeSet>
+
 </databaseChangeLog>
