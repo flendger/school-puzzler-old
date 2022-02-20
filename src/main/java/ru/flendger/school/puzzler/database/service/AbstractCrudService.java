@@ -23,4 +23,9 @@ public abstract class AbstractCrudService<T, I, R extends JpaRepository<T, I>> i
     public void save(T entity) {
         getRepository().save(entity);
     }
+
+    @Override
+    public void delete(T entity) {
+        getRepository().delete(entity);
+    }
 }
