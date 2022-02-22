@@ -7,7 +7,9 @@ import ru.flendger.school.puzzler.model.dto.SchoolClassDto;
 import ru.flendger.school.puzzler.model.entity.SchoolClass;
 import ru.flendger.school.puzzler.model.service.SchoolClassService;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -38,9 +40,26 @@ public class SchoolClassManagerImpl implements SchoolClassManager {
 
     @Override
     public void save(SchoolClassDto schoolClassDto) {
-        SchoolClass schoolClass = modelMapper.map(schoolClassDto, SchoolClass.class);
-// TODO: 23.02.2022 created_at is setting to null ???
+        SchoolClass schoolClass;
+
+        if (Objects.nonNull(schoolClassDto.getId())) {
+            schoolClass = schoolClassService.findById(schoolClassDto.getId())
+                    .orElseThrow(() -> createEntityNotFoundException(schoolClassDto));
+
+            modelMapper.map(schoolClassDto, schoolClass);
+        } else {
+            schoolClass = modelMapper.map(schoolClassDto, SchoolClass.class);
+        }
+
         schoolClassService.save(schoolClass);
+    }
+
+    private EntityNotFoundException createEntityNotFoundException(SchoolClassDto schoolClassDto) {
+        return new EntityNotFoundException(messageSchoolClassNotFound(schoolClassDto));
+    }
+
+    private String messageSchoolClassNotFound(SchoolClassDto schoolClassDto) {
+        return String.format("School class not found ID [%d]", schoolClassDto.getId());
     }
 
     @Override
