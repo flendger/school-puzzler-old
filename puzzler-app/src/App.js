@@ -6,6 +6,7 @@ import {LessonsTable} from "./components/lesson_list/LessonsTable";
 import {Lesson} from "./components/lesson/Lesson";
 import {AdminMain} from "./components/admin/AdminMain";
 import {AdminClasses} from "./components/admin/classes/AdminClasses";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     return (

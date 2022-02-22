@@ -9,9 +9,15 @@ export function AdminClasses() {
         name: ""
     });
 
+    const [showEditor, setShowEditor] = useState(false);
+
+    function closeEditor() {
+        setShowEditor(false);
+    }
 
     function openEditor(curClass) {
         setCurrentClass(curClass);
+        setShowEditor(true);
     }
 
     function nameChanged(name) {
@@ -29,6 +35,6 @@ export function AdminClasses() {
             <AdminClassesButtonNav openEditor={openEditor}/>
             <AdminClassesTable openEditor={openEditor}/>
         </div>
-        <AdminClassesEditClassForm currentClass={currentClass} onNameChanged={nameChanged}/>
+        <AdminClassesEditClassForm currentClass={currentClass} onNameChanged={nameChanged} show={showEditor} onClose={closeEditor}/>
     </>;
 }
