@@ -1,9 +1,6 @@
 export function AdminClassesButtonNav(props) {
     function openEditor() {
-        props.openEditor({
-            id: "",
-            name: "ADD"
-        });
+        props.openEditor();
     }
 
     return <>

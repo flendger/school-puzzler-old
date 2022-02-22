@@ -4,10 +4,7 @@ import {AdminClassesEditClassForm} from "./AdminClassesEditClassForm";
 import {useState} from "react";
 
 export function AdminClasses() {
-    const [currentClass, setCurrentClass] = useState({
-        id: "",
-        name: ""
-    });
+    const [currentId, setCurrentId] = useState();
 
     const [showEditor, setShowEditor] = useState(false);
 
@@ -15,19 +12,9 @@ export function AdminClasses() {
         setShowEditor(false);
     }
 
-    function openEditor(curClass) {
-        setCurrentClass(curClass);
+    function openEditor(curId) {
+        setCurrentId(curId);
         setShowEditor(true);
-    }
-
-    function nameChanged(name) {
-        const newClass = {
-            id: currentClass.id,
-            name: name
-        };
-
-        setCurrentClass(newClass);
-        console.log(currentClass)
     }
 
     return <>
@@ -35,6 +22,6 @@ export function AdminClasses() {
             <AdminClassesButtonNav openEditor={openEditor}/>
             <AdminClassesTable openEditor={openEditor}/>
         </div>
-        <AdminClassesEditClassForm currentClass={currentClass} onNameChanged={nameChanged} show={showEditor} onClose={closeEditor}/>
+        <AdminClassesEditClassForm currentId={currentId} show={showEditor} onClose={closeEditor}/>
     </>;
 }

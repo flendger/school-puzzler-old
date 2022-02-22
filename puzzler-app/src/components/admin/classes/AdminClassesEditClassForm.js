@@ -1,22 +1,31 @@
-import {useEffect} from "react";
+import {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 
 export function AdminClassesEditClassForm(props) {
-    function changeName(e) {
-        const value = e.target.value;
+    const [currentName, setCurrentName] = useState("");
 
-        props.onNameChanged(value);
+    function onClose() {
+        setCurrentName("");
+        props.onClose();
     }
 
-    useEffect(() => {
-        console.log("hgkghk")
-        // handleShow();
-    })
+    function onSave() {
+        console.log({
+            id: props.currentId,
+            name: currentName
+        });
+    }
+
+    function onShow() {
+        console.log(props.currentId);
+        setCurrentName("HELLO")
+    }
 
     return <>
         <Modal
             show={props.show}
-            onHide={props.onClose}
+            onShow={onShow}
+            onHide={onClose}
             backdrop="static"
             keyboard={false}
         >
@@ -28,14 +37,13 @@ export function AdminClassesEditClassForm(props) {
                     <div className="input-group-prepend">
                         <span className="input-group-text" id="basic-addon1">Название</span>
                     </div>
-                    <input type="text" onChange={changeName} value={props.currentClass.name}
-                           className="form-control"
-                           aria-label="Username" aria-describedby="basic-addon1"/>
+                    <input type="text" defaultValue={currentName} onChange={(e) => setCurrentName(e.target.value)} className="form-control" aria-label="Username"
+                           aria-describedby="basic-addon1"/>
                 </div>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={props.onClose}>Закрыть</Button>
-                <Button variant="primary">Сохранить</Button>
+                <Button variant="secondary" onClick={onClose}>Закрыть</Button>
+                <Button variant="primary" onClick={onSave}>Сохранить</Button>
             </Modal.Footer>
         </Modal>
     </>;

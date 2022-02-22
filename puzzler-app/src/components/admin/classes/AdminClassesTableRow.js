@@ -3,10 +3,7 @@ import {AdminClassesDeleteButton} from "./AdminClassesDeleteButton";
 
 export function AdminClassesTableRow(props) {
     function openEditor() {
-        props.openEditor({
-            id: 1,
-            name: "EDIT"
-        });
+        props.openEditor(1);
     }
 
     return <tr>
