@@ -1,11 +1,18 @@
 import {Link} from "react-router-dom";
 import {AdminClassesDeleteButton} from "./AdminClassesDeleteButton";
 
-export function AdminClassesTableRow() {
+export function AdminClassesTableRow(props) {
+    function openEditor() {
+        props.openEditor({
+            id: 1,
+            name: "EDIT"
+        });
+    }
+
     return <tr>
         <th scope="row" className="text-center">1</th>
         <td>
-            <Link to="#" className="text-light" data-toggle="modal" data-target="#exampleModalCenter">
+            <Link to="#" onClick={openEditor} className="text-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Mark
             </Link>
         </td>
