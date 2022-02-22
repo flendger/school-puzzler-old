@@ -8,6 +8,7 @@ import ru.flendger.school.puzzler.model.entity.SchoolClass;
 import ru.flendger.school.puzzler.model.service.SchoolClassService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,9 +27,19 @@ public class SchoolClassManagerImpl implements SchoolClassManager {
     }
 
     @Override
+    public Optional<SchoolClassDto> findById(Long id) {
+        return schoolClassService.findById(id).map(schoolClass -> modelMapper.map(schoolClass, SchoolClassDto.class));
+    }
+
+    @Override
+    public SchoolClassDto create() {
+        return new SchoolClassDto();
+    }
+
+    @Override
     public void save(SchoolClassDto schoolClassDto) {
         SchoolClass schoolClass = modelMapper.map(schoolClassDto, SchoolClass.class);
-
+// TODO: 23.02.2022 created_at is setting to null ???
         schoolClassService.save(schoolClass);
     }
 

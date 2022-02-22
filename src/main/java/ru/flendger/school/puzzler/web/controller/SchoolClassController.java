@@ -8,6 +8,8 @@ import ru.flendger.school.puzzler.model.dto.SchoolClassDto;
 import ru.flendger.school.puzzler.model.manager.SchoolClassManager;
 import ru.flendger.school.puzzler.web.message.ResponseMessage;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/v1/admin/classes")
 @RequiredArgsConstructor
@@ -17,6 +19,21 @@ public class SchoolClassController {
     @GetMapping
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(schoolClassManager.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> find(@PathVariable(name = "id") Long id) {
+        Optional<SchoolClassDto> classDtoOptional = schoolClassManager.findById(id);
+        if (classDtoOptional.isPresent()) {
+            return ResponseEntity.ok(classDtoOptional.get());
+        } else {
+            return ResponseMessage.createResponse("Школьный класс не найден", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/new")
+    public ResponseEntity<?> getNew() {
+        return ResponseEntity.ok(schoolClassManager.create());
     }
 
     @PostMapping
