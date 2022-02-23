@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Button, Modal} from "react-bootstrap";
-import axios from "axios";
+import {getEntityData, saveEntity} from "./AdminClassDataFunctions";
 
 export function AdminClassesEditClassForm(props) {
     const defaultClass = {
@@ -15,32 +15,11 @@ export function AdminClassesEditClassForm(props) {
     }
 
     function onSave() {
-        axios.post('/api/v1/admin/classes/', currentClass)
-            .then(() => {
-                onClose();
-            })
-            .catch(error => {
-                alert(error.response.data.message);
-            });
+        saveEntity(currentClass, onClose);
     }
 
     function onShow() {
-        const id = props.currentId;
-
-        let path = '/api/v1/admin/classes/' + (id ? props.currentId : 'new');
-        axios.get(path)
-            .then(response => {
-                setCurrentClass(response.data);
-            })
-            .catch(error => {
-                let errMsg = error.response.data.message;
-                errMsg = errMsg ? errMsg : error;
-
-                alert(errMsg);
-
-                onClose();
-            });
-
+        getEntityData(props.currentId, setCurrentClass, onClose);
         // const classFromServer = {
         //     id: props.currentId,
         //     name: "NAME"
@@ -48,7 +27,7 @@ export function AdminClassesEditClassForm(props) {
         // setCurrentClass(classFromServer);
     }
 
-    function changeModel(e) {
+    function onInputChanged(e) {
         const {name, value} = e.target;
         setCurrentClass(prevState => ({
             ...prevState,
@@ -80,7 +59,7 @@ export function AdminClassesEditClassForm(props) {
                     <div className="input-group-prepend col-sm-3">
                         <span className="input-group-text" id="basic-addon1">Название</span>
                     </div>
-                    <input type="text" name="name" value={currentClass.name} onChange={changeModel}
+                    <input type="text" name="name" value={currentClass.name} onChange={onInputChanged}
                            className="form-control"
                            aria-describedby="basic-addon1"/>
                 </div>

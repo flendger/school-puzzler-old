@@ -2,63 +2,40 @@ import {AdminClassesButtonNav} from "./AdminClassesButtonNav";
 import {AdminClassesTable} from "./AdminClassesTable";
 import {AdminClassesEditClassForm} from "./AdminClassesEditClassForm";
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {deleteEntity, getEntityList} from "./AdminClassDataFunctions";
 
 export function AdminClasses() {
     const [currentId, setCurrentId] = useState();
 
     const [showEditor, setShowEditor] = useState(false);
 
-    function closeEditor() {
+    const [classesData, setClassesData] = useState([]);
+
+    useEffect(() => onReloadData(), []);
+
+    function onCloseEditor() {
         setShowEditor(false);
-        reloadData();
+        onReloadData();
     }
 
-    function openEditor(curId) {
-        setCurrentId(curId);
+    function onOpenEditor(id) {
+        setCurrentId(id);
         setShowEditor(true);
     }
 
-    const [classesData, setClassesData] = useState([]);
-
-    function reloadData() {
-        axios.get('/api/v1/admin/classes')
-            .then((response) => {
-                setClassesData(response.data);
-            })
-            .catch((error) => {
-                let errMsg = error.response.data.message;
-                errMsg = errMsg ? errMsg : error;
-
-                alert(errMsg);
-            });
+    function onReloadData() {
+        getEntityList(setClassesData);
     }
 
-    useEffect(() => reloadData(), []);
-
-    function deleteEntity(id) {
-        axios.delete('/api/v1/admin/classes', {
-            data: {
-                id: id
-            }
-        })
-            .then((response) => {
-                alert(response.data.message);
-                reloadData();
-            })
-            .catch((error) => {
-                let errMsg = error.response.data.message;
-                errMsg = errMsg ? errMsg : error;
-
-                alert(errMsg);
-            });
+    function onDeleteEntity(id) {
+        deleteEntity(id, onReloadData);
     }
 
     return <>
         <div className="mx-1">
-            <AdminClassesButtonNav openEditor={openEditor}/>
-            <AdminClassesTable openEditor={openEditor} classesData={classesData} deleteEntity={deleteEntity}/>
+            <AdminClassesButtonNav onOpenEditor={onOpenEditor}/>
+            <AdminClassesTable onOpenEditor={onOpenEditor} classesData={classesData} onDeleteEntity={onDeleteEntity}/>
         </div>
-        <AdminClassesEditClassForm currentId={currentId} show={showEditor} onClose={closeEditor}/>
+        <AdminClassesEditClassForm currentId={currentId} show={showEditor} onClose={onCloseEditor}/>
     </>;
 }

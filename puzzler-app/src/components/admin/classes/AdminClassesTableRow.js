@@ -9,8 +9,8 @@ export function AdminClassesTableRow(props) {
         <th scope="row" className="text-center">{props.rowNum}</th>
         <td>{classData.name}</td>
         <td className="text-center">
-            <AdminClassesEditButton currentId={classData.id} onOpenEditor={props.openEditor}/>
-            <AdminClassesDeleteButton currentId={classData.id} onDeleteEntity={props.deleteEntity}/>
+            <AdminClassesEditButton currentId={classData.id} onOpenEditor={props.onOpenEditor}/>
+            <AdminClassesDeleteButton currentId={classData.id} onDeleteEntity={props.onDeleteEntity}/>
         </td>
     </tr>;
 }
