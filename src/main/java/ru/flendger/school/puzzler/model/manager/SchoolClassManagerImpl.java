@@ -8,6 +8,7 @@ import ru.flendger.school.puzzler.model.entity.SchoolClass;
 import ru.flendger.school.puzzler.model.service.SchoolClassService;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,6 +26,7 @@ public class SchoolClassManagerImpl implements SchoolClassManager {
                 .findAll()
                 .stream()
                 .map(schoolClass -> modelMapper.map(schoolClass, SchoolClassDto.class))
+                .sorted(Comparator.comparingLong(SchoolClassDto::getId))
                 .collect(Collectors.toList());
     }
 
