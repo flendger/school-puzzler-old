@@ -2,13 +2,16 @@ import {AdminClassesTableHeader} from "./AdminClassesTableHeader";
 import {AdminClassesTableRow} from "./AdminClassesTableRow";
 
 export function AdminClassesTable(props) {
-    //todo add getting rows from server
+    const classesRows = props.classesData?.map((currentClass, index) => {
+        return <AdminClassesTableRow key={currentClass.id} rowNum={index + 1} classData={currentClass}
+                                     openEditor={props.openEditor} deleteEntity={props.deleteEntity}/>
+    });
 
     return <>
         <table className="table table-dark mt-2">
             <AdminClassesTableHeader/>
             <tbody>
-            <AdminClassesTableRow openEditor={props.openEditor}/>
+            {classesRows}
             </tbody>
         </table>
     </>;

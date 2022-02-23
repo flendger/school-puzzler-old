@@ -1,24 +1,16 @@
-import {Link} from "react-router-dom";
 import {AdminClassesDeleteButton} from "./AdminClassesDeleteButton";
+import {AdminClassesEditButton} from "./AdminClassesEditButton";
 
 export function AdminClassesTableRow(props) {
-    function openEditor() {
-        props.openEditor(1); //todo id from model
-    }
-//todo data from model
+
+    const classData = props.classData;
+
     return <tr>
-        <th scope="row" className="text-center">1</th>
-        <td>
-            <Link to="#" onClick={openEditor} className="text-light">
-                Mark
-            </Link>
-        </td>
-
-        {/*//todo add edit button, change Link to text*/}
-        {/*//todo delete by id*/}
-
+        <th scope="row" className="text-center">{props.rowNum}</th>
+        <td>{classData.name}</td>
         <td className="text-center">
-            <AdminClassesDeleteButton/>
+            <AdminClassesEditButton currentId={classData.id} onOpenEditor={props.openEditor}/>
+            <AdminClassesDeleteButton currentId={classData.id} onDeleteEntity={props.deleteEntity}/>
         </td>
     </tr>;
 }
