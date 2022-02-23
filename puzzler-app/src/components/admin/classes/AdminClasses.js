@@ -34,7 +34,7 @@ export function AdminClasses() {
     return <>
         <div className="mx-1">
             <AdminClassesButtonNav onOpenEditor={onOpenEditor}/>
-            <AdminClassesTable onOpenEditor={onOpenEditor} classesData={classesData} onDeleteEntity={onDeleteEntity}/>
+            <AdminClassesTable classesData={classesData} onOpenEditor={onOpenEditor} onDeleteEntity={onDeleteEntity}/>
         </div>
         <AdminClassesEditClassForm currentId={currentId} show={showEditor} onClose={onCloseEditor}/>
     </>;
