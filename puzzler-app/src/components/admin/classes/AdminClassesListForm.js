@@ -2,8 +2,9 @@ import {AdminClassesEditClassForm} from "./AdminClassesEditClassForm";
 import {useState} from "react";
 import {EntityList} from "../EntityList";
 import {deleteEntity, getEntityList} from "./AdminClassDataFunctions";
+import {AdminClassesListHeader} from "./AdminClassesListHeader";
 
-export function AdminClasses() {
+export function AdminClassesListForm() {
     const [currentId, setCurrentId] = useState();
     const [showEditor, setShowEditor] = useState(false);
 
@@ -28,7 +29,10 @@ export function AdminClasses() {
     }
 
     return <>
-        <EntityList entityActions={entityActions} formActions={formActions}/>
+        <EntityList entityActions={entityActions}
+                    formActions={formActions}
+                    entityListHeader = {<AdminClassesListHeader/>}
+        />
         <AdminClassesEditClassForm currentId={currentId} show={showEditor} onClose={onCloseEditor}/>
     </>;
 }

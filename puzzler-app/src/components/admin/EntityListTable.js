@@ -9,7 +9,7 @@ export function EntityListTable(props) {
 
     return <>
         <table className="table table-dark mt-2">
-            <EntityListTableHeader/>
+            <EntityListTableHeader entityListHeader={props.entityListHeader}/>
             <tbody>
             {classesRows}
             </tbody>

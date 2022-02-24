@@ -5,7 +5,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {LessonsTable} from "./components/lesson_list/LessonsTable";
 import {Lesson} from "./components/lesson/Lesson";
 import {AdminMain} from "./components/admin/AdminMain";
-import {AdminClasses} from "./components/admin/classes/AdminClasses";
+import {AdminClassesListForm} from "./components/admin/classes/AdminClassesListForm";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
                     <Route path={"lesson/:id"} element={<Lesson/>}/>
                     <Route path="*" element={<h1>No page there</h1>}/>
                     <Route path={"admin"} element={<AdminMain/>}>
-                        <Route path={"classes"} element={<AdminClasses/>}/>
+                        <Route path={"classes"} element={<AdminClassesListForm/>}/>
                     </Route>
                 </Route>
             </Routes>

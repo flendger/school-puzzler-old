@@ -30,7 +30,11 @@ export function EntityList(props) {
     return <>
         <div className="mx-1">
             <EntityListButtonNav onOpenEditor={onOpenEditor}/>
-            <EntityListTable classesData={classesData} onOpenEditor={onOpenEditor} onDeleteEntity={onDeleteEntity}/>
+            <EntityListTable classesData={classesData}
+                             onOpenEditor={onOpenEditor}
+                             onDeleteEntity={onDeleteEntity}
+                             entityListHeader={props.entityListHeader}
+            />
         </div>
     </>;
 }
