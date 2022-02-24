@@ -1,6 +1,6 @@
 import {AdminClassesEditClassForm} from "./AdminClassesEditClassForm";
 import {useState} from "react";
-import {EntityList} from "../EntityList";
+import {EntityList} from "../listform/EntityList";
 import {deleteEntity, getEntityList} from "./AdminClassDataFunctions";
 import {AdminClassesListHeader} from "./AdminClassesListHeader";
 import {AdminClassesListTableRow} from "./AdminClassesListTableRow";
@@ -16,9 +16,9 @@ export function AdminClassesListForm() {
 
     const formActions = {
         onOpenEditor: onOpenEditor,
-        onCloseEditor: onCloseEditor
+        onCloseEditor: onCloseEditor,
+        getListRow: getListRow
     };
-
 
     function onCloseEditor() {
         setShowEditor(false);
@@ -37,7 +37,6 @@ export function AdminClassesListForm() {
         <EntityList entityActions={entityActions}
                     formActions={formActions}
                     entityListHeader = {<AdminClassesListHeader/>}
-                    getListRow={getListRow}
         />
         <AdminClassesEditClassForm currentId={currentId} show={showEditor} onClose={onCloseEditor}/>
     </>;

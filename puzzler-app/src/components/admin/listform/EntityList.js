@@ -11,11 +11,6 @@ export function EntityList(props) {
 
     useEffect(() => onReloadData(), []);
 
-    function onCloseEditor() {
-        formActions.onCloseEditor();
-        onReloadData();
-    }
-
     function onOpenEditor(id) {
         formActions.onOpenEditor(id);
     }
@@ -34,7 +29,7 @@ export function EntityList(props) {
                              onOpenEditor={onOpenEditor}
                              onDeleteEntity={onDeleteEntity}
                              entityListHeader={props.entityListHeader}
-                             getListRow={props.getListRow}
+                             getListRow={formActions.getListRow}
             />
         </div>
     </>;
