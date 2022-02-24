@@ -3,6 +3,7 @@ import {useState} from "react";
 import {EntityList} from "../EntityList";
 import {deleteEntity, getEntityList} from "./AdminClassDataFunctions";
 import {AdminClassesListHeader} from "./AdminClassesListHeader";
+import {AdminClassesListTableRow} from "./AdminClassesListTableRow";
 
 export function AdminClassesListForm() {
     const [currentId, setCurrentId] = useState();
@@ -28,10 +29,15 @@ export function AdminClassesListForm() {
         setShowEditor(true);
     }
 
+    function getListRow(classData) {
+        return <AdminClassesListTableRow classData={classData}/>;
+    }
+
     return <>
         <EntityList entityActions={entityActions}
                     formActions={formActions}
                     entityListHeader = {<AdminClassesListHeader/>}
+                    getListRow={getListRow}
         />
         <AdminClassesEditClassForm currentId={currentId} show={showEditor} onClose={onCloseEditor}/>
     </>;

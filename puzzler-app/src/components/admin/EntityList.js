@@ -34,6 +34,7 @@ export function EntityList(props) {
                              onOpenEditor={onOpenEditor}
                              onDeleteEntity={onDeleteEntity}
                              entityListHeader={props.entityListHeader}
+                             getListRow={props.getListRow}
             />
         </div>
     </>;

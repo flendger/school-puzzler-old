@@ -7,7 +7,7 @@ export function EntityListTableRow(props) {
 
     return <tr>
         <th scope="row" className="text-center">{classData.id}</th>
-        <td>{classData.name}</td>
+        {props.getListRow(classData)}
         <td className="text-center">
             <EntityListEditButton currentId={classData.id} onOpenEditor={props.onOpenEditor}/>
             <EntityListDeleteButton currentId={classData.id} onDeleteEntity={props.onDeleteEntity}/>
