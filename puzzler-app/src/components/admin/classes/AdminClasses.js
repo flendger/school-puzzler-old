@@ -1,21 +1,25 @@
-import {AdminClassesButtonNav} from "./AdminClassesButtonNav";
-import {AdminClassesTable} from "./AdminClassesTable";
 import {AdminClassesEditClassForm} from "./AdminClassesEditClassForm";
-import {useEffect, useState} from "react";
+import {useState} from "react";
+import {EntityList} from "../EntityList";
 import {deleteEntity, getEntityList} from "./AdminClassDataFunctions";
 
 export function AdminClasses() {
     const [currentId, setCurrentId] = useState();
-
     const [showEditor, setShowEditor] = useState(false);
 
-    const [classesData, setClassesData] = useState([]);
+    const entityActions = {
+        getEntityList: getEntityList,
+        deleteEntity: deleteEntity
+    };
 
-    useEffect(() => onReloadData(), []);
+    const formActions = {
+        onOpenEditor: onOpenEditor,
+        onCloseEditor: onCloseEditor
+    };
+
 
     function onCloseEditor() {
         setShowEditor(false);
-        onReloadData();
     }
 
     function onOpenEditor(id) {
@@ -23,19 +27,8 @@ export function AdminClasses() {
         setShowEditor(true);
     }
 
-    function onReloadData() {
-        getEntityList(setClassesData);
-    }
-
-    function onDeleteEntity(id) {
-        deleteEntity(id, onReloadData);
-    }
-
     return <>
-        <div className="mx-1">
-            <AdminClassesButtonNav onOpenEditor={onOpenEditor}/>
-            <AdminClassesTable classesData={classesData} onOpenEditor={onOpenEditor} onDeleteEntity={onDeleteEntity}/>
-        </div>
+        <EntityList entityActions={entityActions} formActions={formActions}/>
         <AdminClassesEditClassForm currentId={currentId} show={showEditor} onClose={onCloseEditor}/>
     </>;
 }

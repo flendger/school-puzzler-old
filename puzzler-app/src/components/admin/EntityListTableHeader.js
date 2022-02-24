@@ -1,4 +1,4 @@
-export function AdminClassesTableHeader() {
+export function EntityListTableHeader(props) {
     return <thead>
     <tr>
         <th scope="col" className="col-sm-1 text-center">ID</th>
