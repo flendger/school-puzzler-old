@@ -22,6 +22,7 @@ export function AdminClassesListForm() {
 
     function onCloseEditor() {
         setShowEditor(false);
+        //todo update rows after close
     }
 
     function onOpenEditor(id) {
