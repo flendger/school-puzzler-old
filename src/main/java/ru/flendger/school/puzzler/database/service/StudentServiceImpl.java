@@ -3,8 +3,11 @@ package ru.flendger.school.puzzler.database.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.flendger.school.puzzler.database.repositories.StudentRepository;
+import ru.flendger.school.puzzler.model.entity.SchoolClass;
 import ru.flendger.school.puzzler.model.entity.Student;
 import ru.flendger.school.puzzler.model.service.StudentService;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -14,5 +17,10 @@ public class StudentServiceImpl extends AbstractCrudService<Student, Long, Stude
     @Override
     StudentRepository getRepository() {
         return studentRepository;
+    }
+
+    @Override
+    public List<Student> findBySchoolClass(SchoolClass schoolClass) {
+        return studentRepository.findBySchoolClass(schoolClass);
     }
 }
