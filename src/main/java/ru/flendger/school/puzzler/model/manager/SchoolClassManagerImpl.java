@@ -3,6 +3,7 @@ package ru.flendger.school.puzzler.model.manager;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.flendger.school.puzzler.model.dto.SchoolClassDto;
 import ru.flendger.school.puzzler.model.entity.SchoolClass;
 import ru.flendger.school.puzzler.model.service.SchoolClassService;
@@ -41,6 +42,7 @@ public class SchoolClassManagerImpl implements SchoolClassManager {
     }
 
     @Override
+    @Transactional
     public void save(SchoolClassDto schoolClassDto) {
         SchoolClass schoolClass;
 
