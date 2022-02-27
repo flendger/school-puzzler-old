@@ -7,6 +7,7 @@ import {Lesson} from "./components/lesson/Lesson";
 import {AdminMain} from "./components/admin/AdminMain";
 import {AdminClassesListForm} from "./components/admin/classes/AdminClassesListForm";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {AdminStudentsListForm} from "./components/admin/students/AdminStudentsListForm";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="*" element={<h1>No page there</h1>}/>
                     <Route path={"admin"} element={<AdminMain/>}>
                         <Route path={"classes"} element={<AdminClassesListForm/>}/>
+                        <Route path={"students"} element={<AdminStudentsListForm/>}/>
                     </Route>
                 </Route>
             </Routes>

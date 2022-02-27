@@ -16,7 +16,7 @@ export function EntityList(props) {
     }
 
     function onReloadData() {
-        entityActions.getEntityList(setClassesData);
+        entityActions.getEntityList(setClassesData, props.params);
     }
 
     function onDeleteEntity(id) {
