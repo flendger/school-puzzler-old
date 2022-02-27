@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.flendger.school.puzzler.model.dto.SchoolClassDto;
 import ru.flendger.school.puzzler.model.dto.StudentDto;
-import ru.flendger.school.puzzler.model.entity.SchoolClass;
 import ru.flendger.school.puzzler.model.entity.Student;
 import ru.flendger.school.puzzler.model.service.StudentService;
 
@@ -29,8 +27,8 @@ public class StudentManagerImpl implements StudentManager {
     }
 
     @Override
-    public List<StudentDto> findBySchoolClass(SchoolClassDto schoolClassDto) {
-        return convertToDto(studentService.findBySchoolClass(modelMapper.map(schoolClassDto, SchoolClass.class)));
+    public List<StudentDto> findBySchoolClass(Long schoolClassId) {
+        return convertToDto(studentService.findBySchoolClass(schoolClassId));
     }
 
     private List<StudentDto> convertToDto(List<Student> students) {
