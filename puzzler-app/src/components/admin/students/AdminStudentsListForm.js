@@ -1,4 +1,4 @@
-// import {AdminClassesEditClassForm} from "./AdminClassesEditClassForm";
+import {AdminStudentEditClassForm} from "./AdminStudentEditClassForm";
 import {useState} from "react";
 import {EntityList} from "../listform/EntityList";
 import {deleteEntity, getEntityList} from "./AdminStudentDataFunctions";
@@ -40,6 +40,6 @@ export function AdminStudentsListForm() {
                     entityListHeader = {<AdminStudentsListHeader/>}
                     params={{classId: 1}}
         />
-        {/*<AdminClassesEditClassForm currentId={currentId} show={showEditor} onClose={onCloseEditor}/>*/}
+        <AdminStudentEditClassForm currentId={currentId} show={showEditor} onClose={onCloseEditor}/>
     </>;
 }

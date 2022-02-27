@@ -57,6 +57,9 @@ public class StudentManagerImpl implements StudentManager {
         if (Objects.nonNull(studentDto.getId())) {
             student = studentService.findById(studentDto.getId())
                     .orElseThrow(() -> createEntityNotFoundException(studentDto));
+
+            student.setSchoolClass(null);
+            modelMapper.map(studentDto, student);
         } else {
             student = modelMapper.map(studentDto, Student.class);
         }
