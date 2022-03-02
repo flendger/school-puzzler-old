@@ -24,7 +24,10 @@ export function AdminStudentsListForm() {
 
     function onCloseEditor() {
         setShowEditor(false);
-        //todo update rows after close
+        setSearchParams(prevState => ({
+            ...prevState,
+            className: searchParams.className
+        }));
     }
 
     function onOpenEditor(id) {
@@ -37,7 +40,10 @@ export function AdminStudentsListForm() {
     }
 
     function findByClassName(className) {
-        setSearchParams({className: className});
+        setSearchParams(prevState => ({
+            ...prevState,
+            className: className
+        }));
     }
 
     return <>
