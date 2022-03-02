@@ -12,6 +12,7 @@ export function AdminStudentEditClassForm(props) {
             name: ""
         }
     };
+
     const [currentEntity, setCurrentEntity] = useState(defaultEntityData);
 
     const [classesList, setClassesList] = useState([]);
@@ -23,7 +24,6 @@ export function AdminStudentEditClassForm(props) {
 
     function onSave() {
         saveEntity(currentEntity, onClose);
-
     }
 
     function onShow() {
@@ -39,8 +39,6 @@ export function AdminStudentEditClassForm(props) {
         }));
     }
 
-    const id = props.currentId ? props.currentId : "";
-
     function onClassChange(e) {
         const {value} = e.target;
 
@@ -54,6 +52,10 @@ export function AdminStudentEditClassForm(props) {
                 }));
         }
     }
+
+    const id = props.currentId ? props.currentId : "";
+    const name = currentEntity.name ? currentEntity.name : "";
+    const curClassId = currentEntity.schoolClass ? currentEntity.schoolClass.id : "";
 
     return <>
         <Modal
@@ -77,16 +79,15 @@ export function AdminStudentEditClassForm(props) {
                     <div className="input-group-prepend col-sm-3">
                         <span className="input-group-text" id="basic-addon1">Имя</span>
                     </div>
-                    <input type="text" name="name" value={currentEntity.name} onChange={onInputChanged}
-                           className="form-control"
-                           aria-describedby="basic-addon1"/>
+                    <input type="text" name="name" value={name} onChange={onInputChanged}
+                           className="form-control"/>
                 </div>
                 <div className="input-group mb-3">
                     <div className="input-group-prepend col-sm-3">
                         <span className="input-group-text" id="basic-addon1">Класс</span>
                     </div>
-                    <select value={currentEntity.schoolClass.id} onChange={onClassChange} className="form-select"
-                            aria-label="Default select example">
+                    <select value={curClassId} onChange={onClassChange} className="form-select">
+                        <option value="">Выберите класс</option>
                         {classesList.map((curClass) => {
                             return <option key={curClass.id} value={curClass.id}>{curClass.name}</option>;
                         })}
