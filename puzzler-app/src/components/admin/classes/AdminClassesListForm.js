@@ -8,6 +8,7 @@ import {AdminClassesListTableRow} from "./AdminClassesListTableRow";
 export function AdminClassesListForm() {
     const [currentId, setCurrentId] = useState();
     const [showEditor, setShowEditor] = useState(false);
+    const [searchParams, setSearchParams] = useState({});
 
     const entityActions = {
         getEntityList: getEntityList,
@@ -22,7 +23,7 @@ export function AdminClassesListForm() {
 
     function onCloseEditor() {
         setShowEditor(false);
-        //todo update rows after close
+        setSearchParams({});
     }
 
     function onOpenEditor(id) {
@@ -37,6 +38,7 @@ export function AdminClassesListForm() {
     return <>
         <EntityList entityActions={entityActions}
                     formActions={formActions}
+                    params={searchParams}
                     entityListHeader = {<AdminClassesListHeader/>}
         />
         <AdminClassesEditClassForm currentId={currentId} show={showEditor} onClose={onCloseEditor}/>
