@@ -4,10 +4,12 @@ import {EntityList} from "../listform/EntityList";
 import {deleteEntity, getEntityList} from "./AdminStudentDataFunctions";
 import {AdminStudentsListHeader} from "./AdminStudentsListHeader";
 import {AdminStudentsListTableRow} from "./AdminStudentsListTableRow";
+import {StudentSearch} from "./StudentSearch";
 
 export function AdminStudentsListForm() {
     const [currentId, setCurrentId] = useState();
     const [showEditor, setShowEditor] = useState(false);
+    const [searchParams, setSearchParams] = useState({className: ""});
 
     const entityActions = {
         getEntityList: getEntityList,
@@ -34,12 +36,17 @@ export function AdminStudentsListForm() {
         return <AdminStudentsListTableRow listData={listData}/>;
     }
 
+    function findByClassName(className) {
+        setSearchParams({className: className});
+    }
+
     return <>
         <EntityList entityActions={entityActions}
                     formActions={formActions}
                     entityListHeader = {<AdminStudentsListHeader/>}
-                    params={{classId: 1}}
+                    params={searchParams}
+                    customNav={<StudentSearch findByClassName={(className)=>findByClassName(className)}/>}
         />
         <AdminStudentEditClassForm currentId={currentId} show={showEditor} onClose={onCloseEditor}/>
-    </>;
+        </>;
 }

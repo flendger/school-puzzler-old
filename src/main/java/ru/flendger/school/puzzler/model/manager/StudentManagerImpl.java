@@ -27,8 +27,8 @@ public class StudentManagerImpl implements StudentManager {
     }
 
     @Override
-    public List<StudentDto> findBySchoolClass(Long schoolClassId) {
-        return convertToDto(studentService.findBySchoolClass(schoolClassId));
+    public List<StudentDto> findBySchoolClass(String schoolClassName) {
+        return convertToDto(studentService.findBySchoolClass(schoolClassName));
     }
 
     private List<StudentDto> convertToDto(List<Student> students) {

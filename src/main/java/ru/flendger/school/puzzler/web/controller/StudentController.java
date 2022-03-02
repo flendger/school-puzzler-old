@@ -17,8 +17,8 @@ public class StudentController {
     private final StudentManager studentManager;
 
     @GetMapping
-    public ResponseEntity<?> findBySchoolClass(@RequestParam("classId") Long classId) {
-        return ResponseEntity.ok(studentManager.findBySchoolClass(classId));
+    public ResponseEntity<?> findBySchoolClass(@RequestParam("className") String className) {
+        return ResponseEntity.ok(studentManager.findBySchoolClass(className));
     }
 
     @GetMapping("/{id}")

@@ -6,5 +6,5 @@ import ru.flendger.school.puzzler.model.entity.Student;
 import java.util.List;
 
 public interface StudentRepository extends JpaRepository <Student, Long> {
-    List<Student> findBySchoolClass_Id(Long schoolClassId);
+    List<Student> findBySchoolClass_NameLike(String schoolClassName);
 }

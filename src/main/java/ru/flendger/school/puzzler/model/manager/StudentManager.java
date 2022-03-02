@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface StudentManager {
     List<StudentDto> findALl();
 
-    List<StudentDto> findBySchoolClass(Long schoolClassId);
+    List<StudentDto> findBySchoolClass(String schoolClassName);
 
     Optional<StudentDto> findById(Long id);
 

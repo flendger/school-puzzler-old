@@ -9,7 +9,7 @@ export function EntityList(props) {
     const entityActions = props.entityActions;
     const formActions = props.formActions;
 
-    useEffect(() => onReloadData(), []);
+    useEffect(() => onReloadData(), [props.params]);
 
     function onOpenEditor(id) {
         formActions.onOpenEditor(id);
@@ -24,7 +24,9 @@ export function EntityList(props) {
     }
     return <>
         <div className="mx-1">
-            <EntityListButtonNav onOpenEditor={onOpenEditor}/>
+            <EntityListButtonNav onOpenEditor={onOpenEditor}
+                                 customNav={props.customNav}
+            />
             <EntityListTable classesData={classesData}
                              onOpenEditor={onOpenEditor}
                              onDeleteEntity={onDeleteEntity}
