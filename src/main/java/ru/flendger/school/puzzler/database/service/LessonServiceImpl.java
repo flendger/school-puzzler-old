@@ -12,7 +12,7 @@ public class LessonServiceImpl extends AbstractCrudService<Lesson, Long, LessonR
     private final LessonRepository lessonRepository;
 
     @Override
-    LessonRepository getRepository() {
+    protected LessonRepository getRepository() {
         return lessonRepository;
     }
 }

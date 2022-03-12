@@ -12,7 +12,7 @@ public class TaskValueServiceImpl extends AbstractCrudService<TaskValue, Long, T
     private final TaskValueRepository taskValueRepository;
 
     @Override
-    TaskValueRepository getRepository() {
+    protected TaskValueRepository getRepository() {
         return taskValueRepository;
     }
 }

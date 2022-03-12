@@ -12,7 +12,7 @@ public class SubjectServiceImpl extends AbstractCrudService<Subject, Long, Subje
     private final SubjectRepository subjectRepository;
 
     @Override
-    SubjectRepository getRepository() {
+    protected SubjectRepository getRepository() {
         return subjectRepository;
     }
 }

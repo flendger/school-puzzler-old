@@ -14,7 +14,7 @@ public class StudentServiceImpl extends AbstractCrudService<Student, Long, Stude
     private final StudentRepository studentRepository;
 
     @Override
-    StudentRepository getRepository() {
+    protected StudentRepository getRepository() {
         return studentRepository;
     }
 

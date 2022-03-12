@@ -12,7 +12,7 @@ public class TaskServiceImpl extends AbstractCrudService<Task, Long, TaskReposit
     private final TaskRepository taskRepository;
 
     @Override
-    TaskRepository getRepository() {
+    protected TaskRepository getRepository() {
         return taskRepository;
     }
 }

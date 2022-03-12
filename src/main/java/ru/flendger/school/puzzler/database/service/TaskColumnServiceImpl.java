@@ -12,7 +12,7 @@ public class TaskColumnServiceImpl extends AbstractCrudService<TaskColumn, Long,
     private final TaskColumnRepository taskColumnRepository;
 
     @Override
-    TaskColumnRepository getRepository() {
+    protected TaskColumnRepository getRepository() {
         return taskColumnRepository;
     }
 }

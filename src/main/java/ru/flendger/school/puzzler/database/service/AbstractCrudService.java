@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class AbstractCrudService<T, I, R extends JpaRepository<T, I>> implements CrudService<T, I> {
-    abstract R getRepository();
+    protected abstract R getRepository();
 
     @Override
     public Optional<T> findById(I id) {
