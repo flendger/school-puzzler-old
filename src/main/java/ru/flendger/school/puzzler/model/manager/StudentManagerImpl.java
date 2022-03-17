@@ -88,6 +88,7 @@ public class StudentManagerImpl implements StudentManager {
         studentService.delete(modelMapper.map(studentDto, Student.class));
     }
 
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public void saveStudents(InputStream inputStream) throws IOException, EntityNotFoundException {
         List<StudentImportData> importData = studentInputParser.parse(inputStream);
@@ -99,13 +100,18 @@ public class StudentManagerImpl implements StudentManager {
                     SchoolClass schoolClass = schoolClassService.findByName(schoolClassName)
                             .orElseThrow(() -> createSchoolClassNotFoundException(schoolClassName));
 
-
-                    Student student = new Student();
-                    student.setName(studentImportData.getStudentName());
-                    student.setSchoolClass(schoolClass);
-
+                    Student student = createStudent(studentImportData.getStudentName(), schoolClass);
                     studentService.save(student);
                 });
+    }
+
+    private Student createStudent(String studentName, SchoolClass schoolClass) {
+        Student student = new Student();
+
+        student.setName(studentName);
+        student.setSchoolClass(schoolClass);
+
+        return student;
     }
 
     private EntityNotFoundException createSchoolClassNotFoundException(String schoolClassName) {
