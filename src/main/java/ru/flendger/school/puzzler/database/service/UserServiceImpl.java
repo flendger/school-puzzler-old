@@ -22,4 +22,9 @@ public class UserServiceImpl extends AbstractCrudService<User, Long, UserReposit
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public Optional<User> findActiveUser(String username) {
+        return userRepository.findByUsernameAndActiveTrue(username);
+    }
 }

@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface UserService extends CrudService<User, Long> {
     Optional<User> findByUsername(String username);
+
+    Optional<User> findActiveUser(String username);
 }
