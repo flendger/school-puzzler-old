@@ -1,9 +1,10 @@
 import axios from "axios";
+import {getConfigWithHeader, getRequestHeader} from "../../../tokenUtils";
 
 const ctxPath = '/api/v1/admin/classes';
 
 export function getEntityList(changeState) {
-    axios.get(ctxPath)
+    axios.get(ctxPath, getRequestHeader())
         .then((response) => {
             changeState(response.data);
         })
@@ -16,11 +17,11 @@ export function getEntityList(changeState) {
 }
 
 export function deleteEntity(id, onSuccess) {
-    axios.delete(ctxPath, {
+    axios.delete(ctxPath, getConfigWithHeader({
         data: {
             id: id
         }
-    })
+    }))
         .then(() => {
             onSuccess();
         })
@@ -34,7 +35,7 @@ export function deleteEntity(id, onSuccess) {
 
 export function getEntityData(id, onSuccess, onFailure) {
     let path = ctxPath + '/' + (id ? id : 'new');
-    axios.get(path)
+    axios.get(path, getRequestHeader())
         .then(response => {
             onSuccess(response.data);
         })
@@ -48,7 +49,7 @@ export function getEntityData(id, onSuccess, onFailure) {
 }
 
 export function saveEntity(entity, onSuccess) {
-    axios.post(ctxPath, entity)
+    axios.post(ctxPath, entity, getRequestHeader())
         .then(() => {
             onSuccess();
         })
