@@ -243,4 +243,7 @@
             <column name="username"/>
         </createIndex>
     </changeSet>
+    <changeSet id="1647542394521-1" author="kiru_e">
+        <sqlFile path="db/changelog/add_roles.sql"/>
+    </changeSet>
 </databaseChangeLog>
