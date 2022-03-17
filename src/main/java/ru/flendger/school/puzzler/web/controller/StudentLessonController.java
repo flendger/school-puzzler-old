@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.flendger.school.puzzler.model.dto.LessonDto;
 import ru.flendger.school.puzzler.model.manager.StudentLessonManager;
-import ru.flendger.school.puzzler.web.message.ResponseMessage;
+import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
 
 import java.util.Optional;
 

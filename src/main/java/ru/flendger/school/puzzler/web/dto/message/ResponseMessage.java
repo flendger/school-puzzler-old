@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.web.message;
+package ru.flendger.school.puzzler.web.dto.message;
 
 import lombok.Builder;
 import lombok.Getter;

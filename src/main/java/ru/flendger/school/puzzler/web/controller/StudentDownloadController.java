@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import ru.flendger.school.puzzler.model.manager.StudentDownloadManager;
-import ru.flendger.school.puzzler.web.message.ResponseMessage;
+import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
 
 import java.io.IOException;
 

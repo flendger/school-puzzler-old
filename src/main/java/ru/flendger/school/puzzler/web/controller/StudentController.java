@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.flendger.school.puzzler.model.dto.StudentDto;
 import ru.flendger.school.puzzler.model.manager.StudentManager;
-import ru.flendger.school.puzzler.web.message.ResponseMessage;
+import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
 
 import java.util.Optional;
 
