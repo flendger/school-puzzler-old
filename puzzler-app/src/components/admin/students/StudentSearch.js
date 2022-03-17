@@ -1,6 +1,7 @@
 import {Button, Form, InputGroup} from "react-bootstrap";
 import {useState} from "react";
 import axios from "axios";
+import {downloadStudents} from "./AdminStudentDataFunctions";
 
 export function StudentSearch(props) {
     const [className, setClassName] = useState("");
@@ -18,16 +19,7 @@ export function StudentSearch(props) {
         const formData = new FormData();
         formData.append('data', fileData);
 
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        };
-
-        axios.post(url, formData, config)
-            .then((response) => {
-                console.log(response.data.message);
-            });
+        downloadStudents(formData);
     }
 
     function onFileSelect(e) {

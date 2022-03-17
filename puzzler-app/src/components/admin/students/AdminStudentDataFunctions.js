@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getConfigWithHeader, getRequestHeader} from "../../../tokenUtils";
+import {getAuthorizationHeader, getConfigWithHeader, getRequestHeader} from "../../../tokenUtils";
 
 const ctxPath = '/api/v1/admin/students';
 
@@ -59,5 +59,20 @@ export function saveEntity(entity, onSuccess) {
         })
         .catch(error => {
             alert(error.response.data.message);
+        });
+}
+
+export function downloadStudents(formData) {
+    const authHeader = getAuthorizationHeader();
+    const mergeHeader = {...authHeader, ...{
+            'content-type': 'multipart/form-data'
+        }};
+    const fileConfig = {
+        headers: mergeHeader
+    };
+
+    axios.post(ctxPath + '/download', formData, fileConfig)
+        .then((response) => {
+            console.log(response.data.message);
         });
 }
