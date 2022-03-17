@@ -238,4 +238,9 @@
             <column name="role_id"/>
         </createIndex>
     </changeSet>
+    <changeSet id="1647540499221-1" author="kiru_e">
+        <createIndex tableName="users" indexName="users_username_idx" unique="true">
+            <column name="username"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
