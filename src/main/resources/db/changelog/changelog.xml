@@ -198,5 +198,44 @@
             <column name="class_id"/>
         </createIndex>
     </changeSet>
-
+    <changeSet id="1647537789354-1" author="kiru_e">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
+            </column>
+            <column name="username" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="is_active" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1647537836252-1" author="kiru_e">
+        <createTable tableName="roles">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_roles"/>
+            </column>
+            <column name="role" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1647537902504-1" author="kiru_e">
+        <createTable tableName="users_roles">
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="users_roles" constraintName="fk_userol_on_role" referencedColumnNames="id" referencedTableName="roles"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="users_roles" constraintName="fk_userol_on_user" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="1647537987847-1" author="kiru_e">
+        <createIndex tableName="users_roles" indexName="users_roles_user_idx">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1647538017025-1" author="kiru_e">
+        <createIndex tableName="users_roles" indexName="users_roles_role_idx">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
