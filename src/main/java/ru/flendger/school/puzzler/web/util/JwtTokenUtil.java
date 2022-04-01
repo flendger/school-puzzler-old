@@ -8,11 +8,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import ru.flendger.school.puzzler.model.enums.RoleType;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -58,5 +56,13 @@ public class JwtTokenUtil {
                 .setSigningKey(secret)
                 .parseClaimsJws(token)
                 .getBody();
+    }
+
+    public boolean isAdmin(UserDetails userDetails) {
+        return userDetails
+                .getAuthorities()
+                .stream()
+                .anyMatch(grantedAuthority ->
+                        Objects.equals(grantedAuthority.getAuthority(), RoleType.ROLE_ADMIN.toString()));
     }
 }

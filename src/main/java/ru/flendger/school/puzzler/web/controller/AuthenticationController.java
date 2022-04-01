@@ -21,13 +21,12 @@ public class AuthenticationController {
 
     @PostMapping
     public ResponseEntity<?> auth(@RequestBody JwtRequest jwtRequest) {
-        String token;
         try {
-            token = userAuthenticationManager.authenticate(jwtRequest);
+            JwtResponse jwtResponse = userAuthenticationManager.authenticate(jwtRequest);
+
+            return ResponseEntity.ok(jwtResponse);
         } catch (AuthenticationException ex) {
             return ResponseMessage.createResponse("Неверное имя пользователя или пароль", HttpStatus.UNAUTHORIZED);
         }
-
-        return ResponseEntity.ok(new JwtResponse(token));
     }
 }

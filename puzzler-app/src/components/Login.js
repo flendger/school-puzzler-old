@@ -10,7 +10,7 @@ export function Login() {
 
     function onLogin(e) {
         e.preventDefault();
-        login(username, password, () => navigate("/"));
+        login(username, password, () => navigate("/admin"));
     }
 
     return <Card

@@ -4,7 +4,7 @@ export function AdminNavBar() {
     return <>
         <Navbar bg="dark" variant="dark" expand="sm">
             <Container>
-                <Navbar.Brand>Puzzler</Navbar.Brand>
+                <Navbar.Brand href="/">Puzzler</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">

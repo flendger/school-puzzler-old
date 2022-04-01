@@ -19,10 +19,10 @@ function App() {
                     <Route path={"lessons"} element={<LessonsTable/>}/>
                     <Route path={"lessons/:id"} element={<Lesson/>}/>
                     <Route path="*" element={<h1>No page there</h1>}/>
-                    <Route path={"admin"} element={<AdminMain/>}>
-                        <Route path={"classes"} element={<AdminClassesListForm/>}/>
-                        <Route path={"students"} element={<AdminStudentsListForm/>}/>
-                    </Route>
+                </Route>
+                <Route path={"admin"} element={<AdminMain/>}>
+                    <Route path={"classes"} element={<AdminClassesListForm/>}/>
+                    <Route path={"students"} element={<AdminStudentsListForm/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
