@@ -12,7 +12,9 @@ import ru.flendger.school.puzzler.model.config.converter.LessonToLessonDtoPostCo
 import ru.flendger.school.puzzler.model.dto.*;
 import ru.flendger.school.puzzler.model.entity.*;
 import ru.flendger.school.puzzler.model.enums.TaskValueType;
-import ru.flendger.school.puzzler.model.service.LessonService;
+import ru.flendger.school.puzzler.model.service.input.StudentLessonService;
+import ru.flendger.school.puzzler.model.service.input.StudentLessonServiceImpl;
+import ru.flendger.school.puzzler.model.service.output.LessonStorageService;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
         ModelMapperConfig.class,
         ModelMapperFactory.class,
         LessonToLessonDtoPostConverter.class,
-        StudentLessonManagerImpl.class})
+        StudentLessonServiceImpl.class})
 class StudentLessonManagerTest {
     private final static String LESSON_NAME = "lesson_name";
     private final static String LESSON_TITLE = "lesson_title";
@@ -36,19 +38,19 @@ class StudentLessonManagerTest {
     private static final String COLUMN_PREFIX = "column_";
 
     @Autowired
-    private StudentLessonManager studentLessonManager;
+    private StudentLessonService studentLessonService;
 
     @MockBean
-    private LessonService lessonService;
+    private LessonStorageService lessonStorageService;
 
     @BeforeEach
     public void init() {
         Mockito
-                .when(lessonService.findAll())
+                .when(lessonStorageService.findAll())
                 .thenReturn(getDefaultLessons());
 
         Mockito
-                .when(lessonService.findById(1L))
+                .when(lessonStorageService.findById(1L))
                 .thenReturn(getSingleLesson());
     }
 
@@ -140,7 +142,7 @@ class StudentLessonManagerTest {
 
     @Test
     void testGetLessons() {
-        List<LessonRowDto> lessons = studentLessonManager.getLessons();
+        List<LessonRowDto> lessons = studentLessonService.getLessons();
 
         assertFalse(lessons.isEmpty());
 
@@ -153,7 +155,7 @@ class StudentLessonManagerTest {
 
     @Test
     void testGetSingleLesson() {
-        Optional<LessonDto> lesson = studentLessonManager.getLesson(1L);
+        Optional<LessonDto> lesson = studentLessonService.getLesson(1L);
 
         assertFalse(lesson.isEmpty());
 

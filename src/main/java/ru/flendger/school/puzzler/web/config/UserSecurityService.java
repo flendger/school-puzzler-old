@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.flendger.school.puzzler.model.entity.users.Role;
-import ru.flendger.school.puzzler.model.service.UserService;
+import ru.flendger.school.puzzler.model.service.output.UserStorageService;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserSecurityService implements UserDetailsService {
-    private final UserService userService;
+    private final UserStorageService userStorageService;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userService.findActiveUser(username)
+        return userStorageService.findActiveUser(username)
                 .map(userDB ->
                         new User(
                                 userDB.getUsername(),

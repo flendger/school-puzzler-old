@@ -1,9 +1,9 @@
-package ru.flendger.school.puzzler.model.service;
+package ru.flendger.school.puzzler.model.service.output;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface CrudService<T, I> {
+public interface CrudStorageService<T, I> {
     Optional<T> findById(I id);
 
     List<T> findAll();

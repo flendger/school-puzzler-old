@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.model.service;
+package ru.flendger.school.puzzler.model.parser;
 
 import org.springframework.stereotype.Component;
 import ru.flendger.school.puzzler.model.dto.StudentImportData;

@@ -1,12 +1,12 @@
 package ru.flendger.school.puzzler.database.service;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.flendger.school.puzzler.model.service.CrudService;
+import ru.flendger.school.puzzler.model.service.output.CrudStorageService;
 
 import java.util.List;
 import java.util.Optional;
 
-public abstract class AbstractCrudService<T, I, R extends JpaRepository<T, I>> implements CrudService<T, I> {
+public abstract class AbstractCrudService<T, I, R extends JpaRepository<T, I>> implements CrudStorageService<T, I> {
     protected abstract R getRepository();
 
     @Override

@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.flendger.school.puzzler.model.dto.StudentDto;
-import ru.flendger.school.puzzler.model.manager.StudentManager;
+import ru.flendger.school.puzzler.model.service.input.StudentService;
 import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
 
 import java.util.Optional;
@@ -14,16 +14,16 @@ import java.util.Optional;
 @RequestMapping("/api/v1/admin/students")
 @RequiredArgsConstructor
 public class StudentController {
-    private final StudentManager studentManager;
+    private final StudentService studentService;
 
     @GetMapping
     public ResponseEntity<?> findBySchoolClass(@RequestParam("className") String className) {
-        return ResponseEntity.ok(studentManager.findBySchoolClass(className));
+        return ResponseEntity.ok(studentService.findBySchoolClass(className));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable(name = "id") Long id) {
-        Optional<StudentDto> studentDtoOptional = studentManager.findById(id);
+        Optional<StudentDto> studentDtoOptional = studentService.findById(id);
         if (studentDtoOptional.isPresent()) {
             return ResponseEntity.ok(studentDtoOptional.get());
         } else {
@@ -33,13 +33,13 @@ public class StudentController {
 
     @GetMapping("/new")
     public ResponseEntity<?> getNew() {
-        return ResponseEntity.ok(studentManager.create());
+        return ResponseEntity.ok(studentService.create());
     }
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody StudentDto studentDto) {
         try {
-            studentManager.save(studentDto);
+            studentService.save(studentDto);
         } catch (Exception e) {
             return ResponseMessage.createResponse("Не удалось сохранить студента", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -50,7 +50,7 @@ public class StudentController {
     @DeleteMapping
     public ResponseEntity<?> delete(@RequestBody StudentDto studentDto) {
         try {
-            studentManager.delete(studentDto);
+            studentService.delete(studentDto);
         } catch (Exception e) {
             return ResponseMessage.createResponse("Не удалось удалить студента", HttpStatus.INTERNAL_SERVER_ERROR);
         }

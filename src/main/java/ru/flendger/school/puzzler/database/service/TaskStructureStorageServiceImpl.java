@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.flendger.school.puzzler.database.repositories.TaskStructureRepository;
 import ru.flendger.school.puzzler.model.entity.TaskStructure;
-import ru.flendger.school.puzzler.model.service.TaskStructureService;
+import ru.flendger.school.puzzler.model.service.output.TaskStructureStorageService;
 
 @Service
 @RequiredArgsConstructor
-public class TaskStructureServiceImpl extends AbstractCrudService<TaskStructure, Long, TaskStructureRepository> implements TaskStructureService {
+public class TaskStructureStorageServiceImpl extends AbstractCrudService<TaskStructure, Long, TaskStructureRepository> implements TaskStructureStorageService {
     private final TaskStructureRepository taskStructureRepository;
 
     @Override

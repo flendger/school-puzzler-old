@@ -1,12 +1,12 @@
-package ru.flendger.school.puzzler.model.manager;
+package ru.flendger.school.puzzler.model.service.input;
 
 import ru.flendger.school.puzzler.model.dto.StudentDto;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface StudentManager {
-    List<StudentDto> findALl();
+public interface StudentService {
+    List<StudentDto> findAll();
 
     List<StudentDto> findBySchoolClass(String schoolClassName);
 

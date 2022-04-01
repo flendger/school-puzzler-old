@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.model.manager;
+package ru.flendger.school.puzzler.model.service.input;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.flendger.school.puzzler.model.dto.SchoolClassDto;
 import ru.flendger.school.puzzler.model.entity.SchoolClass;
-import ru.flendger.school.puzzler.model.service.SchoolClassService;
+import ru.flendger.school.puzzler.model.service.output.SchoolClassStorageService;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Comparator;
@@ -17,13 +17,13 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class SchoolClassManagerImpl implements SchoolClassManager {
-    private final SchoolClassService schoolClassService;
+public class SchoolClassServiceImpl implements SchoolClassService {
+    private final SchoolClassStorageService schoolClassStorageService;
     private final ModelMapper modelMapper;
 
     @Override
     public List<SchoolClassDto> findAll() {
-        return schoolClassService
+        return schoolClassStorageService
                 .findAll()
                 .stream()
                 .map(schoolClass -> modelMapper.map(schoolClass, SchoolClassDto.class))
@@ -33,7 +33,7 @@ public class SchoolClassManagerImpl implements SchoolClassManager {
 
     @Override
     public Optional<SchoolClassDto> findById(Long id) {
-        return schoolClassService.findById(id).map(schoolClass -> modelMapper.map(schoolClass, SchoolClassDto.class));
+        return schoolClassStorageService.findById(id).map(schoolClass -> modelMapper.map(schoolClass, SchoolClassDto.class));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class SchoolClassManagerImpl implements SchoolClassManager {
         SchoolClass schoolClass;
 
         if (Objects.nonNull(schoolClassDto.getId())) {
-            schoolClass = schoolClassService.findById(schoolClassDto.getId())
+            schoolClass = schoolClassStorageService.findById(schoolClassDto.getId())
                     .orElseThrow(() -> createEntityNotFoundException(schoolClassDto));
 
             modelMapper.map(schoolClassDto, schoolClass);
@@ -55,7 +55,7 @@ public class SchoolClassManagerImpl implements SchoolClassManager {
             schoolClass = modelMapper.map(schoolClassDto, SchoolClass.class);
         }
 
-        schoolClassService.save(schoolClass);
+        schoolClassStorageService.save(schoolClass);
     }
 
     private EntityNotFoundException createEntityNotFoundException(SchoolClassDto schoolClassDto) {
@@ -70,6 +70,6 @@ public class SchoolClassManagerImpl implements SchoolClassManager {
     public void delete(SchoolClassDto schoolClassDto) {
         SchoolClass schoolClass = modelMapper.map(schoolClassDto, SchoolClass.class);
 
-        schoolClassService.delete(schoolClass);
+        schoolClassStorageService.delete(schoolClass);
     }
 }

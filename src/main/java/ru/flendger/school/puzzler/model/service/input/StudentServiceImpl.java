@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.model.manager;
+package ru.flendger.school.puzzler.model.service.input;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.flendger.school.puzzler.model.dto.StudentDto;
 import ru.flendger.school.puzzler.model.entity.Student;
-import ru.flendger.school.puzzler.model.service.StudentService;
+import ru.flendger.school.puzzler.model.service.output.StudentStorageService;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Comparator;
@@ -17,18 +17,18 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class StudentManagerImpl implements StudentManager {
-    private final StudentService studentService;
+public class StudentServiceImpl implements StudentService {
+    private final StudentStorageService studentStorageService;
     private final ModelMapper modelMapper;
 
     @Override
-    public List<StudentDto> findALl() {
-        return convertToDto(studentService.findAll());
+    public List<StudentDto> findAll() {
+        return convertToDto(studentStorageService.findAll());
     }
 
     @Override
     public List<StudentDto> findBySchoolClass(String schoolClassName) {
-        return convertToDto(studentService.findBySchoolClass(schoolClassName));
+        return convertToDto(studentStorageService.findBySchoolClass(schoolClassName));
     }
 
     private List<StudentDto> convertToDto(List<Student> students) {
@@ -41,7 +41,7 @@ public class StudentManagerImpl implements StudentManager {
 
     @Override
     public Optional<StudentDto> findById(Long id) {
-        return studentService.findById(id).map(student -> modelMapper.map(student, StudentDto.class));
+        return studentStorageService.findById(id).map(student -> modelMapper.map(student, StudentDto.class));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class StudentManagerImpl implements StudentManager {
         Student student;
 
         if (Objects.nonNull(studentDto.getId())) {
-            student = studentService.findById(studentDto.getId())
+            student = studentStorageService.findById(studentDto.getId())
                     .orElseThrow(() -> createEntityNotFoundException(studentDto));
 
             student.setSchoolClass(null);
@@ -64,7 +64,7 @@ public class StudentManagerImpl implements StudentManager {
             student = modelMapper.map(studentDto, Student.class);
         }
 
-        studentService.save(student);
+        studentStorageService.save(student);
     }
 
     private EntityNotFoundException createEntityNotFoundException(StudentDto studentDto) {
@@ -77,6 +77,6 @@ public class StudentManagerImpl implements StudentManager {
 
     @Override
     public void delete(StudentDto studentDto) {
-        studentService.delete(modelMapper.map(studentDto, Student.class));
+        studentStorageService.delete(modelMapper.map(studentDto, Student.class));
     }
 }

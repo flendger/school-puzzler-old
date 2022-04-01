@@ -1,10 +1,10 @@
-package ru.flendger.school.puzzler.model.service;
+package ru.flendger.school.puzzler.model.service.output;
 
 import ru.flendger.school.puzzler.model.entity.users.User;
 
 import java.util.Optional;
 
-public interface UserService extends CrudService<User, Long> {
+public interface UserStorageService extends CrudStorageService<User, Long> {
     Optional<User> findByUsername(String username);
 
     Optional<User> findActiveUser(String username);

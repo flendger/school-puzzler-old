@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.model.manager;
+package ru.flendger.school.puzzler.model.service.input;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,9 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.flendger.school.puzzler.model.dto.StudentImportData;
 import ru.flendger.school.puzzler.model.entity.SchoolClass;
 import ru.flendger.school.puzzler.model.entity.Student;
-import ru.flendger.school.puzzler.model.service.SchoolClassService;
-import ru.flendger.school.puzzler.model.service.StudentInputParser;
-import ru.flendger.school.puzzler.model.service.StudentService;
+import ru.flendger.school.puzzler.model.parser.StudentInputParser;
+import ru.flendger.school.puzzler.model.service.output.SchoolClassStorageService;
+import ru.flendger.school.puzzler.model.service.output.StudentStorageService;
 
 import javax.persistence.EntityNotFoundException;
 import java.io.IOException;
@@ -17,9 +17,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class StudentDownloadManagerImpl implements StudentDownloadManager {
-    private final StudentService studentService;
-    private final SchoolClassService schoolClassService;
+public class StudentDownloadServiceImpl implements StudentDownloadService {
+    private final StudentStorageService studentStorageService;
+    private final SchoolClassStorageService schoolClassStorageService;
     private final StudentInputParser studentInputParser;
 
     @Override
@@ -31,11 +31,11 @@ public class StudentDownloadManagerImpl implements StudentDownloadManager {
                 studentImportData -> {
                     String schoolClassName = studentImportData.getSchoolClassName();
 
-                    SchoolClass schoolClass = schoolClassService.findByName(schoolClassName)
+                    SchoolClass schoolClass = schoolClassStorageService.findByName(schoolClassName)
                             .orElseThrow(() -> createSchoolClassNotFoundException(schoolClassName));
 
                     Student student = createStudent(studentImportData.getStudentName(), schoolClass);
-                    studentService.save(student);
+                    studentStorageService.save(student);
                 });
     }
 

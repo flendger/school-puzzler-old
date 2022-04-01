@@ -4,13 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.flendger.school.puzzler.database.repositories.SchoolClassRepository;
 import ru.flendger.school.puzzler.model.entity.SchoolClass;
-import ru.flendger.school.puzzler.model.service.SchoolClassService;
+import ru.flendger.school.puzzler.model.service.output.SchoolClassStorageService;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class SchoolClassServiceImpl extends AbstractCrudService<SchoolClass, Long, SchoolClassRepository> implements SchoolClassService {
+public class SchoolClassStorageServiceImpl extends AbstractCrudService<SchoolClass, Long, SchoolClassRepository> implements SchoolClassStorageService {
    private final SchoolClassRepository schoolClassRepository;
 
     @Override
