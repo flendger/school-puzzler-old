@@ -1,6 +1,5 @@
 import {Button, Form, InputGroup} from "react-bootstrap";
 import {useState} from "react";
-import axios from "axios";
 import {downloadStudents} from "./AdminStudentDataFunctions";
 
 export function StudentSearch(props) {
@@ -13,8 +12,6 @@ export function StudentSearch(props) {
         if (!fileData) {
             return;
         }
-
-        const url = '/api/v1/admin/students/download';
 
         const formData = new FormData();
         formData.append('data', fileData);

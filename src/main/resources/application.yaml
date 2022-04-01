@@ -1,3 +1,6 @@
+server:
+  servlet:
+    context-path: /puzzler
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver

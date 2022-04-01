@@ -1,7 +1,7 @@
 import axios from "axios";
 import {getConfigWithHeader, getRequestHeader} from "../../../tokenUtils";
 
-const ctxPath = '/api/v1/admin/classes';
+const ctxPath = '/puzzler/api/v1/admin/classes';
 
 export function getEntityList(changeState) {
     axios.get(ctxPath, getRequestHeader())

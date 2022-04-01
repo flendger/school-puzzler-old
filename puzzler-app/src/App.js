@@ -8,14 +8,16 @@ import {AdminMain} from "./components/admin/AdminMain";
 import {AdminClassesListForm} from "./components/admin/classes/AdminClassesListForm";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {AdminStudentsListForm} from "./components/admin/students/AdminStudentsListForm";
+import {Login} from "./components/Login";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path={"/"} element={<Main/>}>
-                    <Route path={"/"} element={<LessonsTable/>}/>
-                    <Route path={"lesson/:id"} element={<Lesson/>}/>
+                    <Route path={"login"} element={<Login/>}/>
+                    <Route path={"lessons"} element={<LessonsTable/>}/>
+                    <Route path={"lessons/:id"} element={<Lesson/>}/>
                     <Route path="*" element={<h1>No page there</h1>}/>
                     <Route path={"admin"} element={<AdminMain/>}>
                         <Route path={"classes"} element={<AdminClassesListForm/>}/>

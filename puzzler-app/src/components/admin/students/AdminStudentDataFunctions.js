@@ -1,7 +1,7 @@
 import axios from "axios";
 import {getAuthorizationHeader, getConfigWithHeader, getRequestHeader} from "../../../tokenUtils";
 
-const ctxPath = '/api/v1/admin/students';
+const ctxPath = '/puzzler/api/v1/admin/students';
 
 //todo move request functions to one file
 

@@ -9,13 +9,13 @@ export class LessonsRow extends Component {
             <tr key={lessonRow.id}>
                 <th>{lessonRow.id}</th>
                 <td>
-                    <Link to={`lesson/${lessonRow.id}`} className="text-light">{lessonRow.subjectName}</Link>
+                    <Link to={`lessons/${lessonRow.id}`} className="text-light">{lessonRow.subjectName}</Link>
                 </td>
                 <td>
-                    <Link to={`lesson/${lessonRow.id}`} className="text-light">{lessonRow.name}</Link>
+                    <Link to={`lessons/${lessonRow.id}`} className="text-light">{lessonRow.name}</Link>
                 </td>
                 <td>
-                    <Link to={`lesson/${lessonRow.id}`} className="text-light">{lessonRow.title}</Link>
+                    <Link to={`lessons/${lessonRow.id}`} className="text-light">{lessonRow.title}</Link>
                 </td>
             </tr>
         </>;
