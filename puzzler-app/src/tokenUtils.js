@@ -1,3 +1,5 @@
+import {deleteStorage, saveIsAdmin, saveToken, saveUsername} from "./storageUtils";
+
 export function getRequestHeader() {
     const authHeader = getAuthorizationHeader();
     return authHeader ? {
@@ -16,14 +18,12 @@ export function getAuthorizationHeader() {
     return token ? {Authorization: `Bearer ${token}`} : {};
 }
 
-export function saveToken(jwtResponse) {
-    localStorage.setItem("puzzlerUsername", jwtResponse.username)
-    localStorage.setItem("puzzlerToken", jwtResponse.token);
-    localStorage.setItem("puzzlerIsAdmin", jwtResponse.isAdmin);
+export function saveJwtRequest(jwtResponse) {
+    saveUsername(jwtResponse.username);
+    saveToken(jwtResponse.token);
+    saveIsAdmin(jwtResponse.admin);
 }
 
-export function deleteToken() {
-    localStorage.setItem("puzzlerUsername", "")
-    localStorage.setItem("puzzlerToken", "");
-    localStorage.setItem("puzzlerIsAdmin", "false");
+export function deleteJwtRequest() {
+    deleteStorage();
 }

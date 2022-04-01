@@ -1,12 +1,12 @@
 import axios from "axios";
-import {saveToken} from "../tokenUtils";
+import {deleteJwtRequest, saveJwtRequest} from "../tokenUtils";
 
 const ctxPath = '/puzzler/api/v1/auth';
 
 export function login(username, password, afterCallback) {
     axios.post(ctxPath, {username: username, password: password})
         .then((response) => {
-            saveToken(response.data);
+            saveJwtRequest(response.data);
             afterCallback();
         })
         .catch(error => {
@@ -15,4 +15,8 @@ export function login(username, password, afterCallback) {
 
             alert(errMsg);
         })
+}
+
+export function logout() {
+    deleteJwtRequest();
 }

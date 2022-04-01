@@ -1,6 +1,23 @@
-import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {logout} from "../AuthRequests";
+import {useNavigate} from "react-router";
+import {getIsAdmin, getUsername} from "../../storageUtils";
+import {useEffect} from "react";
 
 export function AdminNavBar() {
+    const navigate = useNavigate();
+
+    function onLogout() {
+        logout();
+        navigate("/");
+    }
+
+    useEffect(() => {
+        if (getIsAdmin() !== 'true') {
+            navigate("/");
+        }
+    })
+
     return <>
         <Navbar bg="dark" variant="dark" expand="sm">
             <Container>
@@ -13,6 +30,12 @@ export function AdminNavBar() {
                             <NavDropdown.Item href="/admin/students">Ученики</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
+                </Navbar.Collapse>
+                <Navbar.Collapse className="justify-content-end">
+                    <Navbar.Text>
+                        Пользователь: {getUsername()}
+                    </Navbar.Text>
+                    <Button variant="dark" onClick={onLogout}>Выход</Button>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
