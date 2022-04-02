@@ -246,4 +246,35 @@
     <changeSet id="1647542394521-1" author="kiru_e">
         <sqlFile path="db/changelog/add_roles.sql"/>
     </changeSet>
+    <changeSet id="1648903303783-1" author="kiru_e">
+        <createTable tableName="lesson_keys">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_lessonkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="key_value" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lesson_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="class_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expired_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1648903764631-1" author="kiru_e">
+        <createIndex tableName="lesson_keys" indexName="lesson_keys_key_idx">
+            <column name="key_value"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1648903792530-1" author="kiru_e">
+        <createIndex tableName="lesson_keys" indexName="lesson_keys_class_idx">
+            <column name="class_id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
