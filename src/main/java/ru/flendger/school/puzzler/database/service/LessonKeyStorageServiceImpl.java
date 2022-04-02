@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.flendger.school.puzzler.database.repositories.LessonKeyRepository;
 import ru.flendger.school.puzzler.web.entity.LessonKey;
-import ru.flendger.school.puzzler.web.service.LessonKeyStorageService;
+import ru.flendger.school.puzzler.web.service.output.LessonKeyStorageService;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
