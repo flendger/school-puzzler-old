@@ -5,6 +5,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.flendger.school.puzzler.model.service.input.DateTimeService;
+import ru.flendger.school.puzzler.model.settings.ApplicationSettingsService;
+import ru.flendger.school.puzzler.model.settings.props.KeyExpiredTimeSetting;
 import ru.flendger.school.puzzler.web.dto.LessonKeyRequest;
 import ru.flendger.school.puzzler.web.dto.LessonKeyResponse;
 import ru.flendger.school.puzzler.web.entity.LessonKey;
@@ -18,15 +20,18 @@ public class LessonKeyServiceImpl implements LessonKeyService {
     private final DateTimeService dateTimeService;
     private final LessonKeyStorageService lessonKeyStorageService;
     private final ModelMapper modelMapper;
+    private final ApplicationSettingsService applicationSettingsService;
 
     @Override
     @Transactional
     public LessonKeyResponse generateKey(LessonKeyRequest lessonKeyRequest) {
+        KeyExpiredTimeSetting keyExpiredTimeSetting = applicationSettingsService.getSetting(KeyExpiredTimeSetting.class);
+
         LessonKeyResponse lessonKeyResponse = new LessonKeyResponse(
                 keyGenerator.generate(),
                 lessonKeyRequest.getLessonId(),
                 lessonKeyRequest.getSchoolClassId(),
-                dateTimeService.current().plusSeconds(45 * 60)); // TODO: 05.04.2022 to app properties
+                dateTimeService.current().plusSeconds(keyExpiredTimeSetting.getValue()));
 
         LessonKey lessonKey = modelMapper.map(lessonKeyResponse, LessonKey.class);
         lessonKeyStorageService.save(lessonKey);
