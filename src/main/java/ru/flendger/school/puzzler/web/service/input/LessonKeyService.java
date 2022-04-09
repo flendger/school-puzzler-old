@@ -5,4 +5,5 @@ import ru.flendger.school.puzzler.web.dto.LessonKeyResponse;
 
 public interface LessonKeyService {
     LessonKeyResponse generateKey(LessonKeyRequest lessonKeyRequest);
+    void delete(String key);
 }

@@ -13,6 +13,9 @@ import ru.flendger.school.puzzler.web.entity.LessonKey;
 import ru.flendger.school.puzzler.web.generator.KeyGenerator;
 import ru.flendger.school.puzzler.web.service.output.LessonKeyStorageService;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class LessonKeyServiceImpl implements LessonKeyService {
@@ -37,5 +40,23 @@ public class LessonKeyServiceImpl implements LessonKeyService {
         lessonKeyStorageService.save(lessonKey);
 
         return lessonKeyResponse;
+    }
+
+    @Override
+    public void delete(String key) throws EntityNotFoundException {
+        Optional<LessonKey> keyOptional = lessonKeyStorageService.findActive(key, dateTimeService.current());
+        if (keyOptional.isEmpty()) {
+            throw createActiveKeyNotFoundException(key);
+        }
+
+        lessonKeyStorageService.delete(keyOptional.get());
+    }
+
+    private EntityNotFoundException createActiveKeyNotFoundException(String key) {
+        return new EntityNotFoundException(messageActiveKeyNotFound(key));
+    }
+
+    private String messageActiveKeyNotFound(String key) {
+        return String.format("Active lesson key %s doesn't exist", key);
     }
 }
