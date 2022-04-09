@@ -277,4 +277,12 @@
             <column name="class_id"/>
         </createIndex>
     </changeSet>
+    <changeSet id="1649502302643-1" author="kiru_e">
+        <createTable tableName="settings">
+            <column name="key" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_settings"/>
+            </column>
+            <column name="value" type="VARCHAR(1000)"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
