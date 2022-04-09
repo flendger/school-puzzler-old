@@ -10,4 +10,6 @@ public interface AppSetting<T> {
     void setValue(T value);
 
     void setStringValue(String stringValue);
+
+    T getDefaultValue();
 }

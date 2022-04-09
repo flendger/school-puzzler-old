@@ -6,4 +6,9 @@ public class KeyExpiredTimeSetting extends AbstractApplicationSetting<Integer> {
     public KeyExpiredTimeSetting() {
         super(ApplicationSettingsKey.KEY_EXPIRED_TIME);
     }
+
+    @Override
+    public Integer getDefaultValue() {
+        return 45 * 60;
+    }
 }

@@ -20,7 +20,7 @@ public enum ApplicationSettingsKey {
     }
 
     public AppSetting<?> create() throws Exception {
-            return this.keyType.getConstructor().newInstance();
+        return this.keyType.getConstructor().newInstance();
     }
 
     public static ApplicationSettingsKey getKey(Class<? extends AppSetting<?>> keyType) {

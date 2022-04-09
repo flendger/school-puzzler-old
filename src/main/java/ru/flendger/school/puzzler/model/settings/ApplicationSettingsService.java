@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.flendger.school.puzzler.model.entity.ApplicationSettingEntity;
 import ru.flendger.school.puzzler.model.service.output.ApplicationSettingEntityStorageService;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -19,13 +20,34 @@ public class ApplicationSettingsService {
     private ConcurrentMap<Class<? extends AppSetting<?>>, AppSetting<?>> settings;
 
     public void read() {
-        List<ApplicationSettingEntity> settingEntities = settingEntityStorageService.findAll();
+        settings = Arrays
+                .stream(ApplicationSettingsKey.values())
+                .map(
+                        key -> {
+                            try {
+                                Optional<ApplicationSettingEntity> settingEntityOptional = settingEntityStorageService.findById(key);
+                                if (settingEntityOptional.isPresent()) {
+                                    ApplicationSettingEntity settingEntity = settingEntityOptional.get();
 
-        settings = settingEntities
-                .stream()
-                .map(ApplicationSettingsKey::fromEntity)
+                                    return ApplicationSettingsKey.fromEntity(settingEntity);
+                                } else {
+                                    AppSetting<?> setting = key.create();
+
+                                    saveSetting(setting);
+
+                                    return setting;
+                                }
+                            } catch (Exception e) {
+                                return null;
+                            }
+                        })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toConcurrentMap(appSetting -> appSetting.getKey().getKeyType(), Function.identity()));
+    }
+
+    private void saveSetting(AppSetting<?> setting) {
+        ApplicationSettingEntity settingEntity = ApplicationSettingsKey.toEntity(setting);
+        settingEntityStorageService.save(settingEntity);
     }
 
     public <T extends AppSetting<?>> T getSetting(Class<T> keyType) {
@@ -43,9 +65,7 @@ public class ApplicationSettingsService {
     }
 
     public void setSetting(AppSetting<?> setting) {
-        ApplicationSettingEntity settingEntity = ApplicationSettingsKey.toEntity(setting);
-
-        settingEntityStorageService.save(settingEntity);
+        saveSetting(setting);
 
         settings.put(setting.getKey().getKeyType(), setting);
     }

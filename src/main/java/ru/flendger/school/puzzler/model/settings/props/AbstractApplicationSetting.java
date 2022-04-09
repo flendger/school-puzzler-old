@@ -12,6 +12,7 @@ public abstract class AbstractApplicationSetting<T> implements AppSetting<T> {
 
     protected AbstractApplicationSetting(ApplicationSettingsKey key) {
         this.key = key;
+        this.value = getDefaultValue();
     }
 
     public ApplicationSettingsKey getKey() {
