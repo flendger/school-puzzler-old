@@ -1,8 +1,11 @@
-package ru.flendger.school.puzzler.model.settings;
+package ru.flendger.school.puzzler.model.settings.props;
+
+import ru.flendger.school.puzzler.model.settings.AppSetting;
+import ru.flendger.school.puzzler.model.settings.ApplicationSettingsKey;
 
 import java.util.Objects;
 
-public abstract class AbstractApplicationSetting<T> implements AppSetting<T>{
+public abstract class AbstractApplicationSetting<T> implements AppSetting<T> {
     protected ApplicationSettingsKey key;
     protected String stringValue;
     protected T value;

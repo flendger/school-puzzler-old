@@ -1,7 +1,8 @@
-package ru.flendger.school.puzzler.model.settings;
+package ru.flendger.school.puzzler.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import ru.flendger.school.puzzler.model.settings.ApplicationSettingsKey;
 
 import javax.persistence.*;
 

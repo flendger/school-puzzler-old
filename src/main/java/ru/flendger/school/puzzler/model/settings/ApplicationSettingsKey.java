@@ -1,5 +1,9 @@
 package ru.flendger.school.puzzler.model.settings;
 
+import ru.flendger.school.puzzler.model.entity.ApplicationSettingEntity;
+import ru.flendger.school.puzzler.model.settings.props.AbstractApplicationSetting;
+import ru.flendger.school.puzzler.model.settings.props.KeyExpiredTimeSetting;
+
 import java.util.Arrays;
 
 public enum ApplicationSettingsKey {

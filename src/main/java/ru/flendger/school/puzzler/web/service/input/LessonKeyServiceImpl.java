@@ -26,7 +26,7 @@ public class LessonKeyServiceImpl implements LessonKeyService {
                 keyGenerator.generate(),
                 lessonKeyRequest.getLessonId(),
                 lessonKeyRequest.getSchoolClassId(),
-                dateTimeService.current());
+                dateTimeService.current().plusSeconds(45 * 60)); // TODO: 05.04.2022 to app properties
 
         LessonKey lessonKey = modelMapper.map(lessonKeyResponse, LessonKey.class);
         lessonKeyStorageService.save(lessonKey);

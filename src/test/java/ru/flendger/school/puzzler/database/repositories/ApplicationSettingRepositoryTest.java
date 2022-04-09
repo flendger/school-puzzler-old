@@ -6,7 +6,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import ru.flendger.school.puzzler.model.settings.AppSetting;
-import ru.flendger.school.puzzler.model.settings.ApplicationSettingEntity;
+import ru.flendger.school.puzzler.model.entity.ApplicationSettingEntity;
 import ru.flendger.school.puzzler.model.settings.ApplicationSettingsKey;
 
 import static org.junit.jupiter.api.Assertions.*;

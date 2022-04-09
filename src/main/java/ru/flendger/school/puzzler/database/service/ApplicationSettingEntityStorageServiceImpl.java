@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.flendger.school.puzzler.database.repositories.ApplicationSettingRepository;
 import ru.flendger.school.puzzler.model.service.output.ApplicationSettingEntityStorageService;
-import ru.flendger.school.puzzler.model.settings.ApplicationSettingEntity;
+import ru.flendger.school.puzzler.model.entity.ApplicationSettingEntity;
 import ru.flendger.school.puzzler.model.settings.ApplicationSettingsKey;
 
 @Service
