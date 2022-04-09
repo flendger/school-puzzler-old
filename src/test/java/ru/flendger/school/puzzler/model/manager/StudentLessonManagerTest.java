@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 import ru.flendger.school.puzzler.model.config.ModelMapperConfig;
 import ru.flendger.school.puzzler.model.config.factory.ModelMapperFactory;
 import ru.flendger.school.puzzler.model.config.converter.LessonToLessonDtoPostConverter;
@@ -26,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
         ModelMapperFactory.class,
         LessonToLessonDtoPostConverter.class,
         StudentLessonServiceImpl.class})
+@ActiveProfiles("off-liquibase")
 class StudentLessonManagerTest {
     private final static String LESSON_NAME = "lesson_name";
     private final static String LESSON_TITLE = "lesson_title";
