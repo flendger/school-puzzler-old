@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class SubjectDto {
     private Long id;
-    private Long name;
+    private String name;
 }
