@@ -9,6 +9,7 @@ import {AdminClassesListForm} from "./components/admin/classes/AdminClassesListF
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {AdminStudentsListForm} from "./components/admin/students/AdminStudentsListForm";
 import {Login} from "./components/Login";
+import {LessonKey} from "./components/admin/lkey/LessonKey";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                 <Route path={"admin"} element={<AdminMain/>}>
                     <Route path={"classes"} element={<AdminClassesListForm/>}/>
                     <Route path={"students"} element={<AdminStudentsListForm/>}/>
+                    <Route path={"lkey"} element={<LessonKey/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
