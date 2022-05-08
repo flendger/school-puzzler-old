@@ -4,4 +4,5 @@ import java.time.LocalDateTime;
 
 public interface DateTimeService {
     LocalDateTime current();
+    String toLocalFormat(LocalDateTime dateTime);
 }
