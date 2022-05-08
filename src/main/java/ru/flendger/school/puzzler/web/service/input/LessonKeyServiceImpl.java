@@ -18,6 +18,7 @@ import ru.flendger.school.puzzler.web.generator.KeyGenerator;
 import ru.flendger.school.puzzler.web.service.output.LessonKeyStorageService;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -46,6 +47,8 @@ public class LessonKeyServiceImpl implements LessonKeyService {
                 .findById(schoolClassId)
                 .orElseThrow(() -> createSchoolClassNotFoundException(schoolClassId));
 
+        LocalDateTime expiredDate = dateTimeService.current().plusSeconds(keyExpiredTimeSetting.getValue());
+
         LessonKeyResponse lessonKeyResponse =
                 LessonKeyResponse
                         .builder()
@@ -54,11 +57,12 @@ public class LessonKeyServiceImpl implements LessonKeyService {
                         .lessonName(lesson.getName())
                         .schoolClassId(schoolClassId)
                         .schoolClassName(schoolClass.getName())
-                        .expiredDate(dateTimeService.current().plusSeconds(keyExpiredTimeSetting.getValue()))
+                        .expiredDate(expiredDate)
+                        .expiredDateString(dateTimeService.toLocalFormat(expiredDate))
                         .build();
 
         LessonKey lessonKey = modelMapper.map(lessonKeyResponse, LessonKey.class);
-        lessonKeyStorageService.save(lessonKey);
+//        lessonKeyStorageService.save(lessonKey); todo: remove after frontend test
 
         return lessonKeyResponse;
     }

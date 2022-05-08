@@ -16,4 +16,5 @@ public class LessonKeyResponse {
     private Long schoolClassId;
     private String schoolClassName;
     private LocalDateTime expiredDate;
+    private String expiredDateString;
 }
