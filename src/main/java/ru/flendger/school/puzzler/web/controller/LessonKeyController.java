@@ -1,6 +1,7 @@
 package ru.flendger.school.puzzler.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import javax.persistence.EntityNotFoundException;
 @RestController
 @RequestMapping("/api/v1/admin/lkey")
 @RequiredArgsConstructor
+@Slf4j
 public class LessonKeyController {
     private final LessonKeyService lessonKeyService;
 
@@ -21,6 +23,7 @@ public class LessonKeyController {
         try {
             return ResponseEntity.ok(lessonKeyService.generateKey(lessonKeyRequest));
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
             return ResponseMessage.createResponse("Не удалось сгенерировать ключ", HttpStatus.BAD_REQUEST);
         }
     }
