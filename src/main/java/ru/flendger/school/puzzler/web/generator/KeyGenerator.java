@@ -7,11 +7,9 @@ import java.security.SecureRandom;
 @Component
 public class KeyGenerator {
 
-    private static final String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
-    private static final String CHAR_UPPER = CHAR_LOWER.toUpperCase();
     private static final String NUMBER = "0123456789";
 
-    private static final String PASSWORD_ALLOW_BASE = CHAR_LOWER + CHAR_UPPER + NUMBER;
+    private static final String PASSWORD_ALLOW_BASE = NUMBER;
 
     public String generate() {
         SecureRandom random = new SecureRandom();
