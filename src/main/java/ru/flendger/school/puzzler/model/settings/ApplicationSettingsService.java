@@ -1,6 +1,7 @@
 package ru.flendger.school.puzzler.model.settings;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.flendger.school.puzzler.model.entity.ApplicationSettingEntity;
 import ru.flendger.school.puzzler.model.service.output.ApplicationSettingEntityStorageService;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ApplicationSettingsService {
     private final ApplicationSettingEntityStorageService settingEntityStorageService;
 
@@ -38,6 +40,7 @@ public class ApplicationSettingsService {
                                     return setting;
                                 }
                             } catch (Exception e) {
+                                log.error(e.getMessage(), e);
                                 return null;
                             }
                         })
