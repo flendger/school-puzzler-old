@@ -31,25 +31,20 @@ public enum ApplicationSettingsKey {
                 .orElse(null);
     }
 
-    public static AppSetting<?> fromEntity(ApplicationSettingEntity entity) {
-        try {
+    public static AppSetting<?> fromEntity(ApplicationSettingEntity entity) throws Exception {
             ApplicationSettingsKey key = entity.getKey();
 
             AppSetting<?> applicationSetting = key.getKeyType().getConstructor().newInstance();
             applicationSetting.setStringValue(entity.getValue());
 
             return applicationSetting;
-        } catch (Exception e) {
-            return null;
-        }
     }
 
     public static ApplicationSettingEntity toEntity(AppSetting<?> setting) {
-        ApplicationSettingEntity entity = new ApplicationSettingEntity();
-
-        entity.setKey(setting.getKey());
-        entity.setValue(setting.getStringValue());
-
-        return entity;
+        return ApplicationSettingEntity
+                .builder()
+                .key(setting.getKey())
+                .value(setting.getStringValue())
+                .build();
     }
 }

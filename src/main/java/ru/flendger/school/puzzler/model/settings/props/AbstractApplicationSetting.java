@@ -13,7 +13,10 @@ public abstract class AbstractApplicationSetting<T> implements AppSetting<T> {
     protected AbstractApplicationSetting(ApplicationSettingsKey key) {
         this.key = key;
         this.value = getDefaultValue();
+        setValue(this.value);
     }
+
+    protected abstract T convertToValue(String stringValue);
 
     public ApplicationSettingsKey getKey() {
         return key;
@@ -39,6 +42,6 @@ public abstract class AbstractApplicationSetting<T> implements AppSetting<T> {
 
     public void setStringValue(String stringValue) throws ClassCastException {
         this.stringValue = stringValue;
-        this.value = (T) stringValue;
+        this.value = convertToValue(stringValue);
     }
 }

@@ -1,7 +1,6 @@
 package ru.flendger.school.puzzler.model.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import ru.flendger.school.puzzler.model.settings.ApplicationSettingsKey;
 
 import javax.persistence.*;
@@ -9,6 +8,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity(name = "settings")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ApplicationSettingEntity {
     @Id
     @Column(name = "key")
