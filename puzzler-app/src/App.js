@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {AdminStudentsListForm} from "./components/admin/students/AdminStudentsListForm";
 import {Login} from "./components/Login";
 import {LessonKey} from "./components/admin/lkey/LessonKey";
+import {LessonKeyDetail} from "./components/admin/lkey/LessonKeyDetail";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                     <Route path={"classes"} element={<AdminClassesListForm/>}/>
                     <Route path={"students"} element={<AdminStudentsListForm/>}/>
                     <Route path={"lkey"} element={<LessonKey/>}/>
+                    <Route path={"lkey/:id"} element={<LessonKeyDetail/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

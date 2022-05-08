@@ -62,7 +62,7 @@ public class LessonKeyServiceImpl implements LessonKeyService {
                         .build();
 
         LessonKey lessonKey = modelMapper.map(lessonKeyResponse, LessonKey.class);
-//        lessonKeyStorageService.save(lessonKey); todo: remove after frontend test
+        lessonKeyStorageService.save(lessonKey);
 
         return lessonKeyResponse;
     }

@@ -29,18 +29,17 @@ public class LessonKeyController {
     }
 
     @DeleteMapping("/{key}")
-    public ResponseEntity<?> delete(@PathVariable String key){
+    public ResponseEntity<?> delete(@PathVariable(name = "key") String keyValue){
         try {
-            lessonKeyService.delete(key);
-            return ResponseMessage.createResponse(String.format("Ключ %s успешно удален", key), HttpStatus.OK);
+            lessonKeyService.delete(keyValue);
+            return ResponseMessage.createResponse(String.format("Ключ %s успешно удален", keyValue), HttpStatus.OK);
         } catch (EntityNotFoundException e) {
-            return ResponseMessage.createResponse(String.format("Ключ %s не существует либо не активен", key), HttpStatus.BAD_REQUEST);
+            return ResponseMessage.createResponse(String.format("Ключ %s не существует либо не активен", keyValue), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-           return ResponseMessage.createResponse(String.format("Не удалось удалить ключ %s", key), HttpStatus.BAD_REQUEST);
+           return ResponseMessage.createResponse(String.format("Не удалось удалить ключ %s", keyValue), HttpStatus.BAD_REQUEST);
         }
     }
 }
-// TODO: 09.04.2022 add generate key form to frontend
 
 // TODO: 09.04.2022 get available by key students request
 
