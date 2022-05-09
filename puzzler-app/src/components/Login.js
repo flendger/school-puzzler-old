@@ -22,12 +22,12 @@ export function Login() {
             <Form onSubmit={onLogin}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Логин</Form.Label>
-                    <Form.Control type="text" placeholder="Login" onChange={(e) => setUsername(e.target.value)}/>
+                    <Form.Control type="text" placeholder="Имя пользователя" onChange={(e) => setUsername(e.target.value)}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Пароль</Form.Label>
-                    <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+                    <Form.Control type="password" placeholder="Пароль" onChange={(e) => setPassword(e.target.value)}/>
                 </Form.Group>
                 <div className="text-center">
                     <Button variant="primary" type="submit">
