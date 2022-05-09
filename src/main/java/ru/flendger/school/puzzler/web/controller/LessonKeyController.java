@@ -40,7 +40,3 @@ public class LessonKeyController {
         }
     }
 }
-
-// TODO: 09.04.2022 get available by key students request
-
-// TODO: 09.04.2022 enter lesson request (???)
