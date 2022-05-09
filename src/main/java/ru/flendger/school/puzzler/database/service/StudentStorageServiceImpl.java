@@ -22,4 +22,9 @@ public class StudentStorageServiceImpl extends AbstractCrudService<Student, Long
     public List<Student> findBySchoolClass(String schoolClassName) {
         return studentRepository.findBySchoolClass_NameLike(schoolClassName + "%");
     }
+
+    @Override
+    public List<Student> findBySchoolClass(Long schoolClassId) {
+        return studentRepository.findBySchoolClass_Id(schoolClassId);
+    }
 }

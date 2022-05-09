@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface StudentStorageService extends CrudStorageService<Student, Long> {
     List<Student> findBySchoolClass(String schoolClassName);
+    List<Student> findBySchoolClass(Long schoolClassId);
 }
