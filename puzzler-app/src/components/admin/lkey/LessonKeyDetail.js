@@ -6,14 +6,6 @@ export function LessonKeyDetail() {
 
     const location = useLocation();
     const keyInfo = location.state;
-    // const keyInfo = {
-    //     keyValue: 555777,
-    //     lessonId: 1,
-    //     lessonName: "les_name",
-    //     schoolClassId: 2,
-    //     schoolClassName: "class_name",
-    //     expiredDateString: "25.05.2022 15:45:35"
-    // };
 
     function onDeleteKeyClick() {
         if (window.confirm('Удалить текущий ключ?')) {
