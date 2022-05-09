@@ -57,7 +57,7 @@ export function LessonKey() {
     >
         <Card.Header><b>Генерация ключа урока</b></Card.Header>
         <Card.Body>
-            <Form>
+            <Form onSubmit={event => event.preventDefault()}>
                 <Form.Group className="mb-3" controlId="formLessonKeySubject">
                     <Form.Label>Предмет</Form.Label>
                     <Form.Select size="sm" onChange={onSubjectSelect}>

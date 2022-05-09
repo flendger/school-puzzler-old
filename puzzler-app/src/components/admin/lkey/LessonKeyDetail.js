@@ -33,7 +33,7 @@ export function LessonKeyDetail() {
     >
         <Card.Header><b>Информация о ключе урока</b></Card.Header>
         <Card.Body>
-            <Form>
+            <Form onSubmit={event => event.preventDefault()}>
                 <Form.Group className="text-center">
                     <Form.Text><h3><b>{keyInfo.keyValue}</b></h3></Form.Text>
                 </Form.Group>
