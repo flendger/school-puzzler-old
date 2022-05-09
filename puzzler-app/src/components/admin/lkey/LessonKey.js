@@ -2,6 +2,7 @@ import {Button, Card, Form} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {generateKey, getClasses, getLessons, getSubjects} from "./AdminLessonKeyDataFunctions";
 import {useNavigate} from "react-router";
+import {isEmpty} from "../../../validationUtils";
 
 export function LessonKey() {
     const [subjects, setSubjects] = useState([]);
@@ -45,10 +46,6 @@ export function LessonKey() {
 
     function showKeyInfo(keyInfo) {
         navigate('/admin/lkey/' + keyInfo.keyValue, {state: keyInfo});
-    }
-
-    function isEmpty(value) {
-        return !(value > 0);
     }
 
     return <Card
