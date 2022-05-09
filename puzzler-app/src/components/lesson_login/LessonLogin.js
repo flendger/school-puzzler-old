@@ -1,13 +1,36 @@
 import {Button, Card, Form} from "react-bootstrap";
 import {useState} from "react";
 import {getStudents} from "./LessonLoginDataFunctions";
+import {isEmpty, stringIsEmpty} from "../../validationUtils";
 
 export function LessonLogin() {
     const [students, setStudents] = useState([]);
+    const [studentId, setStudentId] = useState({});
+    const [keyValue, setKeyValue] = useState("");
 
     function onKeyValueChanged(e) {
         const keyValue = e.target.value;
+        if (stringIsEmpty(keyValue)) {
+            setKeyValue("");
+            return;
+        }
+
+        setKeyValue(keyValue);
         getStudents(keyValue, setStudents);
+    }
+
+    function onLoginClick() {
+        if (stringIsEmpty(keyValue)) {
+            alert("Для входа в урок введите ключ урока");
+            return;
+        }
+
+        if (isEmpty(studentId)) {
+            alert("Для входа в урок необходимо выбрать студента");
+            return;
+        }
+
+        console.log(studentId);
     }
 
     return <Card
@@ -30,7 +53,7 @@ export function LessonLogin() {
                     <Form.Label>Студент</Form.Label>
                     <Form.Select
                         size="sm"
-                        onChange={(e) => console.log(e.target.value)}>
+                        onChange={(e) => setStudentId(e.target.value)}>
                         <option value={0}>Выберите студента</option>
                         {students.map((student) => {
                             return <option key={student.id} value={student.id}>{student.name}</option>
@@ -38,7 +61,7 @@ export function LessonLogin() {
                     </Form.Select>
                 </Form.Group>
                 <div className="text-center">
-                    <Button variant="primary" type="button">
+                    <Button variant="primary" type="button" onClick={onLoginClick}>
                         Войти
                     </Button>
                 </div>
