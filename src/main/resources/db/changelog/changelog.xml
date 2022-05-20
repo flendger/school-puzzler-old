@@ -285,4 +285,28 @@
             <column name="value" type="VARCHAR(1000)"/>
         </createTable>
     </changeSet>
+    <changeSet id="1653027860401-1" author="kiru_e">
+        <createTable tableName="student_lessons">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_student_lessons"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="lesson_key" type="VARCHAR(255)"/>
+            <column name="student_id" type="BIGINT"/>
+            <column name="lesson_id" type="BIGINT"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="lesson_id" baseTableName="student_lessons" constraintName="FK_STUDENT_LESSONS_ON_LESSON" referencedColumnNames="id" referencedTableName="lessons"/>
+        <addForeignKeyConstraint baseColumnNames="student_id" baseTableName="student_lessons" constraintName="FK_STUDENT_LESSONS_ON_STUDENT" referencedColumnNames="id" referencedTableName="students"/>
+    </changeSet>
+    <changeSet id="1653027966083-1" author="kiru_e">
+        <createIndex tableName="student_lessons" indexName="st_lessons_st_idx">
+            <column name="student_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1653027996248-1" author="kiru_e">
+        <createIndex tableName="student_lessons" indexName="st_lessons_lesson_idx">
+            <column name="lesson_id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
