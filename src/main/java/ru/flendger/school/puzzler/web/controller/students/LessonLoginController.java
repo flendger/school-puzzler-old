@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.web.controller.studets;
+package ru.flendger.school.puzzler.web.controller.students;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
