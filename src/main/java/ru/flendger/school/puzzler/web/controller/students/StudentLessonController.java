@@ -14,7 +14,7 @@ import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/lessons")
+@RequestMapping("/api/v1/lessons") // TODO: 20.05.2022 refactor -> use for work with student lesson
 @RequiredArgsConstructor
 public class StudentLessonController {
     private final StudentLessonService studentLessonService;
