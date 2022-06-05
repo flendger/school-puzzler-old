@@ -309,4 +309,14 @@
             <column name="lesson_id"/>
         </createIndex>
     </changeSet>
+    <changeSet id="1654413227062-1" author="flendger">
+        <addColumn tableName="student_lessons">
+            <column name="started_at" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1654413253622-1" author="flendger">
+        <addColumn tableName="student_lessons">
+            <column name="finished_at" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

@@ -7,6 +7,7 @@ import ru.flendger.school.puzzler.model.entity.Lesson;
 import ru.flendger.school.puzzler.model.entity.Student;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "student_lessons")
@@ -23,4 +24,10 @@ public class StudentLesson extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
+
+    @Column(name = "started_at")
+    private LocalDateTime startedAt;
+
+    @Column(name = "finished_at")
+    private LocalDateTime finishedAt;
 }
