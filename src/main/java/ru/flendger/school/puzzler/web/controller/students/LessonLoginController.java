@@ -2,10 +2,7 @@ package ru.flendger.school.puzzler.web.controller.students;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.flendger.school.puzzler.model.service.input.LessonLoginService;
 
 @RestController
@@ -17,5 +14,10 @@ public class LessonLoginController {
     @GetMapping("/{key}")
     public ResponseEntity<?> getStudents(@PathVariable("key") String keyValue) {
         return ResponseEntity.ok(lessonLoginService.findByLessonKey(keyValue));
+    }
+
+    @PostMapping
+    public ResponseEntity<?> logon(@RequestBody String l) { // TODO: 20.05.2022 dto
+        return null;
     }
 }
