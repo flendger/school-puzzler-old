@@ -4,6 +4,8 @@ import ru.flendger.school.puzzler.model.dto.StudentDto;
 
 import java.util.List;
 
-public interface LessonLoginService {
-    List<StudentDto> findByLessonKey(String keyValue);
+public interface LessonLogonService {
+    List<StudentDto> findStudentsByLessonKey(String keyValue);
+
+
 }

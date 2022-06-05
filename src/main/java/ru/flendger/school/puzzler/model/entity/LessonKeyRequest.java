@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.web.dto;
+package ru.flendger.school.puzzler.model.entity;
 
 import lombok.Data;
 

@@ -3,21 +3,22 @@ package ru.flendger.school.puzzler.web.controller.students;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.flendger.school.puzzler.model.service.input.LessonLoginService;
+import ru.flendger.school.puzzler.model.service.input.LessonLogonService;
+import ru.flendger.school.puzzler.model.dto.students.LessonLogonRequest;
 
 @RestController
 @RequestMapping("/api/v1/students/login")
 @RequiredArgsConstructor
-public class LessonLoginController {
-    private final LessonLoginService lessonLoginService;
+public class LessonLogonController {
+    private final LessonLogonService lessonLogonService;
 
     @GetMapping("/{key}")
     public ResponseEntity<?> getStudents(@PathVariable("key") String keyValue) {
-        return ResponseEntity.ok(lessonLoginService.findByLessonKey(keyValue));
+        return ResponseEntity.ok(lessonLogonService.findStudentsByLessonKey(keyValue));
     }
 
     @PostMapping
-    public ResponseEntity<?> logon(@RequestBody String l) { // TODO: 20.05.2022 dto
+    public ResponseEntity<?> logon(@RequestBody LessonLogonRequest logonRequest) {
         return null;
     }
 }

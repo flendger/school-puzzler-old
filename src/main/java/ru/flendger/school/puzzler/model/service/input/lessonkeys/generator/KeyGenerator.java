@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.web.generator;
+package ru.flendger.school.puzzler.model.service.input.lessonkeys.generator;
 
 import org.springframework.stereotype.Component;
 

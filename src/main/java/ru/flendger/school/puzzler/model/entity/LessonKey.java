@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.web.entity;
+package ru.flendger.school.puzzler.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;

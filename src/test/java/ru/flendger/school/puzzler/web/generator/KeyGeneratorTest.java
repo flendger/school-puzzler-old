@@ -1,6 +1,7 @@
 package ru.flendger.school.puzzler.web.generator;
 
 import org.junit.jupiter.api.Test;
+import ru.flendger.school.puzzler.model.service.input.lessonkeys.generator.KeyGenerator;
 
 import static org.junit.jupiter.api.Assertions.*;
 

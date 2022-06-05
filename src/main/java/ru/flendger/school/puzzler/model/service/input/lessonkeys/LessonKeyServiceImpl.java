@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.web.service.input;
+package ru.flendger.school.puzzler.model.service.input.lessonkeys;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -11,11 +11,11 @@ import ru.flendger.school.puzzler.model.service.output.LessonStorageService;
 import ru.flendger.school.puzzler.model.service.output.SchoolClassStorageService;
 import ru.flendger.school.puzzler.model.settings.ApplicationSettingsService;
 import ru.flendger.school.puzzler.model.settings.props.KeyExpiredTimeSetting;
-import ru.flendger.school.puzzler.web.dto.LessonKeyRequest;
-import ru.flendger.school.puzzler.web.dto.LessonKeyResponse;
-import ru.flendger.school.puzzler.web.entity.LessonKey;
-import ru.flendger.school.puzzler.web.generator.KeyGenerator;
-import ru.flendger.school.puzzler.web.service.output.LessonKeyStorageService;
+import ru.flendger.school.puzzler.model.entity.LessonKeyRequest;
+import ru.flendger.school.puzzler.model.entity.LessonKeyResponse;
+import ru.flendger.school.puzzler.model.entity.LessonKey;
+import ru.flendger.school.puzzler.model.service.input.lessonkeys.generator.KeyGenerator;
+import ru.flendger.school.puzzler.model.service.output.LessonKeyStorageService;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;

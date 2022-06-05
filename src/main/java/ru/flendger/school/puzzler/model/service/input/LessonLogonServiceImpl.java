@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.flendger.school.puzzler.model.dto.StudentDto;
 import ru.flendger.school.puzzler.model.service.output.StudentStorageService;
-import ru.flendger.school.puzzler.web.entity.LessonKey;
-import ru.flendger.school.puzzler.web.service.output.LessonKeyStorageService;
+import ru.flendger.school.puzzler.model.entity.LessonKey;
+import ru.flendger.school.puzzler.model.service.output.LessonKeyStorageService;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class LessonLoginServiceImpl implements LessonLoginService {
+public class LessonLogonServiceImpl implements LessonLogonService {
     private final LessonKeyStorageService lessonKeyStorageService;
     private final DateTimeService dateTimeService;
     private final StudentStorageService studentStorageService;
@@ -24,7 +24,7 @@ public class LessonLoginServiceImpl implements LessonLoginService {
 
     @Override
     @Transactional
-    public List<StudentDto> findByLessonKey(String keyValue) {
+    public List<StudentDto> findStudentsByLessonKey(String keyValue) {
         Optional<LessonKey> optionalLessonKey = lessonKeyStorageService.findActive(keyValue, dateTimeService.current());
         if (optionalLessonKey.isEmpty()) {
             return Collections.emptyList();

@@ -1,7 +1,7 @@
-package ru.flendger.school.puzzler.web.service.output;
+package ru.flendger.school.puzzler.model.service.output;
 
 import ru.flendger.school.puzzler.model.service.output.CrudStorageService;
-import ru.flendger.school.puzzler.web.entity.LessonKey;
+import ru.flendger.school.puzzler.model.entity.LessonKey;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
