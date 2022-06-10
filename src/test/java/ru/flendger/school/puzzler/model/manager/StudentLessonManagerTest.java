@@ -1,6 +1,7 @@
 package ru.flendger.school.puzzler.model.manager;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ import static org.junit.jupiter.api.Assertions.*;
         LessonServiceImpl.class,
         StudentLessonServiceImpl.class})
 @ActiveProfiles("off-liquibase")
+@Disabled("not ready for test") // TODO: 10.06.2022 flendger -> refactor test when method ready
 class StudentLessonManagerTest {
     private final static String LESSON_NAME = "lesson_name";
     private final static String LESSON_TITLE = "lesson_title";
