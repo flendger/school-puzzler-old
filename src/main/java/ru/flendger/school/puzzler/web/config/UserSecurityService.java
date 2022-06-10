@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.flendger.school.puzzler.model.entity.users.Role;
-import ru.flendger.school.puzzler.model.service.output.UserStorageService;
+import ru.flendger.school.puzzler.web.model.entity.Role;
+import ru.flendger.school.puzzler.web.model.dao.UserStorageService;
 
 import java.util.Collection;
 import java.util.List;

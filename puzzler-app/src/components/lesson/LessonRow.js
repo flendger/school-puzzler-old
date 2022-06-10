@@ -8,13 +8,13 @@ export function LessonRow(props) {
     const taskValues = task.values;
     const valueCells = taskValues.map((taskValue) => {
             if (taskValue.valueType === 'NUMBER') {
-                if (taskValue.accesable) {
+                if (taskValue.accessible) {
                     return <LessonTaskValueCell key={taskValue.id} taskValue={taskValue}/>
                 } else {
                     return <LessonTaskValueCellReadOnly key={taskValue.id} taskValue={taskValue}/>
                 }
             } else {
-                if (taskValue.accesable) {
+                if (taskValue.accessible) {
                     return <LessonTaskComplexValueCell key={taskValue.id} taskValue={taskValue}/>
                 } else {
                     return <LessonTaskComplexValueCellReadOnly key={taskValue.id} taskValue={taskValue}/>

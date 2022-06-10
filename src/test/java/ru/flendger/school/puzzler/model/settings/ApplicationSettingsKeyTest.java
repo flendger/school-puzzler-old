@@ -1,11 +1,13 @@
 package ru.flendger.school.puzzler.model.settings;
 
 import org.junit.jupiter.api.Test;
-import ru.flendger.school.puzzler.model.entity.ApplicationSettingEntity;
-import ru.flendger.school.puzzler.model.settings.props.KeyExpiredTimeSetting;
+import ru.flendger.school.puzzler.settings.core.entity.ApplicationSettingEntity;
+import ru.flendger.school.puzzler.settings.core.AppSetting;
+import ru.flendger.school.puzzler.settings.core.ApplicationSettingsKey;
+import ru.flendger.school.puzzler.settings.KeyExpiredTimeSetting;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static ru.flendger.school.puzzler.model.settings.ApplicationSettingsKey.KEY_EXPIRED_TIME;
+import static ru.flendger.school.puzzler.settings.core.ApplicationSettingsKey.KEY_EXPIRED_TIME;
 
 class ApplicationSettingsKeyTest {
 

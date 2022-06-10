@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import ru.flendger.school.puzzler.model.enums.RoleType;
+import ru.flendger.school.puzzler.web.model.entity.enums.RoleType;
 
 import java.util.*;
 import java.util.function.Function;

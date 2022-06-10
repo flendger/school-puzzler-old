@@ -7,15 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
-import ru.flendger.school.puzzler.model.config.ModelMapperConfig;
-import ru.flendger.school.puzzler.model.config.factory.ModelMapperFactory;
-import ru.flendger.school.puzzler.model.config.converter.LessonToLessonDtoPostConverter;
-import ru.flendger.school.puzzler.model.dto.*;
-import ru.flendger.school.puzzler.model.entity.*;
-import ru.flendger.school.puzzler.model.enums.TaskValueType;
-import ru.flendger.school.puzzler.model.service.input.StudentLessonService;
-import ru.flendger.school.puzzler.model.service.input.StudentLessonServiceImpl;
-import ru.flendger.school.puzzler.model.service.output.LessonStorageService;
+import ru.flendger.school.puzzler.lessons.model.dao.LessonStorageService;
+import ru.flendger.school.puzzler.lessons.model.entity.*;
+import ru.flendger.school.puzzler.lessons.model.enums.TaskValueType;
+import ru.flendger.school.puzzler.lessons.model.service.lesson.LessonServiceImpl;
+import ru.flendger.school.puzzler.students.model.config.StudentsModelMapperConfig;
+import ru.flendger.school.puzzler.students.model.config.factory.converter.LessonDtoToStudentLessonDtoPostConverter;
+import ru.flendger.school.puzzler.students.model.config.factory.ModelMapperFactory;
+import ru.flendger.school.puzzler.students.model.service.lesson.dto.StudentLessonHeaderDto;
+import ru.flendger.school.puzzler.students.model.service.lesson.dto.StudentLessonDto;
+import ru.flendger.school.puzzler.students.model.service.lesson.dto.StudentLessonTaskRowDto;
+import ru.flendger.school.puzzler.students.model.service.lesson.dto.StudentLessonTaskValueDto;
+import ru.flendger.school.puzzler.students.model.service.lesson.StudentLessonService;
+import ru.flendger.school.puzzler.students.model.service.lesson.StudentLessonServiceImpl;
+import ru.flendger.school.puzzler.students.model.service.lesson.dto.StudentLessonRowDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,9 +28,11 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = {
-        ModelMapperConfig.class,
+        StudentsModelMapperConfig.class,
         ModelMapperFactory.class,
-        LessonToLessonDtoPostConverter.class,
+        LessonDtoToStudentLessonDtoPostConverter.class,
+        LessonStorageService.class,
+        LessonServiceImpl.class,
         StudentLessonServiceImpl.class})
 @ActiveProfiles("off-liquibase")
 class StudentLessonManagerTest {
@@ -102,7 +109,7 @@ class StudentLessonManagerTest {
         taskValue.setValue1(VALUE_1);
         taskValue.setValue2(VALUE_2);
         taskValue.setValue3(VALUE_3);
-        taskValue.setAccesable(true);
+        taskValue.setAccessible(true);
         taskValue.setValueType(TaskValueType.NUMBER);
 
         return taskValue;
@@ -144,11 +151,11 @@ class StudentLessonManagerTest {
 
     @Test
     void testGetLessons() {
-        List<LessonRowDto> lessons = studentLessonService.getLessons();
+        List<StudentLessonRowDto> lessons = studentLessonService.getLessons();
 
         assertFalse(lessons.isEmpty());
 
-        LessonRowDto lessonRowDto = lessons.get(0);
+        StudentLessonRowDto lessonRowDto = lessons.get(0);
         assertEquals(1L, lessonRowDto.getId());
         assertEquals(LESSON_NAME, lessonRowDto.getName());
         assertEquals(LESSON_TITLE, lessonRowDto.getTitle());
@@ -157,54 +164,54 @@ class StudentLessonManagerTest {
 
     @Test
     void testGetSingleLesson() {
-        Optional<LessonDto> lesson = studentLessonService.getLesson(1L);
+        Optional<StudentLessonDto> lesson = studentLessonService.getLesson(1L);
 
         assertFalse(lesson.isEmpty());
 
-        LessonDto lessonDto = lesson.get();
-        assertEquals(1L, lessonDto.getId());
-        assertEquals(LESSON_NAME, lessonDto.getName());
-        assertEquals(LESSON_TITLE, lessonDto.getTitle());
+        StudentLessonDto studentLessonDto = lesson.get();
+        assertEquals(1L, studentLessonDto.getId());
+        assertEquals(LESSON_NAME, studentLessonDto.getName());
+        assertEquals(LESSON_TITLE, studentLessonDto.getTitle());
 
-        List<HeaderDto> taskStructureTaskColumns = lessonDto.getHeaders();
+        List<StudentLessonHeaderDto> taskStructureTaskColumns = studentLessonDto.getHeaders();
         assertNotNull(taskStructureTaskColumns);
         assertEquals(3, taskStructureTaskColumns.size());
 
-        HeaderDto headerDto1 = taskStructureTaskColumns.get(0);
-        assertEquals(4L, headerDto1.getId());
-        assertEquals("column_0", headerDto1.getName());
-        assertEquals(0, headerDto1.getOrder());
+        StudentLessonHeaderDto studentLessonHeaderDto1 = taskStructureTaskColumns.get(0);
+        assertEquals(4L, studentLessonHeaderDto1.getId());
+        assertEquals("column_0", studentLessonHeaderDto1.getName());
+        assertEquals(0, studentLessonHeaderDto1.getOrder());
 
-        HeaderDto headerDto2 = taskStructureTaskColumns.get(1);
-        assertEquals(5L, headerDto2.getId());
-        assertEquals("column_1", headerDto2.getName());
-        assertEquals(1, headerDto2.getOrder());
+        StudentLessonHeaderDto studentLessonHeaderDto2 = taskStructureTaskColumns.get(1);
+        assertEquals(5L, studentLessonHeaderDto2.getId());
+        assertEquals("column_1", studentLessonHeaderDto2.getName());
+        assertEquals(1, studentLessonHeaderDto2.getOrder());
 
-        List<TaskRowDto> tasks = lessonDto.getTasks();
+        List<StudentLessonTaskRowDto> tasks = studentLessonDto.getTasks();
         assertEquals(1, tasks.size());
 
-        TaskRowDto taskRowDto = tasks.get(0);
-        assertEquals(6L, taskRowDto.getId());
-        assertEquals(TASK_NAME, taskRowDto.getName());
-        assertEquals(TASK_TITLE, taskRowDto.getTitle());
+        StudentLessonTaskRowDto studentLessonTaskRowDto = tasks.get(0);
+        assertEquals(6L, studentLessonTaskRowDto.getId());
+        assertEquals(TASK_NAME, studentLessonTaskRowDto.getName());
+        assertEquals(TASK_TITLE, studentLessonTaskRowDto.getTitle());
 
-        List<TaskValueDto> values = taskRowDto.getValues();
+        List<StudentLessonTaskValueDto> values = studentLessonTaskRowDto.getValues();
         assertEquals(2, values.size());
 
-        TaskValueDto taskValueDto1 = values.get(0);
-        assertEquals(7L, taskValueDto1.getId());
-        assertEquals(1, taskValueDto1.getColumnOrder());
-        assertEquals(VALUE_1, taskValueDto1.getValue1());
-        assertEquals(VALUE_2, taskValueDto1.getValue2());
-        assertEquals(VALUE_3, taskValueDto1.getValue3());
-        assertEquals("NUMBER", taskValueDto1.getValueType());
+        StudentLessonTaskValueDto studentLessonTaskValueDto1 = values.get(0);
+        assertEquals(7L, studentLessonTaskValueDto1.getId());
+        assertEquals(1, studentLessonTaskValueDto1.getColumnOrder());
+        assertEquals(VALUE_1, studentLessonTaskValueDto1.getValue1());
+        assertEquals(VALUE_2, studentLessonTaskValueDto1.getValue2());
+        assertEquals(VALUE_3, studentLessonTaskValueDto1.getValue3());
+        assertEquals("NUMBER", studentLessonTaskValueDto1.getValueType());
 
-        TaskValueDto taskValueDto2 = values.get(1);
-        assertEquals(9L, taskValueDto2.getId());
-        assertEquals(2, taskValueDto2.getColumnOrder());
-        assertEquals(VALUE_1, taskValueDto2.getValue1());
-        assertEquals(VALUE_2, taskValueDto2.getValue2());
-        assertEquals(VALUE_3, taskValueDto2.getValue3());
-        assertEquals("NUMBER", taskValueDto2.getValueType());
+        StudentLessonTaskValueDto studentLessonTaskValueDto2 = values.get(1);
+        assertEquals(9L, studentLessonTaskValueDto2.getId());
+        assertEquals(2, studentLessonTaskValueDto2.getColumnOrder());
+        assertEquals(VALUE_1, studentLessonTaskValueDto2.getValue1());
+        assertEquals(VALUE_2, studentLessonTaskValueDto2.getValue2());
+        assertEquals(VALUE_3, studentLessonTaskValueDto2.getValue3());
+        assertEquals("NUMBER", studentLessonTaskValueDto2.getValueType());
     }
 }

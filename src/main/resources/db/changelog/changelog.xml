@@ -319,4 +319,7 @@
             <column name="finished_at" type="DATETIME"/>
         </addColumn>
     </changeSet>
+    <changeSet id="1654706156070-1" author="flendger">
+        <renameColumn tableName="task_values" oldColumnName="accesable" newColumnName="accessible"/>
+    </changeSet>
 </databaseChangeLog>

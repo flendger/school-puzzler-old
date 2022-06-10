@@ -5,9 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.flendger.school.puzzler.model.entity.LessonKeyRequest;
+import ru.flendger.school.puzzler.students.model.service.lessonkeys.dto.LessonKeyRequest;
 import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
-import ru.flendger.school.puzzler.model.service.input.lessonkeys.LessonKeyService;
+import ru.flendger.school.puzzler.students.model.service.lessonkeys.LessonKeyService;
 
 import javax.persistence.EntityNotFoundException;
 

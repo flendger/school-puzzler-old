@@ -2,8 +2,8 @@ package ru.flendger.school.puzzler.model.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.flendger.school.puzzler.model.dto.StudentImportData;
-import ru.flendger.school.puzzler.model.parser.StudentInputParser;
+import ru.flendger.school.puzzler.students.model.service.download.dto.StudentImportData;
+import ru.flendger.school.puzzler.students.model.service.download.parser.StudentInputParser;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

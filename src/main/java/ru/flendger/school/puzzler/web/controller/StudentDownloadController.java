@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import ru.flendger.school.puzzler.model.service.input.StudentDownloadService;
+import ru.flendger.school.puzzler.students.model.service.download.StudentDownloadService;
 import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
 
 import java.io.IOException;

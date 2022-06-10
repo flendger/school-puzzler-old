@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.flendger.school.puzzler.model.dto.SchoolClassDto;
-import ru.flendger.school.puzzler.model.service.input.SchoolClassService;
+import ru.flendger.school.puzzler.students.model.service.schoolclass.dto.SchoolClassDto;
+import ru.flendger.school.puzzler.students.model.service.schoolclass.SchoolClassService;
 import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
 
 import java.util.Optional;

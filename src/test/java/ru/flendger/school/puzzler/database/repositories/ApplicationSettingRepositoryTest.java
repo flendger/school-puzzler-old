@@ -5,9 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
-import ru.flendger.school.puzzler.model.settings.AppSetting;
-import ru.flendger.school.puzzler.model.entity.ApplicationSettingEntity;
-import ru.flendger.school.puzzler.model.settings.ApplicationSettingsKey;
+import ru.flendger.school.puzzler.settings.core.database.repository.ApplicationSettingRepository;
+import ru.flendger.school.puzzler.settings.core.AppSetting;
+import ru.flendger.school.puzzler.settings.core.entity.ApplicationSettingEntity;
+import ru.flendger.school.puzzler.settings.core.ApplicationSettingsKey;
 
 import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
