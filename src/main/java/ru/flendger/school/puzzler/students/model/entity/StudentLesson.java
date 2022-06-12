@@ -1,9 +1,7 @@
 package ru.flendger.school.puzzler.students.model.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import ru.flendger.school.puzzler.common.BaseEntity;
-import ru.flendger.school.puzzler.lessons.model.entity.Lesson;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,14 +10,16 @@ import java.time.LocalDateTime;
 @Table(name = "student_lessons")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class StudentLesson extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @ManyToOne
-    @JoinColumn(name = "lesson_id")
-    private Lesson lesson;
+    @Column(name = "lesson_id")
+    private Long lessonId;
 
     @Column(name = "started_at")
     private LocalDateTime startedAt;
