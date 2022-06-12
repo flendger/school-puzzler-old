@@ -1,11 +1,11 @@
-package ru.flendger.school.puzzler.students.model.service.lessonlogon.dto;
+package ru.flendger.school.puzzler.students.model.service.lessonlogin.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class LessonLogonRequest {
+public class LessonLoginRequest {
     private String keyValue;
     private Long studentId;
 }

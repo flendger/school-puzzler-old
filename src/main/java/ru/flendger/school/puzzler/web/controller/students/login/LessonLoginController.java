@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.flendger.school.puzzler.students.model.service.lessonlogon.dto.LessonLogonRequest;
+import ru.flendger.school.puzzler.students.model.service.lessonlogin.dto.LessonLoginRequest;
 
 @RestController
 @RequestMapping("/api/v1/students/login")
@@ -14,7 +14,7 @@ import ru.flendger.school.puzzler.students.model.service.lessonlogon.dto.LessonL
 public class LessonLoginController {
 
     @PostMapping
-    public ResponseEntity<?> login(@RequestBody LessonLogonRequest loginRequest) {
+    public ResponseEntity<?> login(@RequestBody LessonLoginRequest loginRequest) {
         return ResponseEntity.ok(loginRequest);
     }
 }

@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.students.model.service.lessonlogon;
+package ru.flendger.school.puzzler.students.model.service.lessonlogin;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -8,7 +8,7 @@ import ru.flendger.school.puzzler.datetime.DateTimeService;
 import ru.flendger.school.puzzler.students.model.dao.LessonKeyStorageService;
 import ru.flendger.school.puzzler.students.model.dao.StudentStorageService;
 import ru.flendger.school.puzzler.students.model.entity.LessonKey;
-import ru.flendger.school.puzzler.students.model.service.lessonlogon.dto.LessonLogonStudentDto;
+import ru.flendger.school.puzzler.students.model.service.lessonlogin.dto.LessonLoginStudentDto;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class LessonLogonServiceImpl implements LessonLogonService {
+public class LessonLoginServiceImpl implements LessonLoginService {
     private final LessonKeyStorageService lessonKeyStorageService;
     private final DateTimeService dateTimeService;
     private final StudentStorageService studentStorageService;
@@ -25,7 +25,7 @@ public class LessonLogonServiceImpl implements LessonLogonService {
 
     @Override
     @Transactional
-    public List<LessonLogonStudentDto> findStudentsByLessonKey(String keyValue) {
+    public List<LessonLoginStudentDto> findStudentsByLessonKey(String keyValue) {
         Optional<LessonKey> optionalLessonKey = lessonKeyStorageService.findActive(keyValue, dateTimeService.current());
         if (optionalLessonKey.isEmpty()) {
             return Collections.emptyList();
@@ -35,7 +35,7 @@ public class LessonLogonServiceImpl implements LessonLogonService {
         return studentStorageService
                 .findBySchoolClass(lessonKey.getSchoolClassId())
                 .stream()
-                .map(student -> studentsModelMapper.map(student, LessonLogonStudentDto.class))
+                .map(student -> studentsModelMapper.map(student, LessonLoginStudentDto.class))
                 .collect(Collectors.toList());
     }
 }
