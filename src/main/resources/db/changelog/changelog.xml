@@ -325,4 +325,27 @@
     <changeSet id="1655058627934-1" author="flendger">
         <dropColumn tableName="student_lessons" columnName="lesson_key"/>
     </changeSet>
+    <changeSet id="1655059333216-1" author="flendger">
+        <createTable tableName="student_lesson_keys">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_student_lesson_keys"/>
+            </column>
+            <column name="created_at" type="DATETIME"/>
+            <column name="updated_at" type="DATETIME"/>
+            <column name="key_value" type="VARCHAR(10)"/>
+            <column name="student_id" type="BIGINT"/>
+            <column name="login_date" type="DATETIME"/>
+            <column name="student_lesson_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1655059562183-1" author="flendger">
+        <createIndex tableName="student_lesson_keys" indexName="student_lesson_keys_key_idx">
+            <column name="key_value"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="1655059663380-1" author="flendger">
+        <createIndex tableName="student_lesson_keys" indexName="student_lesson_keys_student_idx">
+            <column name="student_id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
