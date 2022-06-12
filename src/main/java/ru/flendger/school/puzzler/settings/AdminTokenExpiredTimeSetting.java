@@ -12,7 +12,7 @@ public class AdminTokenExpiredTimeSetting extends AbstractApplicationSetting<Int
 
     @Override
     public Integer getDefaultValue() {
-        return 30 * 24 * 60 * 60;
+        return 30 * 24 * 60 * 60; //minutes
     }
 
     @Override

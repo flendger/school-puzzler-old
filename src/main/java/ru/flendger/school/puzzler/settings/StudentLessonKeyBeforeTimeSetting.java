@@ -12,7 +12,7 @@ public class StudentLessonKeyBeforeTimeSetting extends AbstractApplicationSettin
 
     @Override
     public Integer getDefaultValue() {
-        return 3;
+        return 3; //hours
     }
 
     @Override

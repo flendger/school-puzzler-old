@@ -12,7 +12,7 @@ public class KeyExpiredTimeSetting extends AbstractApplicationSetting<Integer> {
 
     @Override
     public Integer getDefaultValue() {
-        return 45 * 60;
+        return 45 * 60; //seconds
     }
 
     @Override
