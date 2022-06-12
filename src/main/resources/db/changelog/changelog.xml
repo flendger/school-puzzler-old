@@ -322,4 +322,7 @@
     <changeSet id="1654706156070-1" author="flendger">
         <renameColumn tableName="task_values" oldColumnName="accesable" newColumnName="accessible"/>
     </changeSet>
+    <changeSet id="1655058627934-1" author="flendger">
+        <dropColumn tableName="student_lessons" columnName="lesson_key"/>
+    </changeSet>
 </databaseChangeLog>
