@@ -11,10 +11,10 @@ import ru.flendger.school.puzzler.students.model.service.lessonlogon.dto.LessonL
 @RestController
 @RequestMapping("/api/v1/students/login")
 @RequiredArgsConstructor
-public class LessonLogonController {
+public class LessonLoginController {
 
     @PostMapping
-    public ResponseEntity<?> logon(@RequestBody LessonLogonRequest loginRequest) {
+    public ResponseEntity<?> login(@RequestBody LessonLogonRequest loginRequest) {
         return ResponseEntity.ok(loginRequest);
     }
 }
