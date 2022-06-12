@@ -1,14 +1,15 @@
 import axios from "axios";
 import {getAuthorizationHeader, getConfigWithHeader, getRequestHeader} from "../../../tokenUtils";
+import {ctxPath} from "../../../requests";
 
-const ctxPath = '/puzzler/api/v1/admin/students';
+const endPoint = ctxPath + '/students/students';
 
 //todo move request functions to one file
 
 export function getEntityList(changeState, params) {
     const configWithHeader = getConfigWithHeader({params: params});
 
-    axios.get(ctxPath, configWithHeader)
+    axios.get(endPoint, configWithHeader)
         .then((response) => {
             changeState(response.data);
         })
@@ -21,7 +22,7 @@ export function getEntityList(changeState, params) {
 }
 
 export function deleteEntity(id, onSuccess) {
-    axios.delete(ctxPath, getConfigWithHeader({
+    axios.delete(endPoint, getConfigWithHeader({
         data: {
             id: id
         }
@@ -38,7 +39,7 @@ export function deleteEntity(id, onSuccess) {
 }
 
 export function getEntityData(id, onSuccess, onFailure) {
-    let path = ctxPath + '/' + (id ? id : 'new');
+    let path = endPoint + '/' + (id ? id : 'new');
     axios.get(path, getRequestHeader())
         .then(response => {
             onSuccess(response.data);
@@ -53,7 +54,7 @@ export function getEntityData(id, onSuccess, onFailure) {
 }
 
 export function saveEntity(entity, onSuccess) {
-    axios.post(ctxPath, entity, getRequestHeader())
+    axios.post(endPoint, entity, getRequestHeader())
         .then(() => {
             onSuccess();
         })
@@ -71,7 +72,7 @@ export function downloadStudents(formData) {
         headers: mergeHeader
     };
 
-    axios.post(ctxPath + '/download', formData, fileConfig)
+    axios.post(endPoint + '/download', formData, fileConfig)
         .then((response) => {
             console.log(response.data.message);
         });
