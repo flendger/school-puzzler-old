@@ -20,7 +20,7 @@ public class JwtTokenUtil {
     @Value("${jwt.secret}")
     private String secret;
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails, Long expiredTime) {
         Map<String, Object> claims = new HashMap<>();
         List<String> rolesList = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -28,7 +28,7 @@ public class JwtTokenUtil {
         claims.put("roles", rolesList);
 
         Date issuedDate = new Date();
-        Date expiredDate = new Date(issuedDate.getTime() + 30 * 24 * 60 * 60 * 1000L);
+        Date expiredDate = new Date(issuedDate.getTime() + expiredTime);
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
