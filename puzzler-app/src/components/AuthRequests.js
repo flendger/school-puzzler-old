@@ -1,10 +1,11 @@
 import axios from "axios";
 import {deleteJwtRequest, saveJwtRequest} from "../tokenUtils";
+import {ctxPath} from "../requests";
 
-const ctxPath = '/puzzler/api/v1/auth';
+const endPoint = ctxPath + '/login';
 
 export function login(username, password, afterCallback) {
-    axios.post(ctxPath, {username: username, password: password})
+    axios.post(endPoint, {username: username, password: password})
         .then((response) => {
             saveJwtRequest(response.data);
             afterCallback();

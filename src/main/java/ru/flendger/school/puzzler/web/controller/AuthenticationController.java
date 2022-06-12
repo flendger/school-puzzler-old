@@ -14,7 +14,7 @@ import ru.flendger.school.puzzler.web.dto.JwtResponse;
 import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/v1/login")
 @RequiredArgsConstructor
 public class AuthenticationController {
     private final UserAuthenticationManager userAuthenticationManager;
