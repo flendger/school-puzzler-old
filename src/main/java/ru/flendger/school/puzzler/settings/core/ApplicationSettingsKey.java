@@ -1,13 +1,15 @@
 package ru.flendger.school.puzzler.settings.core;
 
 import ru.flendger.school.puzzler.settings.KeyExpiredTimeSetting;
+import ru.flendger.school.puzzler.settings.StudentLessonKeyBeforeTimeSetting;
 import ru.flendger.school.puzzler.settings.core.entity.ApplicationSettingEntity;
 import ru.flendger.school.puzzler.settings.core.props.AbstractApplicationSetting;
 
 import java.util.Arrays;
 
 public enum ApplicationSettingsKey {
-    KEY_EXPIRED_TIME(KeyExpiredTimeSetting.class);
+    KEY_EXPIRED_TIME(KeyExpiredTimeSetting.class),
+    STUDENT_LESSON_KEY_BEFORE_TIME(StudentLessonKeyBeforeTimeSetting.class);
 
     private final Class<? extends AppSetting<?>> keyType;
 
