@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class StudentLessonKeyBeforeTimeSetting extends AbstractApplicationSetting<Integer> {
     public StudentLessonKeyBeforeTimeSetting() {
-        super(ApplicationSettingsKey.KEY_EXPIRED_TIME);
+        super(ApplicationSettingsKey.STUDENT_LESSON_KEY_BEFORE_TIME);
     }
 
     @Override
