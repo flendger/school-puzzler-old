@@ -1,7 +1,8 @@
 import {Button, Card, Form} from "react-bootstrap";
 import {useState} from "react";
-import {getStudents} from "./LessonLoginDataFunctions";
+import {getStudents, login} from "./LessonLoginDataFunctions";
 import {isEmpty, stringIsEmpty} from "../../validationUtils";
+import alert from "bootstrap/js/src/alert";
 
 export function LessonLogin() {
     const [students, setStudents] = useState([]);
@@ -30,7 +31,15 @@ export function LessonLogin() {
             return;
         }
 
-        console.log(studentId);
+        const loginRequest = {
+            keyValue: keyValue,
+            studentId: studentId
+        };
+        login(loginRequest, loginSuccess)
+    }
+
+    function loginSuccess(data) {
+        console.log(data);
     }
 
     return <Card

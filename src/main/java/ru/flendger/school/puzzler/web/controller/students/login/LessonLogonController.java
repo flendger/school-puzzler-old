@@ -14,7 +14,7 @@ import ru.flendger.school.puzzler.students.model.service.lessonlogon.dto.LessonL
 public class LessonLogonController {
 
     @PostMapping
-    public ResponseEntity<?> logon(@RequestBody LessonLogonRequest logonRequest) {
-        return null;
+    public ResponseEntity<?> logon(@RequestBody LessonLogonRequest loginRequest) {
+        return ResponseEntity.ok(loginRequest);
     }
 }
