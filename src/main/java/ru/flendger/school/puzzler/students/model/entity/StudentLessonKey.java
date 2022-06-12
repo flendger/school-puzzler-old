@@ -1,7 +1,6 @@
 package ru.flendger.school.puzzler.students.model.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import ru.flendger.school.puzzler.common.BaseEntity;
 
 import javax.persistence.*;
@@ -11,6 +10,9 @@ import java.time.LocalDateTime;
 @Table(name = "student_lesson_keys")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class StudentLessonKey extends BaseEntity {
     @Column(name = "key_value")
     private String keyValue;
