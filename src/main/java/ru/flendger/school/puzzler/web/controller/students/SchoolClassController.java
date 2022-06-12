@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.web.controller;
+package ru.flendger.school.puzzler.web.controller.students;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,7 @@ import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/admin/classes")
+@RequestMapping("/api/v1/students/classes")
 @RequiredArgsConstructor
 public class SchoolClassController {
     private final SchoolClassService schoolClassService;

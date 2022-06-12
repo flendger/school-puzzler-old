@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.web.controller;
+package ru.flendger.school.puzzler.web.controller.lessons;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.flendger.school.puzzler.lessons.model.service.lesson.LessonService;
 
 @RestController
-@RequestMapping("/api/v1/admin/lessons")
+@RequestMapping("/api/v1/lessons/lessons")
 @RequiredArgsConstructor
 public class LessonController {
     private final LessonService lessonService;
