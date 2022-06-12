@@ -3,6 +3,7 @@ package ru.flendger.school.puzzler.settings.core;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.flendger.school.puzzler.settings.ApplicationSettingsService;
 import ru.flendger.school.puzzler.settings.core.entity.ApplicationSettingEntity;
 import ru.flendger.school.puzzler.settings.core.dao.ApplicationSettingEntityStorageService;
 
@@ -16,11 +17,12 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ApplicationSettingsService {
+public class ApplicationSettingsServiceImpl implements ApplicationSettingsService {
     private final ApplicationSettingEntityStorageService settingEntityStorageService;
 
     private ConcurrentMap<Class<? extends AppSetting<?>>, AppSetting<?>> settings;
 
+    @Override
     public void read() {
         settings = Arrays
                 .stream(ApplicationSettingsKey.values())
@@ -53,6 +55,7 @@ public class ApplicationSettingsService {
         settingEntityStorageService.save(settingEntity);
     }
 
+    @Override
     public <T extends AppSetting<?>> T getSetting(Class<T> keyType) {
         if (Objects.isNull(settings)) {
             read();
@@ -67,6 +70,7 @@ public class ApplicationSettingsService {
         }
     }
 
+    @Override
     public void setSetting(AppSetting<?> setting) {
         saveSetting(setting);
 
