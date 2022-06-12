@@ -1,10 +1,11 @@
 import axios from "axios";
 import {getConfigWithHeader, getRequestHeader} from "../../tokenUtils";
+import {ctxPath} from "../../requests";
 
-const ctxPath = '/puzzler/api/v1/students/login';
+const endPoint = ctxPath + '/students/login';
 
 export function getStudents(keyValue, onSuccess) {
-    axios.get(ctxPath + "/" + keyValue, getRequestHeader())
+    axios.get(endPoint + "/classes/" + keyValue, getRequestHeader())
         .then((response) => {
             onSuccess(response.data);
         })
@@ -17,7 +18,7 @@ export function getStudents(keyValue, onSuccess) {
 }
 
 // export function getSubjects(onSuccess) {
-//     axios.get(ctxPath + "/subjects", getRequestHeader())
+//     axios.get(endPoint + "/subjects", getRequestHeader())
 //         .then((response) => {
 //             onSuccess(response.data);
 //         })
@@ -33,7 +34,7 @@ export function getStudents(keyValue, onSuccess) {
 //     const params = {subjectId: subjectId};
 //     const configWithHeader = getConfigWithHeader({params: params});
 //
-//     axios.get(ctxPath + "/lessons", configWithHeader)
+//     axios.get(endPoint + "/lessons", configWithHeader)
 //         .then((response) => {
 //             onSuccess(response.data);
 //         })
@@ -46,7 +47,7 @@ export function getStudents(keyValue, onSuccess) {
 // }
 //
 // export function getClasses(onSuccess) {
-//     axios.get(ctxPath + "/classes", getRequestHeader())
+//     axios.get(endPoint + "/classes", getRequestHeader())
 //         .then((response) => {
 //             onSuccess(response.data);
 //         })
@@ -59,7 +60,7 @@ export function getStudents(keyValue, onSuccess) {
 // }
 //
 // export function generateKey(keyRequest, onSuccess) {
-//     axios.post(ctxPath + "/lkey", keyRequest, getRequestHeader())
+//     axios.post(endPoint + "/lkey", keyRequest, getRequestHeader())
 //         .then((response) => {
 //             onSuccess(response.data);
 //         })
@@ -69,7 +70,7 @@ export function getStudents(keyValue, onSuccess) {
 // }
 //
 // export function deleteKey(keyValue, onSuccess) {
-//     axios.delete(ctxPath + "/lkey/" + keyValue, getRequestHeader())
+//     axios.delete(endPoint + "/lkey/" + keyValue, getRequestHeader())
 //         .then(() => {
 //             onSuccess(keyValue);
 //         })

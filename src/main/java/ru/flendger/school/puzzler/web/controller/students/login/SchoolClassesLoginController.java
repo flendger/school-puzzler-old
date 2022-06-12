@@ -1,24 +1,21 @@
-package ru.flendger.school.puzzler.web.controller.students;
+package ru.flendger.school.puzzler.web.controller.students.login;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.flendger.school.puzzler.students.model.service.lessonlogon.LessonLogonService;
-import ru.flendger.school.puzzler.students.model.service.lessonlogon.dto.LessonLogonRequest;
 
 @RestController
-@RequestMapping("/api/v1/students/login")
+@RequestMapping("/api/v1/students/login/classes")
 @RequiredArgsConstructor
-public class LessonLogonController {
+public class SchoolClassesLoginController {
     private final LessonLogonService lessonLogonService;
 
     @GetMapping("/{key}")
     public ResponseEntity<?> getStudents(@PathVariable("key") String keyValue) {
         return ResponseEntity.ok(lessonLogonService.findStudentsByLessonKey(keyValue));
-    }
-
-    @PostMapping
-    public ResponseEntity<?> logon(@RequestBody LessonLogonRequest logonRequest) {
-        return null;
     }
 }
