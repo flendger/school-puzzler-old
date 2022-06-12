@@ -1,10 +1,11 @@
 import axios from "axios";
 import {getConfigWithHeader, getRequestHeader} from "../../../tokenUtils";
+import {ctxPath} from "../../../requests";
 
-const ctxPath = '/puzzler/api/v1/admin/classes';
+const endPoint = ctxPath + '/students/classes';
 
 export function getEntityList(changeState) {
-    axios.get(ctxPath, getRequestHeader())
+    axios.get(endPoint, getRequestHeader())
         .then((response) => {
             changeState(response.data);
         })
@@ -17,7 +18,7 @@ export function getEntityList(changeState) {
 }
 
 export function deleteEntity(id, onSuccess) {
-    axios.delete(ctxPath, getConfigWithHeader({
+    axios.delete(endPoint, getConfigWithHeader({
         data: {
             id: id
         }
@@ -34,7 +35,7 @@ export function deleteEntity(id, onSuccess) {
 }
 
 export function getEntityData(id, onSuccess, onFailure) {
-    let path = ctxPath + '/' + (id ? id : 'new');
+    let path = endPoint + '/' + (id ? id : 'new');
     axios.get(path, getRequestHeader())
         .then(response => {
             onSuccess(response.data);
@@ -49,7 +50,7 @@ export function getEntityData(id, onSuccess, onFailure) {
 }
 
 export function saveEntity(entity, onSuccess) {
-    axios.post(ctxPath, entity, getRequestHeader())
+    axios.post(endPoint, entity, getRequestHeader())
         .then(() => {
             onSuccess();
         })
