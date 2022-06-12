@@ -348,4 +348,9 @@
             <column name="student_id"/>
         </createIndex>
     </changeSet>
+    <changeSet id="1655060223831-1" author="flendger">
+        <createIndex tableName="student_lesson_keys" indexName="student_lesson_keys_login_idx">
+            <column name="login_date"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
