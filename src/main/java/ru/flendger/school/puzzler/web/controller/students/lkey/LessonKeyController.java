@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.web.controller.students;
+package ru.flendger.school.puzzler.web.controller.students.lkey;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import ru.flendger.school.puzzler.students.model.service.lessonkeys.LessonKeySer
 import javax.persistence.EntityNotFoundException;
 
 @RestController
-@RequestMapping("/api/v1/admin/lkey")
+@RequestMapping("/api/v1/students/lkey")
 @RequiredArgsConstructor
 @Slf4j
 public class LessonKeyController {
