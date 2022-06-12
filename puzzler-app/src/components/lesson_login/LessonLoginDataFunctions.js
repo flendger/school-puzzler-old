@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getConfigWithHeader, getRequestHeader} from "../../tokenUtils";
+import {getRequestHeader} from "../../tokenUtils";
 import {ctxPath} from "../../requests";
 
 const endPoint = ctxPath + '/students/login';
