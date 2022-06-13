@@ -353,4 +353,9 @@
             <column name="login_date"/>
         </createIndex>
     </changeSet>
+    <changeSet id="1655139922571-1" author="flendger">
+        <insert tableName="roles">
+            <column name="role" value="ROLE_STUDENT"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
