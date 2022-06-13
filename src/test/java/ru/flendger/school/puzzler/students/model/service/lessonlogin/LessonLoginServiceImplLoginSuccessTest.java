@@ -6,27 +6,23 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import ru.flendger.school.puzzler.students.database.repository.LessonKeyRepository;
-import ru.flendger.school.puzzler.students.database.repository.SchoolClassRepository;
-import ru.flendger.school.puzzler.students.database.repository.StudentLessonKeyRepository;
-import ru.flendger.school.puzzler.students.database.repository.StudentRepository;
-import ru.flendger.school.puzzler.students.model.entity.LessonKey;
-import ru.flendger.school.puzzler.students.model.entity.SchoolClass;
-import ru.flendger.school.puzzler.students.model.entity.Student;
-import ru.flendger.school.puzzler.students.model.entity.StudentLessonKey;
+import ru.flendger.school.puzzler.students.database.repository.*;
+import ru.flendger.school.puzzler.students.model.entity.*;
 import ru.flendger.school.puzzler.students.model.service.lessonlogin.dto.LessonLoginRequest;
-import ru.flendger.school.puzzler.students.model.service.lessonlogin.exception.StudentAlreadyLoginException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles("off-liquibase")
-class LessonLoginServiceImplStudentAlreadyLoginTest {
-    private static final String LESSON_KEY = "000003";
+class LessonLoginServiceImplLoginSuccessTest {
+    private static final String LESSON_KEY = "000004";
+    private static final Long LESSON_ID = 1L;
     @Autowired
     private LessonLoginServiceImpl lessonLoginService;
 
@@ -42,12 +38,16 @@ class LessonLoginServiceImplStudentAlreadyLoginTest {
     @Autowired
     private SchoolClassRepository schoolClassRepository;
 
+    @Autowired
+    private StudentLessonRepository studentLessonRepository;
+
     private final List<LessonKey> lessonKeys = new ArrayList<>();
     private final List<StudentLessonKey> studentLessonKeys = new ArrayList<>();
     private final List<Student> students = new ArrayList<>();
     private final List<SchoolClass> schoolClasses = new ArrayList<>();
+    private StudentLesson studentLesson;
 
-    Long studentId;
+    private Long studentId;
 
     @BeforeEach
     void setUp() {
@@ -84,7 +84,7 @@ class LessonLoginServiceImplStudentAlreadyLoginTest {
                 .builder()
                 .keyValue(LESSON_KEY)
                 .studentId(student.getId())
-                .loginDate(LocalDateTime.now())
+                .loginDate(LocalDateTime.now().minusDays(1L))
                 .build();
 
         return studentLessonKeyRepository.save(studentLessonKey);
@@ -94,7 +94,7 @@ class LessonLoginServiceImplStudentAlreadyLoginTest {
         LessonKey lessonKey = LessonKey
                 .builder()
                 .keyValue(LESSON_KEY)
-                .lessonId(1L)
+                .lessonId(LESSON_ID)
                 .schoolClassId(1L)
                 .expiredDate(expiredDate)
                 .build();
@@ -104,6 +104,9 @@ class LessonLoginServiceImplStudentAlreadyLoginTest {
 
     @AfterEach
     void tearDown() {
+        if (Objects.nonNull(studentLesson)) {
+            studentLessonRepository.delete(studentLesson);
+        }
         lessonKeyRepository.deleteAll(lessonKeys);
         studentLessonKeyRepository.deleteAll(studentLessonKeys);
         studentRepository.deleteAll(students);
@@ -111,9 +114,20 @@ class LessonLoginServiceImplStudentAlreadyLoginTest {
     }
 
     @Test
-    void studentAlreadyLogin() {
-        LessonLoginRequest loginRequest1 = createLessonLoginRequest();
-        assertThrows(StudentAlreadyLoginException.class, () -> lessonLoginService.login(loginRequest1));
+    void studentLoginSuccess() {
+        LessonLoginRequest loginRequest = createLessonLoginRequest();
+        assertDoesNotThrow(() -> lessonLoginService.login(loginRequest));
+
+        Optional<StudentLessonKey> optionalStudentLessonKey = studentLessonKeyRepository.findFirstByKeyValueAndStudentIdAndLoginDateIsGreaterThanEqualOrderByLoginDateDesc(loginRequest.getKeyValue(),
+                loginRequest.getStudentId(),
+                LocalDateTime.now().minusHours(1L));
+        optionalStudentLessonKey.ifPresent(studentLessonKeys::add);
+
+        Optional<StudentLesson> optionalStudentLesson = studentLessonRepository.findFirstByStudent_IdAndLessonIdOrderByStartedAtDesc(loginRequest.getStudentId(), LESSON_ID);
+        optionalStudentLesson.ifPresent(lesson -> studentLesson = lesson);
+
+        assertTrue(optionalStudentLessonKey.isPresent());
+        assertTrue(optionalStudentLesson.isPresent());
     }
 
     private LessonLoginRequest createLessonLoginRequest() {

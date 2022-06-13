@@ -75,7 +75,6 @@ public class LessonLoginServiceImpl implements LessonLoginService {
                 .keyValue(keyValue)
                 .loginDate(loginDate)
                 .studentId(studentId)
-                .studentLessonId(lessonId)
                 .build();
         studentLessonKeyStorageService.save(studentLessonKey);
 

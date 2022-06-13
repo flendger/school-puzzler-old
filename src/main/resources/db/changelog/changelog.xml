@@ -358,4 +358,7 @@
             <column name="role" value="ROLE_STUDENT"/>
         </insert>
     </changeSet>
+    <changeSet id="1655145548869-1" author="flendger">
+        <dropColumn tableName="student_lesson_keys" columnName="student_lesson_id"/>
+    </changeSet>
 </databaseChangeLog>
