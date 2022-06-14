@@ -11,15 +11,19 @@ import {AdminStudentsListForm} from "./components/admin/students/AdminStudentsLi
 import {Login} from "./components/Login";
 import {LessonKey} from "./components/admin/lkey/LessonKey";
 import {LessonKeyDetail} from "./components/admin/lkey/LessonKeyDetail";
+import {StudentLesson} from "./components/student/lesson/StudentLesson";
+import {LessonLogin} from "./components/lesson_login/LessonLogin";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path={"/"} element={<Main/>}>
+                    <Route path={"/"} element={<LessonLogin/>}/>
                     <Route path={"login"} element={<Login/>}/>
                     <Route path={"lessons"} element={<LessonsTable/>}/>
                     <Route path={"lessons/:id"} element={<Lesson/>}/>
+                    <Route path={"lesson"} element={<StudentLesson/>}/>
                     <Route path="*" element={<h1>No page there</h1>}/>
                 </Route>
                 <Route path={"admin"} element={<AdminMain/>}>

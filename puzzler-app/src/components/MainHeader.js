@@ -1,4 +1,4 @@
-import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Button, Container, Navbar} from "react-bootstrap";
 import {useNavigate} from "react-router";
 
 export function MainHeader() {

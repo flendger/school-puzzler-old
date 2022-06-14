@@ -1,13 +1,16 @@
 import {Button, Card, Form} from "react-bootstrap";
 import {useState} from "react";
-import {getStudents, login} from "./LessonLoginDataFunctions";
+import {getStudents, login} from "./StudentAuthDataFunctions";
 import {isEmpty, stringIsEmpty} from "../../validationUtils";
 import alert from "bootstrap/js/src/alert";
+import {useNavigate} from "react-router";
 
 export function LessonLogin() {
     const [students, setStudents] = useState([]);
     const [studentId, setStudentId] = useState({});
     const [keyValue, setKeyValue] = useState("");
+
+    const navigate = useNavigate();
 
     function onKeyValueChanged(e) {
         const keyValue = e.target.value;
@@ -35,11 +38,7 @@ export function LessonLogin() {
             keyValue: keyValue,
             studentId: studentId
         };
-        login(loginRequest, loginSuccess)
-    }
-
-    function loginSuccess(data) {
-        console.log(data);
+        login(loginRequest, () => navigate("/lesson"));
     }
 
     return <Card

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {getRequestHeader} from "../../tokenUtils";
+import {deleteJwtRequest, getRequestHeader, saveJwtRequest} from "../../tokenUtils";
 import {ctxPath} from "../../requests";
 
 const endPoint = ctxPath + '/students/login';
@@ -20,9 +20,15 @@ export function getStudents(keyValue, onSuccess) {
 export function login(keyRequest, onSuccess) {
     axios.post(endPoint, keyRequest, getRequestHeader())
         .then((response) => {
-            onSuccess(response.data);
+            saveJwtRequest(response.data);
+            onSuccess();
         })
         .catch(error => {
             alert(error.response.data.message);
         });
+}
+
+export function logout() {
+    //todo delete student lesson and delete token if success
+    deleteJwtRequest();
 }
