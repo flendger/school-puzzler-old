@@ -45,7 +45,7 @@ public class UserAuthenticationManager {
     public JwtResponse authenticate(Long studentId) {
         String username = studentId.toString();
 
-        UserDetails userDetails = new User(username, null, Collections.singleton(new SimpleGrantedAuthority(RoleType.ROLE_STUDENT.toString())));
+        UserDetails userDetails = new User(username, "", Collections.singleton(new SimpleGrantedAuthority(RoleType.ROLE_STUDENT.toString())));
 
         StudentTokenExpiredTimeSetting setting = applicationSettingsService.getSetting(StudentTokenExpiredTimeSetting.class);
         String token = jwtTokenUtil.generateToken(userDetails, setting.getValue() * 1000L);
