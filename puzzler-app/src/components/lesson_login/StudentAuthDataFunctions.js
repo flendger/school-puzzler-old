@@ -28,7 +28,6 @@ export function login(keyRequest, onSuccess) {
         });
 }
 
-export function logout() {
-    //todo delete student lesson and delete token if success
-    deleteJwtRequest();
+export function logoutStudent(onSuccess) {
+    onSuccess();
 }

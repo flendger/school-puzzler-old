@@ -18,6 +18,9 @@ export function login(username, password, afterCallback) {
         })
 }
 
-export function logout() {
+export function logout(onSuccess) {
     deleteJwtRequest();
+    if (onSuccess) {
+        onSuccess();
+    }
 }

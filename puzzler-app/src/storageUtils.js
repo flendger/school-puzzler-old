@@ -27,3 +27,14 @@ export function getUsername() {
 export function getIsAdmin() {
     return localStorage.getItem(isAdminKey);
 }
+
+export function isLogin() {
+    const username = getUsername();
+    return !!username;
+}
+
+export function isAdmin() {
+    const username = getUsername();
+    const isAdmin = getIsAdmin();
+    return !!username && isAdmin === "true";
+}
