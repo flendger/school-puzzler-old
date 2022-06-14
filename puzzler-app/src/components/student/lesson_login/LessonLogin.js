@@ -1,7 +1,7 @@
 import {Button, Card, Form} from "react-bootstrap";
 import {useState} from "react";
-import {getStudents, login} from "./StudentAuthDataFunctions";
-import {isEmpty, stringIsEmpty} from "../../validationUtils";
+import {getStudents, login} from "./StudentLoginDataFunctions";
+import {isEmpty, stringIsEmpty} from "../../../validationUtils";
 import alert from "bootstrap/js/src/alert";
 import {useNavigate} from "react-router";
 

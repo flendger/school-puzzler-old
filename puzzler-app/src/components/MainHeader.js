@@ -2,7 +2,7 @@ import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {useNavigate} from "react-router";
 import {getUsername, isAdmin, isLogin} from "../storageUtils";
 import {logout} from "./AuthRequests";
-import {logoutStudent} from "./lesson_login/StudentAuthDataFunctions";
+import {logoutStudent} from "./student/student_logout/StudentLogoutDataFunctions";
 
 export function MainHeader() {
     const navigate = useNavigate();

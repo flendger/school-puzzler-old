@@ -12,7 +12,7 @@ import {Login} from "./components/Login";
 import {LessonKey} from "./components/admin/lkey/LessonKey";
 import {LessonKeyDetail} from "./components/admin/lkey/LessonKeyDetail";
 import {StudentLesson} from "./components/student/lesson/StudentLesson";
-import {LessonLogin} from "./components/lesson_login/LessonLogin";
+import {LessonLogin} from "./components/student/lesson_login/LessonLogin";
 
 function App() {
     return (

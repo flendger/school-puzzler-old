@@ -1,6 +1,6 @@
 import axios from "axios";
-import {deleteJwtRequest, getRequestHeader, saveJwtRequest} from "../../tokenUtils";
-import {ctxPath} from "../../requests";
+import {getRequestHeader, saveJwtRequest} from "../../../tokenUtils";
+import {ctxPath} from "../../../requests";
 
 const endPoint = ctxPath + '/students/login';
 
@@ -26,8 +26,4 @@ export function login(keyRequest, onSuccess) {
         .catch(error => {
             alert(error.response.data.message);
         });
-}
-
-export function logoutStudent(onSuccess) {
-    onSuccess();
 }
