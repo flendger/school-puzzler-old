@@ -19,8 +19,13 @@ public abstract class AbstractCrudService<T, I, R extends JpaRepository<T, I>> i
     }
 
     @Override
-    public void save(T entity) {
-        getRepository().save(entity);
+    public T save(T entity) {
+        return getRepository().save(entity);
+    }
+
+    @Override
+    public T saveAndFlush(T entity) {
+        return getRepository().saveAndFlush(entity);
     }
 
     @Override

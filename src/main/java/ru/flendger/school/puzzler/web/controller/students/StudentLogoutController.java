@@ -27,7 +27,7 @@ public class StudentLogoutController {
         }
 
         try {
-            lessonLogoutService.logout(Long.parseLong(userSecurityToken.getName()));
+            lessonLogoutService.logout(Long.parseLong(userSecurityToken.getName()), userSecurityToken.getLessonKey());
         } catch (Exception e) {
             log.error(e.getMessage());
             return ResponseMessage.createResponse("Не удалось выйти из урока", HttpStatus.BAD_REQUEST);

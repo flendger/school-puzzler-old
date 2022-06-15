@@ -8,7 +8,9 @@ public interface CrudStorageService<T, I> {
 
     List<T> findAll();
 
-    void save(T entity);
+    T save(T entity);
+
+    T saveAndFlush(T entity);
 
     void delete(T entity);
 }
