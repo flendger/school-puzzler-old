@@ -22,4 +22,7 @@ public class StudentLessonKey extends BaseEntity {
 
     @Column(name = "login_date")
     private LocalDateTime loginDate;
+
+    @Column
+    private Long studentLessonId;
 }
