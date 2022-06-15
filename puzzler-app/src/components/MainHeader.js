@@ -9,7 +9,7 @@ export function MainHeader() {
 
     function onLogout() {
         if (!isAdmin()) {
-            logoutStudent(() => navigate("/"));
+            logoutStudent(() => navigate("/"), () => navigate("/"));
         } else {
             logout(() => navigate("/"));
         }
