@@ -6,7 +6,7 @@ const endPoint = ctxPath + '/students';
 
 
 export function logoutStudent(onSuccess) {
-    axios.post(endPoint + "/logout", getRequestHeader())
+    axios.post(endPoint + "/logout", {}, getRequestHeader())
         .then(() => {
             deleteJwtRequest();
             onSuccess();
