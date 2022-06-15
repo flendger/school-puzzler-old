@@ -70,21 +70,22 @@ public class LessonLoginServiceImpl implements LessonLoginService {
         Student student = checkAndGetStudent(studentId);
 
         Long lessonId = lessonKey.getLessonId();
-        StudentLessonKey studentLessonKey = StudentLessonKey
-                .builder()
-                .keyValue(keyValue)
-                .loginDate(loginDate)
-                .studentId(studentId)
-                .build();
-        studentLessonKeyStorageService.save(studentLessonKey);
-
         StudentLesson studentLesson = StudentLesson
                 .builder()
                 .student(student)
                 .lessonId(lessonId)
                 .startedAt(loginDate)
                 .build();
-        studentLessonStorageService.save(studentLesson);
+        studentLesson = studentLessonStorageService.saveAndFlush(studentLesson);
+
+        StudentLessonKey studentLessonKey = StudentLessonKey
+                .builder()
+                .keyValue(keyValue)
+                .loginDate(loginDate)
+                .studentId(studentId)
+                .studentLessonId(studentLesson.getId())
+                .build();
+        studentLessonKeyStorageService.save(studentLessonKey);
     }
 
     private LessonKey checkAndGetLessonKey(LocalDateTime loginDate, String keyValue) throws KeyNotFoundException {
