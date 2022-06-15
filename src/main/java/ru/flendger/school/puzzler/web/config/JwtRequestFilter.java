@@ -3,7 +3,6 @@ package ru.flendger.school.puzzler.web.config;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -39,12 +38,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username,
+            UserSecurityToken token = new UserSecurityToken(username,
                     null,
                     jwtTokenUtil.getRoles(jwt)
                             .stream()
                             .map(item -> new SimpleGrantedAuthority((String) item))
-                            .collect(Collectors.toList()));
+                            .collect(Collectors.toList()),
+                    jwtTokenUtil.getLessonKey(jwt));
             SecurityContextHolder.getContext().setAuthentication(token);
         }
 

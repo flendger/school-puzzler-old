@@ -40,6 +40,6 @@ public class LessonLoginController {
             return ResponseMessage.createResponse("Студент уже вошел в урок", HttpStatus.BAD_REQUEST);
         }
 
-        return ResponseEntity.ok(userAuthenticationManager.authenticate(loginRequest.getStudentId()));
+        return ResponseEntity.ok(userAuthenticationManager.authenticate(loginRequest.getStudentId(), loginRequest.getKeyValue()));
     }
 }

@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.flendger.school.puzzler.students.model.service.lessonlogout.LessonLogoutService;
+import ru.flendger.school.puzzler.web.config.UserSecurityToken;
 import ru.flendger.school.puzzler.web.dto.message.ResponseMessage;
 
-import java.security.Principal;
 import java.util.Objects;
 
 @RestController
@@ -21,13 +21,13 @@ public class StudentLogoutController {
     private final LessonLogoutService lessonLogoutService;
 
     @PostMapping
-    public ResponseEntity<?> logout(Principal principal) {
-        if (Objects.isNull(principal)) {
+    public ResponseEntity<?> logout(UserSecurityToken userSecurityToken) {
+        if (Objects.isNull(userSecurityToken)) {
             return ResponseMessage.createResponse("Студент не авторизован", HttpStatus.BAD_REQUEST);
         }
 
         try {
-            lessonLogoutService.logout(Long.parseLong(principal.getName()));
+            lessonLogoutService.logout(Long.parseLong(userSecurityToken.getName()));
         } catch (Exception e) {
             log.error(e.getMessage());
             return ResponseMessage.createResponse("Не удалось выйти из урока", HttpStatus.BAD_REQUEST);

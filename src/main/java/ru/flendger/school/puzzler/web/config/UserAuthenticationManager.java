@@ -37,18 +37,18 @@ public class UserAuthenticationManager {
         UserDetails userDetails = userSecurityService.loadUserByUsername(username);
 
         AdminTokenExpiredTimeSetting setting = applicationSettingsService.getSetting(AdminTokenExpiredTimeSetting.class);
-        String token = jwtTokenUtil.generateToken(userDetails, setting.getValue() * 1000L);
+        String token = jwtTokenUtil.generateToken(userDetails, setting.getValue() * 1000L, null);
 
         return new JwtResponse(username, token, jwtTokenUtil.isAdmin(userDetails));
     }
 
-    public JwtResponse authenticate(Long studentId) {
+    public JwtResponse authenticate(Long studentId, String lessonKey) {
         String username = studentId.toString();
 
         UserDetails userDetails = new User(username, "", Collections.singleton(new SimpleGrantedAuthority(RoleType.ROLE_STUDENT.toString())));
 
         StudentTokenExpiredTimeSetting setting = applicationSettingsService.getSetting(StudentTokenExpiredTimeSetting.class);
-        String token = jwtTokenUtil.generateToken(userDetails, setting.getValue() * 1000L);
+        String token = jwtTokenUtil.generateToken(userDetails, setting.getValue() * 1000L, lessonKey);
 
         return new JwtResponse(username, token, jwtTokenUtil.isAdmin(userDetails));
     }
