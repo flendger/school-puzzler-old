@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import ru.flendger.school.puzzler.web.model.entity.enums.RoleType;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -22,15 +23,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/v1/lessons/**").hasRole("ADMIN")
-                .antMatchers("/api/v1/students/classes/**").hasRole("ADMIN")
-                .antMatchers("/api/v1/students/students/**").hasRole("ADMIN")
-                .antMatchers("/api/v1/students/lkey/**").hasRole("ADMIN")
+                .antMatchers("/api/v1/admin/**").hasRole(RoleType.ROLE_ADMIN.simpleName())
+                .antMatchers("/api/v1/lessons/**").hasRole(RoleType.ROLE_ADMIN.simpleName())
+                .antMatchers("/api/v1/students/classes/**").hasRole(RoleType.ROLE_ADMIN.simpleName())
+                .antMatchers("/api/v1/students/students/**").hasRole(RoleType.ROLE_ADMIN.simpleName())
+                .antMatchers("/api/v1/students/students-lesson-keys/**").hasRole(RoleType.ROLE_ADMIN.simpleName())
+                .antMatchers("/api/v1/students/lkey/**").hasRole(RoleType.ROLE_ADMIN.simpleName())
                 .antMatchers("/api/v1/students/login/**").permitAll()
                 .antMatchers("/api/v1/students/**").authenticated()
                 .antMatchers("/api/v1/login/**").permitAll()
-                .antMatchers("/api/v1/**").hasRole("ADMIN")
+                .antMatchers("/api/v1/**").hasRole(RoleType.ROLE_ADMIN.simpleName())
                 .anyRequest().permitAll()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
