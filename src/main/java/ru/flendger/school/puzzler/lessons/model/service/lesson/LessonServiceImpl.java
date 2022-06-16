@@ -36,6 +36,11 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
+    public Optional<LessonRowDto> findRowById(Long id) {
+        return lessonStorageService.findById(id).map(lesson -> lessonsModelMapper.map(lesson, LessonRowDto.class));
+    }
+
+    @Override
     public Optional<LessonDto> findById(Long id) {
         return lessonStorageService
                 .findById(id)

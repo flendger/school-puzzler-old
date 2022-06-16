@@ -11,5 +11,7 @@ public interface LessonService {
 
     List<LessonRowDto> findAll();
 
+    Optional<LessonRowDto> findRowById(Long id);
+
     Optional<LessonDto> findById(Long id);
 }
