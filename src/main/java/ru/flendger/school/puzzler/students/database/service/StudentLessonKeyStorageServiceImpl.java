@@ -8,6 +8,7 @@ import ru.flendger.school.puzzler.students.model.dao.StudentLessonKeyStorageServ
 import ru.flendger.school.puzzler.students.model.entity.StudentLessonKey;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,5 +24,10 @@ public class StudentLessonKeyStorageServiceImpl extends AbstractCrudService<Stud
     @Override
     public Optional<StudentLessonKey> findActiveLoginKey(String keyValue, Long studentId, LocalDateTime loginDate) {
         return studentLessonKeyRepository.findFirstByKeyValueAndStudentIdAndLoginDateIsGreaterThanEqualOrderByLoginDateDesc(keyValue, studentId, loginDate);
+    }
+
+    @Override
+    public List<StudentLessonKey> findActive() {
+        return studentLessonKeyRepository.findAll();
     }
 }
