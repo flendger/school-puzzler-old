@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface StudentsLessonKeysService {
     List<StudentLessonKeyRowDto> getActive();
+
+    void delete(Long id);
 }

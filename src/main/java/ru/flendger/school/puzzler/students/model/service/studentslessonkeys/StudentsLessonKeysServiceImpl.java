@@ -3,6 +3,7 @@ package ru.flendger.school.puzzler.students.model.service.studentslessonkeys;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.flendger.school.puzzler.datetime.DateTimeService;
 import ru.flendger.school.puzzler.lessons.model.service.lesson.LessonService;
 import ru.flendger.school.puzzler.lessons.model.service.lesson.dto.LessonRowDto;
@@ -45,6 +46,20 @@ public class StudentsLessonKeysServiceImpl implements StudentsLessonKeysService 
                     return studentLessonKeyRowDto;
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        studentLessonKeyStorageService
+                .findById(id)
+                .ifPresent(studentLessonKey -> {
+                    studentLessonKeyStorageService.delete(studentLessonKey);
+
+                    studentLessonStorageService
+                            .findById(studentLessonKey.getStudentLessonId())
+                            .ifPresent(studentLessonStorageService::delete);
+                });
     }
 
     private String getLessonName(LessonRowDto lessonRowDto) {
