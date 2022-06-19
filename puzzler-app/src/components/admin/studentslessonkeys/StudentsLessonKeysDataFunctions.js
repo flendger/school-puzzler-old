@@ -23,7 +23,8 @@ export function deleteEntity(id, onSuccess) {
             id: id
         }
     }))
-        .then(() => {
+        .then((response) => {
+            alert(response.data.message);
             onSuccess();
         })
         .catch((error) => {
