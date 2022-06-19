@@ -13,6 +13,7 @@ import {LessonKey} from "./components/admin/lkey/LessonKey";
 import {LessonKeyDetail} from "./components/admin/lkey/LessonKeyDetail";
 import {StudentLesson} from "./components/student/lesson/StudentLesson";
 import {LessonLogin} from "./components/student/lesson_login/LessonLogin";
+import {StudentsLessonKeys} from "./components/admin/studentslessonkeys/StudentsLessonKeys";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                     <Route path={"students"} element={<AdminStudentsListForm/>}/>
                     <Route path={"lkey"} element={<LessonKey/>}/>
                     <Route path={"lkey/:id"} element={<LessonKeyDetail/>}/>
+                    <Route path={"students-lesson-keys"} element={<StudentsLessonKeys/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

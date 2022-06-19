@@ -31,6 +31,7 @@ export function AdminNavBar() {
                         </NavDropdown>
                         <NavDropdown title="Уроки" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/admin/lkey">Генерация ключа доступа</NavDropdown.Item>
+                            <NavDropdown.Item href="/admin/students-lesson-keys">Активные уроки</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
