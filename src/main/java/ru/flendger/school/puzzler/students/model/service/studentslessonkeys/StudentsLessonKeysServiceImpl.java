@@ -3,6 +3,7 @@ package ru.flendger.school.puzzler.students.model.service.studentslessonkeys;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import ru.flendger.school.puzzler.datetime.DateTimeService;
 import ru.flendger.school.puzzler.lessons.model.service.lesson.LessonService;
 import ru.flendger.school.puzzler.lessons.model.service.lesson.dto.LessonRowDto;
 import ru.flendger.school.puzzler.students.model.dao.StudentLessonKeyStorageService;
@@ -20,6 +21,7 @@ public class StudentsLessonKeysServiceImpl implements StudentsLessonKeysService 
     private final ModelMapper studentsModelMapper;
     private final StudentLessonStorageService studentLessonStorageService;
     private final LessonService lessonService;
+    private final DateTimeService dateTimeService;
 
     @Override
     public List<StudentLessonKeyRowDto> getActive() {
@@ -27,6 +29,8 @@ public class StudentsLessonKeysServiceImpl implements StudentsLessonKeysService 
                 .stream()
                 .map(studentLessonKey -> {
                     StudentLessonKeyRowDto studentLessonKeyRowDto = studentsModelMapper.map(studentLessonKey, StudentLessonKeyRowDto.class);
+
+                    studentLessonKeyRowDto.setLoginDateLocal(dateTimeService.toLocalFormat(studentLessonKey.getLoginDate()));
 
                     studentLessonStorageService
                             .findById(studentLessonKeyRowDto.getStudentLessonId())
