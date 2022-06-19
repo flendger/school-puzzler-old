@@ -18,18 +18,18 @@ export function getList(onSuccess) {
 }
 
 export function deleteEntity(id, onSuccess) {
-    // axios.delete(endPoint, getConfigWithHeader({
-    //     data: {
-    //         id: id
-    //     }
-    // }))
-    //     .then(() => {
-    //         onSuccess();
-    //     })
-    //     .catch((error) => {
-    //         let errMsg = error.response.data.message;
-    //         errMsg = errMsg ? errMsg : error;
-    //
-    //         alert(errMsg);
-    //     });
+    axios.delete(endPoint, getConfigWithHeader({
+        data: {
+            id: id
+        }
+    }))
+        .then(() => {
+            onSuccess();
+        })
+        .catch((error) => {
+            let errMsg = error.response.data.message;
+            errMsg = errMsg ? errMsg : error;
+
+            alert(errMsg);
+        });
 }

@@ -1,16 +1,18 @@
 import {useEffect, useState} from "react";
 import {StudentsLessonKeyTableRow} from "./StudentsLessonKeyTableRow";
-import {getList} from "./StudentsLessonKeysDataFunctions";
+import {deleteEntity, getList} from "./StudentsLessonKeysDataFunctions";
 
 export function StudentsLessonKeysRows() {
     const [studentLessonKeyRows, setRows] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => {onLoad()}, []);
+
+    function onLoad() {
         getList(setRows);
-    }, []);
+    }
 
     function onDelete(id) {
-        console.log(id);
+        deleteEntity(id, onLoad)
     }
 
     const tableRows = studentLessonKeyRows?.map((rowData) => {
