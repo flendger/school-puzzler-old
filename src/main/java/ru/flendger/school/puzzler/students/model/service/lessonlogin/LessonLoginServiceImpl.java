@@ -58,7 +58,7 @@ public class LessonLoginServiceImpl implements LessonLoginService {
 
     @Override
     @Transactional
-    public void login(LessonLoginRequest loginRequest) throws KeyNotFoundException, StudentAlreadyLoginException, EntityNotFoundException {
+    public String login(LessonLoginRequest loginRequest) throws KeyNotFoundException, StudentAlreadyLoginException, EntityNotFoundException {
         LocalDateTime loginDate = dateTimeService.current();
 
         String keyValue = loginRequest.getKeyValue();
@@ -86,6 +86,8 @@ public class LessonLoginServiceImpl implements LessonLoginService {
                 .studentLessonId(studentLesson.getId())
                 .build();
         studentLessonKeyStorageService.save(studentLessonKey);
+
+        return student.getName();
     }
 
     private LessonKey checkAndGetLessonKey(LocalDateTime loginDate, String keyValue) throws KeyNotFoundException {

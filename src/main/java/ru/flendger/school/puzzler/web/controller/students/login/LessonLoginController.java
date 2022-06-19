@@ -27,8 +27,9 @@ public class LessonLoginController {
 
     @PostMapping
     public ResponseEntity<?> login(@RequestBody LessonLoginRequest loginRequest) {
+        String studentName;
         try {
-            lessonLoginService.login(loginRequest);
+            studentName = lessonLoginService.login(loginRequest);
         } catch (KeyNotFoundException e) {
             log.error(e.getMessage());
             return ResponseMessage.createResponse("Ключ не существует или срок действия истек", HttpStatus.BAD_REQUEST);
@@ -40,6 +41,6 @@ public class LessonLoginController {
             return ResponseMessage.createResponse("Студент уже вошел в урок", HttpStatus.BAD_REQUEST);
         }
 
-        return ResponseEntity.ok(userAuthenticationManager.authenticate(loginRequest.getStudentId(), loginRequest.getKeyValue()));
+        return ResponseEntity.ok(userAuthenticationManager.authenticate(loginRequest.getStudentId(), loginRequest.getKeyValue(), studentName));
     }
 }

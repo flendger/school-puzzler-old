@@ -19,7 +19,7 @@ export function getAuthorizationHeader() {
 }
 
 export function saveJwtRequest(jwtResponse) {
-    saveUsername(jwtResponse.username);
+    saveUsername(jwtResponse.nameDescription);
     saveToken(jwtResponse.token);
     saveIsAdmin(jwtResponse.admin);
 }

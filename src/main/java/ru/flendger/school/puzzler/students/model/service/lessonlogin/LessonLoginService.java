@@ -8,5 +8,5 @@ import java.util.List;
 public interface LessonLoginService {
     List<LessonLoginStudentDto> findStudentsByLessonKey(String keyValue);
 
-    void login(LessonLoginRequest loginRequest);
+    String login(LessonLoginRequest loginRequest);
 }

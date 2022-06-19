@@ -39,10 +39,10 @@ public class UserAuthenticationManager {
         AdminTokenExpiredTimeSetting setting = applicationSettingsService.getSetting(AdminTokenExpiredTimeSetting.class);
         String token = jwtTokenUtil.generateToken(userDetails, setting.getValue() * 1000L, null);
 
-        return new JwtResponse(username, token, jwtTokenUtil.isAdmin(userDetails));
+        return new JwtResponse(username, token, jwtTokenUtil.isAdmin(userDetails), username);
     }
 
-    public JwtResponse authenticate(Long studentId, String lessonKey) {
+    public JwtResponse authenticate(Long studentId, String lessonKey, String studentName) {
         String username = studentId.toString();
 
         UserDetails userDetails = new User(username, "", Collections.singleton(new SimpleGrantedAuthority(RoleType.ROLE_STUDENT.toString())));
@@ -50,6 +50,6 @@ public class UserAuthenticationManager {
         StudentTokenExpiredTimeSetting setting = applicationSettingsService.getSetting(StudentTokenExpiredTimeSetting.class);
         String token = jwtTokenUtil.generateToken(userDetails, setting.getValue() * 1000L, lessonKey);
 
-        return new JwtResponse(username, token, jwtTokenUtil.isAdmin(userDetails));
+        return new JwtResponse(username, token, jwtTokenUtil.isAdmin(userDetails), studentName);
     }
 }
