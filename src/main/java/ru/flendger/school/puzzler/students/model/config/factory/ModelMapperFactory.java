@@ -3,12 +3,10 @@ package ru.flendger.school.puzzler.students.model.config.factory;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
 import org.modelmapper.config.Configuration;
 import org.springframework.stereotype.Component;
 import ru.flendger.school.puzzler.lessons.model.service.lesson.dto.LessonDto;
 import ru.flendger.school.puzzler.students.model.service.lesson.dto.StudentLessonDto;
-import ru.flendger.school.puzzler.lessons.model.entity.Lesson;
 
 @Component
 @RequiredArgsConstructor

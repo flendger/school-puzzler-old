@@ -1,7 +1,7 @@
 package ru.flendger.school.puzzler.lessons.model.dao;
 
 import ru.flendger.school.puzzler.common.CrudStorageService;
-import ru.flendger.school.puzzler.lessons.model.entity.Lesson;
+import ru.flendger.school.puzzler.lessons.model.entity.lesson.Lesson;
 
 import java.util.List;
 

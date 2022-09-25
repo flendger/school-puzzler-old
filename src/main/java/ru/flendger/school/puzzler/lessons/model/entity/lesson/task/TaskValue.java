@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.lessons.model.entity;
+package ru.flendger.school.puzzler.lessons.model.entity.lesson.task;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +16,13 @@ public class TaskValue extends BaseEntity {
     @JoinColumn(name = "task_id")
     private Task task;
 
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "value_type")
+    private TaskValueType valueType;
+
+    @Column(name = "order_num")
+    private int orderNum;
+
     @Column(name = "value1")
     private String value1;
 
@@ -27,12 +34,4 @@ public class TaskValue extends BaseEntity {
 
     @Column(name = "accessible")
     private boolean accessible;
-
-    @ManyToOne
-    @JoinColumn(name = "task_column_id")
-    private TaskColumn taskColumn;
-
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "value_type")
-    private TaskValueType valueType;
 }

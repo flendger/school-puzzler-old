@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.flendger.school.puzzler.lessons.model.entity.Lesson;
+import ru.flendger.school.puzzler.lessons.model.entity.lesson.Lesson;
 import ru.flendger.school.puzzler.settings.ApplicationSettingsService;
 import ru.flendger.school.puzzler.students.model.entity.SchoolClass;
 import ru.flendger.school.puzzler.datetime.DateTimeService;
