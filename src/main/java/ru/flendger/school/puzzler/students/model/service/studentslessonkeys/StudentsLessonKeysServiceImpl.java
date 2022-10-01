@@ -9,7 +9,7 @@ import ru.flendger.school.puzzler.lessons.model.service.lesson.LessonService;
 import ru.flendger.school.puzzler.lessons.model.service.lesson.dto.LessonRowDto;
 import ru.flendger.school.puzzler.students.model.dao.StudentLessonKeyStorageService;
 import ru.flendger.school.puzzler.students.model.dao.StudentLessonStorageService;
-import ru.flendger.school.puzzler.students.model.entity.StudentLesson;
+import ru.flendger.school.puzzler.students.model.entity.lesson.StudentLesson;
 import ru.flendger.school.puzzler.students.model.service.studentslessonkeys.dto.StudentLessonKeyRowDto;
 
 import java.util.List;

@@ -13,7 +13,7 @@ import ru.flendger.school.puzzler.students.model.dao.StudentLessonStorageService
 import ru.flendger.school.puzzler.students.model.dao.StudentStorageService;
 import ru.flendger.school.puzzler.students.model.entity.LessonKey;
 import ru.flendger.school.puzzler.students.model.entity.Student;
-import ru.flendger.school.puzzler.students.model.entity.StudentLesson;
+import ru.flendger.school.puzzler.students.model.entity.lesson.StudentLesson;
 import ru.flendger.school.puzzler.students.model.entity.StudentLessonKey;
 import ru.flendger.school.puzzler.students.model.service.lessonlogin.dto.LessonLoginRequest;
 import ru.flendger.school.puzzler.students.model.service.lessonlogin.dto.LessonLoginStudentDto;

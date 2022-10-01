@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import ru.flendger.school.puzzler.students.database.repository.*;
 import ru.flendger.school.puzzler.students.model.entity.*;
+import ru.flendger.school.puzzler.students.model.entity.lesson.StudentLesson;
 import ru.flendger.school.puzzler.students.model.service.lessonlogin.dto.LessonLoginRequest;
 
 import java.time.LocalDateTime;

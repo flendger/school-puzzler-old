@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.flendger.school.puzzler.common.AbstractCrudService;
 import ru.flendger.school.puzzler.students.database.repository.StudentLessonRepository;
-import ru.flendger.school.puzzler.students.model.entity.StudentLesson;
+import ru.flendger.school.puzzler.students.model.entity.lesson.StudentLesson;
 import ru.flendger.school.puzzler.students.model.dao.StudentLessonStorageService;
 
 @Service
