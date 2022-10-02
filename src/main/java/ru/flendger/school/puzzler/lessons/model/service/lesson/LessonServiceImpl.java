@@ -41,7 +41,7 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public Optional<LessonDto> findById(Long id) {
+    public Optional<LessonDto> findById(Long id) { // TODO: 02.10.2022 e.kiru -> throw exception instead return optional
         return lessonStorageService
                 .findById(id)
                 .map(lesson -> lessonsModelMapper.map(lesson, LessonDto.class));

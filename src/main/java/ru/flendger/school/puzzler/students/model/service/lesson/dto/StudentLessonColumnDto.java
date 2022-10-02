@@ -5,9 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class StudentLessonRowDto {
-    private Long id;
-    private String name;
+public class StudentLessonColumnDto {
+    private int orderNum;
     private String title;
-    private String subjectName;
 }

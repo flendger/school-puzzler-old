@@ -1,8 +1,8 @@
 package ru.flendger.school.puzzler.lessons.model.service.lesson.dto;
 
 import lombok.Data;
-import ru.flendger.school.puzzler.students.model.service.lesson.dto.StudentLessonHeaderDto;
-import ru.flendger.school.puzzler.students.model.service.lesson.dto.StudentLessonTaskRowDto;
+import ru.flendger.school.puzzler.students.model.service.lesson.dto.StudentLessonColumnDto;
+import ru.flendger.school.puzzler.students.model.service.lessontask.StudentLessonTaskRowDto;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ public class LessonDto {
     private Long id;
     private String name;
     private String title;
-    private List<StudentLessonHeaderDto> headers;
+    private List<StudentLessonColumnDto> headers;
     private List<StudentLessonTaskRowDto> tasks;
 }

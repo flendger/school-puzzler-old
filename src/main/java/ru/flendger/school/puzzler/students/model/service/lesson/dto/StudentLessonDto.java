@@ -11,6 +11,5 @@ public class StudentLessonDto {
     private Long id;
     private String name;
     private String title;
-    private List<StudentLessonHeaderDto> headers;
-    private List<StudentLessonTaskRowDto> tasks;
+    private List<StudentLessonColumnDto> lessonColumns;
 }

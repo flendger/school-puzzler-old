@@ -1,4 +1,4 @@
-package ru.flendger.school.puzzler.students.model.service.lesson.dto;
+package ru.flendger.school.puzzler.students.model.service.lessontask;
 
 import lombok.Getter;
 import lombok.Setter;

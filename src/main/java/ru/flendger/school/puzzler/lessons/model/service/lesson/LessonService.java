@@ -13,5 +13,5 @@ public interface LessonService {
 
     Optional<LessonRowDto> findRowById(Long id);
 
-    Optional<LessonDto> findById(Long id);
+    Optional<LessonDto> findById(Long id); // TODO: 02.10.2022 e.kiru -> check if mapping correct
 }
